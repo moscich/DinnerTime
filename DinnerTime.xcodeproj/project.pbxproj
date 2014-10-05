@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4568AC57660742B2B9838B61 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35828E243B494F8FBBDFBBBF /* libPods.a */; };
+		530422494568FE7D17A70BAD /* DinnerTimeLoginManagerSPY.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422342EEDD24512CF94C0 /* DinnerTimeLoginManagerSPY.m */; };
 		530423C291BAC728B0797530 /* GoogleSignInManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530424E7B1ED64363727BD23 /* GoogleSignInManagerTests.m */; };
 		530426863FEA8C136403823C /* GoogleSignInManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 530426CFC2778966D8AE157F /* GoogleSignInManagerSpy.m */; };
+		530427168B4B3AC5FCCAAC1E /* DinnerTimeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304210FF03DB817623F6EC8 /* DinnerTimeLoginManager.m */; };
 		530427415F8DCF10EE7F2F1F /* GoogleSignInManagerDelegateSPY.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422CFDE8A773E5BE18AF7 /* GoogleSignInManagerDelegateSPY.m */; };
 		530427DFCAAF954AB7870015 /* Marek Moscichowski's CA 1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */; };
 		530428F156310A59438359D9 /* TestsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042914B57059C897B56DB4 /* TestsAppDelegate.m */; };
@@ -58,8 +60,10 @@
 		530420264317ACE772D8A7A8 /* LoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerTests.m; sourceTree = "<group>"; };
 		53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = "Marek Moscichowski's CA 1.cer"; sourceTree = "<group>"; };
 		530420FA436566A00072D5F3 /* MyCACertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = MyCACertificate.cer; sourceTree = "<group>"; };
+		5304210FF03DB817623F6EC8 /* DinnerTimeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManager.m; sourceTree = "<group>"; };
 		53042145DF746A72871D0D45 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		530421B68C44E9E309990327 /* GoogleSignInManagerDelegateSPY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerDelegateSPY.h; sourceTree = "<group>"; };
+		530422342EEDD24512CF94C0 /* DinnerTimeLoginManagerSPY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerSPY.m; sourceTree = "<group>"; };
 		530422CFDE8A773E5BE18AF7 /* GoogleSignInManagerDelegateSPY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerDelegateSPY.m; sourceTree = "<group>"; };
 		530423D25CDA2A0C7E437B30 /* TestsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsAppDelegate.h; sourceTree = "<group>"; };
 		530424E7B1ED64363727BD23 /* GoogleSignInManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerTests.m; sourceTree = "<group>"; };
@@ -67,9 +71,11 @@
 		530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = DinnerTimeServer.cer; sourceTree = "<group>"; };
 		530426CFC2778966D8AE157F /* GoogleSignInManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerSpy.m; sourceTree = "<group>"; };
 		530427489C03D18E8290DB03 /* GoogleSignInManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerSpy.h; sourceTree = "<group>"; };
+		530428F60606D1F1DA84D292 /* DinnerTimeLoginManagerSPY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerTimeLoginManagerSPY.h; sourceTree = "<group>"; };
 		53042914B57059C897B56DB4 /* TestsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsAppDelegate.m; sourceTree = "<group>"; };
 		53042990AA35C199D07FBA47 /* GoogleSignInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManager.h; sourceTree = "<group>"; };
 		53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManager.m; sourceTree = "<group>"; };
+		53042FC17D77A09B5EF3C5C1 /* DinnerTimeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerTimeLoginManager.h; sourceTree = "<group>"; };
 		7908971519D4969600145E7E /* DinnerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinnerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7908971919D4969600145E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7908971A19D4969600145E7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,6 +148,8 @@
 				53042D867E8C6A4B8DB42443 /* Tests */,
 				530425E67D1181FC3823D6BD /* LoginManager.h */,
 				53042145DF746A72871D0D45 /* LoginManager.m */,
+				5304210FF03DB817623F6EC8 /* DinnerTimeLoginManager.m */,
+				53042FC17D77A09B5EF3C5C1 /* DinnerTimeLoginManager.h */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -180,6 +188,8 @@
 				530427489C03D18E8290DB03 /* GoogleSignInManagerSpy.h */,
 				53042914B57059C897B56DB4 /* TestsAppDelegate.m */,
 				530423D25CDA2A0C7E437B30 /* TestsAppDelegate.h */,
+				530422342EEDD24512CF94C0 /* DinnerTimeLoginManagerSPY.m */,
+				530428F60606D1F1DA84D292 /* DinnerTimeLoginManagerSPY.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -394,6 +404,7 @@
 				53042BEA4B61455AA171A025 /* LoginManager.m in Sources */,
 				530426863FEA8C136403823C /* GoogleSignInManagerSpy.m in Sources */,
 				530428F156310A59438359D9 /* TestsAppDelegate.m in Sources */,
+				530427168B4B3AC5FCCAAC1E /* DinnerTimeLoginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +416,7 @@
 				530427415F8DCF10EE7F2F1F /* GoogleSignInManagerDelegateSPY.m in Sources */,
 				530423C291BAC728B0797530 /* GoogleSignInManagerTests.m in Sources */,
 				53042EEFB8697516AC756719 /* LoginManagerTests.m in Sources */,
+				530422494568FE7D17A70BAD /* DinnerTimeLoginManagerSPY.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

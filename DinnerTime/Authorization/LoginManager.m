@@ -5,6 +5,7 @@
 
 #import "LoginManager.h"
 #import "GoogleSignInManager.h"
+#import "DinnerTimeLoginManager.h"
 
 
 @implementation LoginManager {
@@ -14,12 +15,17 @@
   [self.googleManger signIn];
 }
 
-- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleManager {
+- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeLoginManager:(DinnerTimeLoginManager *)loginManager {
   self = [super init];
   if(self){
-    self.googleManger = googleManager;
+    self.googleManger = googleSignInManager;
+    self.dinnerTimeLoginManager = loginManager;
   }
   return self;
+}
+
+- (void)googleSignInManagerAuthenticatedInGoogleWithToken:(NSString *)token {
+  [self.dinnerTimeLoginManager signInWithToken:token];
 }
 
 @end

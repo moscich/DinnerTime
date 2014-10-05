@@ -61,7 +61,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [[GPPSignIn sharedInstance] authenticate];
+
 }
 
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth

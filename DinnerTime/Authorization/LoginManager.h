@@ -5,17 +5,24 @@
 
 #import <Foundation/Foundation.h>
 #import "GoogleSignInManager.h"
+#import "DinnerTimeLoginManager.h"
 
 @class GoogleSignInManager;
 @class DinnerTimeLoginManager;
+@class LoginManagerDelegateSpy;
 
+@protocol LoginManagerDelegate
+- (void)loginManagerLoginSuccessfull;
+@end
 
-@interface LoginManager : NSObject <GoogleSignInManagerDelegate>
+@interface LoginManager : NSObject <GoogleSignInManagerDelegate, DinnerTimeLoginManagerDelegate>
+
+@property(nonatomic, weak) id<LoginManagerDelegate> delegate;
+
 @property(nonatomic, strong) GoogleSignInManager *googleManger;
-
 @property(nonatomic, strong) DinnerTimeLoginManager *dinnerTimeLoginManager;
 
-- (void)signIn;
+- (IBAction)signIn;
 
 - (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeLoginManager:(DinnerTimeLoginManager *)loginManager;
 @end

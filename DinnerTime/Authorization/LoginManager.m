@@ -6,6 +6,7 @@
 #import "LoginManager.h"
 #import "GoogleSignInManager.h"
 #import "DinnerTimeLoginManager.h"
+#import "LoginManagerDelegateSpy.h"
 
 
 @implementation LoginManager {
@@ -16,6 +17,8 @@
   if(self){
     self.googleManger = googleSignInManager;
     self.dinnerTimeLoginManager = loginManager;
+    self.googleManger.delegate = self;
+    self.dinnerTimeLoginManager.delegate = self;
   }
   return self;
 }
@@ -26,6 +29,10 @@
 
 - (void)googleSignInManagerAuthenticatedInGoogleWithToken:(NSString *)token {
   [self.dinnerTimeLoginManager signInWithToken:token];
+}
+
+- (void)dinnerTimeLoginManagerLoginSuccessfully {
+  [self.delegate loginManagerLoginSuccessfull];
 }
 
 @end

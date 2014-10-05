@@ -11,10 +11,6 @@
 @implementation LoginManager {
 
 }
-- (void)signIn {
-  [self.googleManger signIn];
-}
-
 - (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeLoginManager:(DinnerTimeLoginManager *)loginManager {
   self = [super init];
   if(self){
@@ -22,6 +18,10 @@
     self.dinnerTimeLoginManager = loginManager;
   }
   return self;
+}
+
+- (void)signIn {
+  [self.googleManger signIn];
 }
 
 - (void)googleSignInManagerAuthenticatedInGoogleWithToken:(NSString *)token {

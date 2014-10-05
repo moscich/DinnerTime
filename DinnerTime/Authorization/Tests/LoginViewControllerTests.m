@@ -23,5 +23,18 @@
   XCTAssertNotNil(loginViewController.loginManager);
 }
 
+- (void)testLoginViewControllerIsLoginManagerDelegate{
+  LoginViewController *loginViewController = [LoginViewController new];
+  XCTAssertEqual(loginViewController.loginManager.delegate, loginViewController);
+}
+
+//- (void)testLoginViewControllerPushDinnerListWhenLoginSuccessful{
+//  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+//  LoginViewController *loginViewController = [LoginViewController new];
+//  id loginViewControllerMock = [OCMockObject partialMockForObject:loginViewController];
+//  [[[loginViewControllerMock stub] andReturn:mockNavController] navigationController];
+//  [loginViewController loginManagerLoginSuccessful];
+//  [[mockNavController expect] pushViewController:[OCMArg any] animated:YES];
+//}
 
 @end

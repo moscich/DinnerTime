@@ -4,6 +4,7 @@
 //
 
 #import "LoginViewController.h"
+#import "DinnerListViewController.h"
 
 
 @implementation LoginViewController {
@@ -28,7 +29,8 @@
 }
 
 - (void)loginManagerLoginSuccessful {
-
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 
 - (IBAction)loginButtonTapped {

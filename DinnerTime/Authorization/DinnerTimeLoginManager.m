@@ -12,6 +12,15 @@
 
 }
 
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    self.dinnerTimeService = [DinnerTimeService new];
+  }
+
+  return self;
+}
+
 - (void)signInWithToken:(NSString *)token {
   [self.dinnerTimeService loginWithToken:token withCallback:^(NSString *sessionId) {
     [UICKeyChainStore setString:sessionId forKey:@"sessionID"];

@@ -4,10 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <AFNetworking/AFHTTPSessionManager.h>
 
 @interface DinnerTimeService : NSObject
-@property(nonatomic, strong) id sessionManager;
+@property(nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback;
 @end

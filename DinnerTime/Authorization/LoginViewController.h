@@ -5,7 +5,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "LoginManager.h"
 
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <LoginManagerDelegate>
+@property(nonatomic, strong)  LoginManager *loginManager;
+
+- (IBAction)loginButtonTapped;
+
 @end

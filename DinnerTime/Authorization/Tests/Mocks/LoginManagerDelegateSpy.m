@@ -9,7 +9,8 @@
 @implementation LoginManagerDelegateSpy {
 
 }
-- (void)loginManagerLoginSuccessfull {
+
+- (void)loginManagerLoginSuccessful {
   self.wasCalled = YES;
 }
 

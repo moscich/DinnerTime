@@ -29,6 +29,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "DinnerTimeLoginManagerTests">
+               </Test>
+               <Test
                   Identifier = "DinnerTimeTests">
                </Test>
             </SkippedTests>

@@ -12,12 +12,12 @@
 @class LoginManagerDelegateSpy;
 
 @protocol LoginManagerDelegate
-- (void)loginManagerLoginSuccessfull;
+- (void)loginManagerLoginSuccessful;
 @end
 
 @interface LoginManager : NSObject <GoogleSignInManagerDelegate, DinnerTimeLoginManagerDelegate>
 
-@property(nonatomic, weak) id<LoginManagerDelegate> delegate;
+@property(nonatomic, weak) IBOutlet id<LoginManagerDelegate> delegate;
 
 @property(nonatomic, strong) GoogleSignInManager *googleManger;
 @property(nonatomic, strong) DinnerTimeLoginManager *dinnerTimeLoginManager;

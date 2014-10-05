@@ -8,6 +8,7 @@
 
 #import <GooglePlus/GooglePlus.h>
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +18,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    return YES;
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  // Override point for customization after application launch.
+  self.window.backgroundColor = [UIColor whiteColor];
+  [self.window makeKeyAndVisible];
+
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+  self.window.rootViewController = navigationController;
+
+  return YES;
 }
 
 - (BOOL)application: (UIApplication *)application

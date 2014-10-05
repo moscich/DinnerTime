@@ -16,6 +16,11 @@
 
 }
 
+- (void)testLoginManagerInitsDinnerTimeService{
+  DinnerTimeLoginManager *loginManager = [DinnerTimeLoginManager new];
+  XCTAssertTrue(loginManager.dinnerTimeService);
+}
+
 - (void)testLoginManagerCallsDinnerTimeService{
   DinnerTimeLoginManager *loginManager = [DinnerTimeLoginManager new];
   DinnerTimeServiceSpy *dinnerTimeServiceSpy = [DinnerTimeServiceSpy new];

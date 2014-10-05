@@ -23,6 +23,16 @@
   return self;
 }
 
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+
+  }
+
+  return self;
+}
+
+
 - (void)signIn {
   [self.googleManger signIn];
 }
@@ -32,7 +42,7 @@
 }
 
 - (void)dinnerTimeLoginManagerLoginSuccessfully {
-  [self.delegate loginManagerLoginSuccessfull];
+  [self.delegate loginManagerLoginSuccessful];
 }
 
 @end

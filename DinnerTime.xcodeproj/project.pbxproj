@@ -28,6 +28,7 @@
 		53042BEA4B61455AA171A025 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042145DF746A72871D0D45 /* LoginManager.m */; };
 		53042C6917AF0FF4C0F7B2A1 /* MyCACertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530420FA436566A00072D5F3 /* MyCACertificate.cer */; };
 		53042EEFB8697516AC756719 /* LoginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530420264317ACE772D8A7A8 /* LoginManagerTests.m */; };
+		53042FA80A00332FFA532BE6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */; };
 		53042FC0A461534EB86735DE /* GoogleSignInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */; };
 		7908971B19D4969600145E7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908971A19D4969600145E7E /* main.m */; };
 		7908971E19D4969600145E7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908971D19D4969600145E7E /* AppDelegate.m */; };
@@ -66,6 +67,7 @@
 		35828E243B494F8FBBDFBBBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		41FE7BB592244A4788FF7A88 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		530420264317ACE772D8A7A8 /* LoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerTests.m; sourceTree = "<group>"; };
+		5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = "Marek Moscichowski's CA 1.cer"; sourceTree = "<group>"; };
 		530420FA436566A00072D5F3 /* MyCACertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = MyCACertificate.cer; sourceTree = "<group>"; };
 		5304210FF03DB817623F6EC8 /* DinnerTimeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManager.m; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				530420264317ACE772D8A7A8 /* LoginManagerTests.m */,
 				53042AB43B6C64A5F6ECA694 /* DinnerTimeLoginManagerTests.m */,
 				530422EA7E1991426FE74A99 /* Mocks */,
+				5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				530429F9C3BCE7F7E98F429C /* GoogleSignInManagerDelegateSPY.m in Sources */,
 				530427950551199A9F852511 /* DinnerTimeLoginManagerDelegateSpy.m in Sources */,
 				530425F92A4B29C9D39BEB04 /* LoginManagerDelegateSpy.m in Sources */,
+				53042FA80A00332FFA532BE6 /* LoginViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

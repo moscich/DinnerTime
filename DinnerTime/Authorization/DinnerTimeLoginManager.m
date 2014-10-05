@@ -4,12 +4,17 @@
 //
 
 #import "DinnerTimeLoginManager.h"
+#import "DinnerTimeService.h"
 
 
 @implementation DinnerTimeLoginManager {
 
 }
-- (void)signInWithToken:(NSString *)token {
 
+- (void)signInWithToken:(NSString *)token {
+  [self.dinnerTimeService loginWithToken:token withCallback:^(NSString *sessionId) {
+    [self.delegate dinnerTimeLoginManagerLoginSuccessfully];
+  }];
 }
+
 @end

@@ -5,7 +5,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class DinnerTimeService;
+@class DinnerTimeLoginManagerDelegateSpy;
+
+@protocol DinnerTimeLoginManagerDelegate
+- (void)dinnerTimeLoginManagerLoginSuccessfully;
+@end
 
 @interface DinnerTimeLoginManager : NSObject
+@property (nonatomic, strong) DinnerTimeService *dinnerTimeService;
+@property(nonatomic, strong) id <DinnerTimeLoginManagerDelegate> delegate;
+
 - (void)signInWithToken:(NSString *)token;
 @end

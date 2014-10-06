@@ -10,4 +10,6 @@
 @property(nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback;
+
+- (void)getDinners:(void (^)(NSArray *))callback;
 @end

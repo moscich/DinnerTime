@@ -9,7 +9,7 @@
 @class DinnerTimeLoginManagerDelegateSpy;
 
 @protocol DinnerTimeLoginManagerDelegate
-- (void)dinnerTimeLoginManagerLoginSuccessfully;
+- (void)dinnerTimeLoginManagerLoginSuccessfullyWithSession:(NSString *)sessionId;
 @end
 
 @interface DinnerTimeLoginManager : NSObject

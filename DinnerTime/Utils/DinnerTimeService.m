@@ -4,9 +4,6 @@
 //
 
 #import "DinnerTimeService.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
-
 
 @implementation DinnerTimeService {
 
@@ -32,4 +29,9 @@
     NSLog(@"error = %@", error);
   }];
 }
+
+- (void)getDinners:(void (^)(NSArray *))callback {
+  [self.sessionManager GET:@"/dinners" parameters:nil success:nil failure:nil];
+}
+
 @end

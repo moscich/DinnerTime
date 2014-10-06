@@ -9,7 +9,7 @@
 @implementation DinnerTimeLoginManagerDelegateSpy {
 
 }
-- (void)dinnerTimeLoginManagerLoginSuccessfully {
+- (void)dinnerTimeLoginManagerLoginSuccessfullyWithSession:(NSString *)sessionId {
   self.wasCalled = YES;
 }
 

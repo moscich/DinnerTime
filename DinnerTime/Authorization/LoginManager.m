@@ -7,6 +7,7 @@
 #import "GoogleSignInManager.h"
 #import "DinnerTimeLoginManager.h"
 #import "LoginManagerDelegateSpy.h"
+#import "UICKeyChainStore.h"
 
 
 @implementation LoginManager {
@@ -41,7 +42,8 @@
   [self.dinnerTimeLoginManager signInWithToken:token];
 }
 
-- (void)dinnerTimeLoginManagerLoginSuccessfully {
+- (void)dinnerTimeLoginManagerLoginSuccessfullyWithSession:(NSString *)sessionId {
+  [UICKeyChainStore setString:sessionId forKey:@"sessionID"];
   [self.delegate loginManagerLoginSuccessful];
 }
 

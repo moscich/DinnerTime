@@ -33,4 +33,13 @@
   [self waitForExpectationsWithTimeout:0.0001 handler:nil];
 }
 
+- (void)testGetDinners{
+  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
+  dinnerTimeService.sessionManager = sessionManagerSpy;
+  [dinnerTimeService getDinners:^(NSArray *array) {
+  }];
+  XCTAssertEqualObjects(sessionManagerSpy.calledAddress, @"/dinners");
+}
+
 @end

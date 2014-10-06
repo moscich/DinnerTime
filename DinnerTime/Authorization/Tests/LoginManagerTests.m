@@ -47,7 +47,7 @@
   LoginManager *loginManager = [LoginManager new];
   LoginManagerDelegateSpy *delegateSpy = [LoginManagerDelegateSpy new];
   loginManager.delegate = delegateSpy;
-  [loginManager dinnerTimeLoginManagerLoginSuccessfully];
+  [loginManager dinnerTimeLoginManagerLoginSuccessfullyWithSession:@"session_id"];
   XCTAssertTrue(delegateSpy.wasCalled);
 }
 

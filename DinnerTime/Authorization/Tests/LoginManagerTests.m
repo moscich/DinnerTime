@@ -6,8 +6,9 @@
 #import <XCTest/XCTest.h>
 #import "LoginManager.h"
 #import "GoogleSignInManagerSpy.h"
-#import "DinnerTimeLoginManagerSPY.h"
 #import "LoginManagerDelegateSpy.h"
+#import "DinnerTimeServiceSpy.h"
+#import "GoogleSignInManagerStub.h"
 
 @interface LoginManagerTests : XCTestCase
 @end
@@ -18,36 +19,34 @@
 
 - (void)testLoginManagerLaunchGoogleSignIn{
   GoogleSignInManagerSpy *googleSpy = [GoogleSignInManagerSpy new];
-  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:googleSpy withDinnerTimeLoginManager:nil];
+  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:googleSpy withDinnerTimeService:nil];
   [loginManager signIn];
   XCTAssertTrue(googleSpy.signInCalled);
 }
 
 - (void)testLoginManagerAcceptsGoogleTokenAndPassItToDinnerTimeService {
-  DinnerTimeLoginManagerSPY *dinnerTimeLoginManagerSPY = [DinnerTimeLoginManagerSPY new];
-  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:nil withDinnerTimeLoginManager:dinnerTimeLoginManagerSPY];
+  DinnerTimeServiceSpy *dinnerTimeServiceSpy = [DinnerTimeServiceSpy new];
+  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:nil withDinnerTimeService:dinnerTimeServiceSpy];
   id <GoogleSignInManagerDelegate> googleSignInDelegate = loginManager;
   [googleSignInDelegate googleSignInManagerAuthenticatedInGoogleWithToken:@"TestToken"];
-  XCTAssertEqualObjects(dinnerTimeLoginManagerSPY.token, @"TestToken");
-}
-
-- (void)testLoginManagerIsDelegateForDinnerTimeLoginManager{
-  DinnerTimeLoginManager *dinnerTimeLoginManager = [DinnerTimeLoginManager new];
-  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:nil withDinnerTimeLoginManager:dinnerTimeLoginManager];
-  XCTAssertEqual(loginManager, dinnerTimeLoginManager.delegate);
+  XCTAssertEqualObjects(dinnerTimeServiceSpy.token, @"TestToken");
 }
 
 - (void)testLoginManagerIsDelegateForGoogleSignInManager{
   GoogleSignInManager *googleSignInManager = [GoogleSignInManager new];
-  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:googleSignInManager withDinnerTimeLoginManager:nil];
+  LoginManager *loginManager = [[LoginManager alloc] initWithGoogleSignInManager:googleSignInManager withDinnerTimeService:nil];
   XCTAssertEqual(loginManager, googleSignInManager.delegate);
 }
 
 - (void)testLoginManagerCallsHisDelegate{
   LoginManager *loginManager = [LoginManager new];
+  loginManager.dinnerTimeService = [DinnerTimeServiceSpy new];
+  GoogleSignInManagerStub *googleSignInManagerStub = [GoogleSignInManagerStub new];
+  googleSignInManagerStub.delegate = loginManager;
+  loginManager.googleManger = googleSignInManagerStub;
   LoginManagerDelegateSpy *delegateSpy = [LoginManagerDelegateSpy new];
   loginManager.delegate = delegateSpy;
-  [loginManager dinnerTimeLoginManagerLoginSuccessfullyWithSession:@"session_id"];
+  [loginManager signIn];
   XCTAssertTrue(delegateSpy.wasCalled);
 }
 

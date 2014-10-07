@@ -4,9 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DinnerTimeLoginManager.h"
 
 
-@interface DinnerTimeLoginManagerDelegateSpy : NSObject <DinnerTimeLoginManagerDelegate>
+@interface DinnerTimeLoginManagerDelegateSpy : NSObject
 @property (nonatomic, assign) BOOL wasCalled;
 @end

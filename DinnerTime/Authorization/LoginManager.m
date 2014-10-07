@@ -4,22 +4,19 @@
 //
 
 #import "LoginManager.h"
-#import "GoogleSignInManager.h"
-#import "DinnerTimeLoginManager.h"
-#import "LoginManagerDelegateSpy.h"
 #import "UICKeyChainStore.h"
+#import "DinnerTimeService.h"
 
 
 @implementation LoginManager {
 
 }
-- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeLoginManager:(DinnerTimeLoginManager *)loginManager {
+- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
   self = [super init];
   if(self){
     self.googleManger = googleSignInManager;
-    self.dinnerTimeLoginManager = loginManager;
     self.googleManger.delegate = self;
-    self.dinnerTimeLoginManager.delegate = self;
+    self.dinnerTimeService = dinnerTimeService;
   }
   return self;
 }
@@ -39,12 +36,10 @@
 }
 
 - (void)googleSignInManagerAuthenticatedInGoogleWithToken:(NSString *)token {
-  [self.dinnerTimeLoginManager signInWithToken:token];
+  [self.dinnerTimeService loginWithToken:token withCallback:^(NSString *sessionId) {
+    [self.delegate loginManagerLoginSuccessful];
+  }];
 }
 
-- (void)dinnerTimeLoginManagerLoginSuccessfullyWithSession:(NSString *)sessionId {
-  [UICKeyChainStore setString:sessionId forKey:@"sessionID"];
-  [self.delegate loginManagerLoginSuccessful];
-}
 
 @end

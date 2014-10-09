@@ -28,6 +28,11 @@
   XCTAssertEqual(loginViewController.loginManager.delegate, loginViewController);
 }
 
+- (void)testLoginViewControllerInitsWithDinnerService{
+  LoginViewController *loginViewController = [LoginViewController new];
+  XCTAssertNotNil(loginViewController.loginManager.dinnerTimeService);
+}
+
 //- (void)testLoginViewControllerPushDinnerListWhenLoginSuccessful{
 //  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
 //  LoginViewController *loginViewController = [LoginViewController new];

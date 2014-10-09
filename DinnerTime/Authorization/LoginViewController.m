@@ -5,6 +5,7 @@
 
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
+#import "DinnerTimeService.h"
 
 
 @implementation LoginViewController {
@@ -14,16 +15,8 @@
 - (instancetype)init {
   self = [super init];
   if(self){
-    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:nil];
+    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:[DinnerTimeService new]];
     self.loginManager.delegate = self;
-  }
-  return self;
-}
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if(self){
-
   }
   return self;
 }

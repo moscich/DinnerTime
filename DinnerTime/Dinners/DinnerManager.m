@@ -11,7 +11,8 @@
 @implementation DinnerManager {
 
 }
-- (void)getDinners:(void (^)(NSArray *))pFunction {
+
+- (void)getDinners:(void (^)(DinnerServiceResultType type))pFunction {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
   }];
 }

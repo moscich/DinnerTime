@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DinnerServiceResultType.h"
 
 @class DinnerTimeService;
 
@@ -11,5 +12,5 @@
 @interface DinnerManager : NSObject
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 
-- (void)getDinners:(void (^)(NSArray *))pFunction;
+- (void)getDinners:(void (^)(DinnerServiceResultType type))pFunction;
 @end

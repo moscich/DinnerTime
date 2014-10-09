@@ -6,6 +6,7 @@
 #import <XCTest/XCTest.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
+#import "DinnerServiceResultType.h"
 
 @interface DinnersManagerTests : XCTestCase
 @end
@@ -14,14 +15,14 @@
 
 }
 
-//- (void)testDinnerManagerGetsDinners{
-//  DinnerManager *dinnerManager = [DinnerManager new];
-//  DinnerTimeServiceSpy *serviceSpy = [DinnerTimeServiceSpy new];
-//  dinnerManager.dinnerTimeService = serviceSpy;
-//  [dinnerManager getDinners:^(NSArray *array) {
-//
-//  }];
-//  XCTAssertTrue(serviceSpy.getDinnersCalled);
-//}
+- (void)testDinnerManagerGetsDinners{
+  DinnerManager *dinnerManager = [DinnerManager new];
+  DinnerTimeServiceSpy *serviceSpy = [DinnerTimeServiceSpy new];
+  dinnerManager.dinnerTimeService = serviceSpy;
+  [dinnerManager getDinners:^(DinnerServiceResultType type) {
+
+  }];
+  XCTAssertTrue(serviceSpy.getDinnersCalled);
+}
 
 @end

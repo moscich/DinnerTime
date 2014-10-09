@@ -6,6 +6,9 @@
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
 #import "DinnerTimeService.h"
+#import "DinnerManager.h"
+#import "DinnerServiceResultType.h"
+#import "LoginView.h"
 
 
 @implementation LoginViewController {
@@ -24,6 +27,17 @@
 - (void)loginManagerLoginSuccessful {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
+    if(type == DinnerServiceResult_Unauthorized){
+      ((LoginView *)self.view).activityIndicator.hidden = YES;
+      ((LoginView *)self.view).signInButton.hidden = NO;
+    }
+  }];
 }
 
 - (IBAction)loginButtonTapped {

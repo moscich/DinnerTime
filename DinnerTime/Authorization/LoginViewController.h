@@ -7,9 +7,13 @@
 #import <UIKit/UIKit.h>
 #import "LoginManager.h"
 
+@class DinnerManager;
+
 
 @interface LoginViewController : UIViewController <LoginManagerDelegate>
 @property(nonatomic, strong)  LoginManager *loginManager;
+
+@property(nonatomic, strong) DinnerManager *dinnerManager;
 
 - (IBAction)loginButtonTapped;
 

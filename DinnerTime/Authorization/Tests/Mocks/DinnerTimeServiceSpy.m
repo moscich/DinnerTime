@@ -15,4 +15,8 @@
   callback(@"sessionKey");
 }
 
+- (void)getDinners:(void (^)(NSArray *))callback {
+  self.getDinnersCalled = YES;
+}
+
 @end

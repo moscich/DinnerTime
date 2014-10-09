@@ -8,6 +8,10 @@
 #import "DinnerManagerSpy.h"
 #import "LoginView.h"
 #import "DinnerManagerStub.h"
+#import "OCMockObject.h"
+#import "OCMStubRecorder.h"
+#import "OCMArg.h"
+#import "DinnerListViewController.h"
 #import <XCTest/XCTest.h>
 
 @interface LoginViewControllerTests : XCTestCase
@@ -54,7 +58,21 @@
   [self.loginViewController viewDidLoad];
   XCTAssertTrue(((LoginView *)self.loginViewController.view).activityIndicator.hidden);
   XCTAssertFalse(((LoginView *)self.loginViewController.view).signInButton.hidden);
+}
 
+- (void)testLoginViewControllerNavigateWhenSuccessfullyReceivedDinners{
+  self.loginViewController.dinnerManager = [[DinnerManagerStub alloc] initWithReturnType:DinnerServiceResult_Success];
+  id loginViewController1 = [OCMockObject partialMockForObject:self.loginViewController];
+  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+  [[[loginViewController1 stub] andReturn:mockNavController] navigationController];
+
+  UIViewController* expectedPushedViewController = [OCMArg checkWithBlock:^BOOL(id obj) {
+    return [obj isKindOfClass:[DinnerListViewController class]];
+  }];
+
+  [[mockNavController expect] pushViewController:expectedPushedViewController animated:YES];
+  [self.loginViewController viewDidLoad];
+  [mockNavController verify];
 }
 
 - (void)testLoginViewControllerIsLoginManagerDelegate{

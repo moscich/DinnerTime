@@ -15,6 +15,6 @@
 
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 
-- (IBAction)loginButtonTapped;
+- (IBAction)signIn;
 
 @end

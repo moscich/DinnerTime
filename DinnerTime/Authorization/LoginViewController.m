@@ -36,11 +36,13 @@
     if(type == DinnerServiceResult_Unauthorized){
       ((LoginView *)self.view).activityIndicator.hidden = YES;
       ((LoginView *)self.view).signInButton.hidden = NO;
+    }else if(type == DinnerServiceResult_Success){
+      [self.navigationController pushViewController:[DinnerListViewController new] animated:YES];
     }
   }];
 }
 
-- (IBAction)loginButtonTapped {
+- (IBAction)signIn {
   [self.loginManager signIn];
 }
 

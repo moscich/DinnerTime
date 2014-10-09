@@ -5,7 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "DinnerManager.h"
 
 @interface DinnerListViewController : UIViewController
+@property(nonatomic, strong) DinnerManager *dinnerManager;
+
+- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager;
+
 @end

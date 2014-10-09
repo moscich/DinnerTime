@@ -60,14 +60,20 @@
   XCTAssertFalse(((LoginView *)self.loginViewController.view).signInButton.hidden);
 }
 
-- (void)testLoginViewControllerNavigateWhenSuccessfullyReceivedDinners{
-  self.loginViewController.dinnerManager = [[DinnerManagerStub alloc] initWithReturnType:DinnerServiceResult_Success];
+- (void)testLoginViewControllerNavigateToDinnerListWithDinnerManagerWhenSuccessfullyReceivedDinners{
+  DinnerManagerStub *dinnerManagerStub = [[DinnerManagerStub alloc] initWithReturnType:DinnerServiceResult_Success];
+  self.loginViewController.dinnerManager = dinnerManagerStub;
   id loginViewController1 = [OCMockObject partialMockForObject:self.loginViewController];
   id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
   [[[loginViewController1 stub] andReturn:mockNavController] navigationController];
 
   UIViewController* expectedPushedViewController = [OCMArg checkWithBlock:^BOOL(id obj) {
-    return [obj isKindOfClass:[DinnerListViewController class]];
+    if([obj isKindOfClass:[DinnerListViewController class]]){
+      DinnerListViewController *dinnerListViewController = obj;
+      return dinnerListViewController.dinnerManager == dinnerManagerStub;
+    }
+      
+    return NO;
   }];
 
   [[mockNavController expect] pushViewController:expectedPushedViewController animated:YES];

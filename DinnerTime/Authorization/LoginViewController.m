@@ -25,7 +25,11 @@
 }
 
 - (void)loginManagerLoginSuccessful {
-  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  [self navigateToDinnerList];
+}
+
+- (void)navigateToDinnerList {
+  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:self.dinnerManager];
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 
@@ -37,7 +41,7 @@
       ((LoginView *)self.view).activityIndicator.hidden = YES;
       ((LoginView *)self.view).signInButton.hidden = NO;
     }else if(type == DinnerServiceResult_Success){
-      [self.navigationController pushViewController:[DinnerListViewController new] animated:YES];
+      [self navigateToDinnerList];
     }
   }];
 }

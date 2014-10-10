@@ -4,6 +4,7 @@
 //
 
 #import "DinnerTimeService.h"
+#import "UICKeyChainStore.h"
 
 @implementation DinnerTimeService {
 
@@ -16,6 +17,7 @@
     self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
     self.sessionManager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     self.sessionManager.securityPolicy.allowInvalidCertificates = YES;
+    self.session = [UICKeyChainStore stringForKey:@"session_id"];
   }
 
   return self;
@@ -30,8 +32,16 @@
   }];
 }
 
-- (void)getDinners:(void (^)(NSArray *))callback {
-  [self.sessionManager GET:@"/dinners" parameters:nil success:nil failure:nil];
+- (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure {
+  if(self.session == nil){
+    failure(DinnerServiceResult_Unauthorized);
+    return;
+  }
+  [self.sessionManager.requestSerializer setValue:self.session forHTTPHeaderField:@"session_id"];
+  [self.sessionManager GET:@"/dinners" parameters:nil success:nil failure:^(NSURLSessionDataTask *task, NSError *error) {
+    if(error.code == 401)
+      failure(DinnerServiceResult_Unauthorized);
+  }];
 }
 
 @end

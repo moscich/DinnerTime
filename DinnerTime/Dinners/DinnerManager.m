@@ -14,6 +14,7 @@
 
 - (void)getDinners:(void (^)(DinnerServiceResultType type))pFunction {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
+  }                          failure:^(DinnerServiceResultType type) {
   }];
 }
 

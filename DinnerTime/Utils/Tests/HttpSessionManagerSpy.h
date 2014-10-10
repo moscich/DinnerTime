@@ -5,9 +5,14 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
+#import "DinnerServiceResultType.h"
 
 
 @interface HttpSessionManagerSpy : AFHTTPSessionManager
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) NSString *calledAddress;
+
+@property(nonatomic) DinnerServiceResultType returnType;
+
+- (id)initWithReturnType:(DinnerServiceResultType)type;
 @end

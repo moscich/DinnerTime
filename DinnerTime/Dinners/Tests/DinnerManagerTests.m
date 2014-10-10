@@ -8,10 +8,10 @@
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerServiceResultType.h"
 
-@interface DinnersManagerTests : XCTestCase
+@interface DinnerManagerTests : XCTestCase
 @end
 
-@implementation DinnersManagerTests {
+@implementation DinnerManagerTests {
 
 }
 

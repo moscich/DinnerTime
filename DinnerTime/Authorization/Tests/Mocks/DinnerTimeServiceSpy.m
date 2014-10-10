@@ -15,7 +15,7 @@
   callback(@"sessionKey");
 }
 
-- (void)getDinners:(void (^)(NSArray *))callback {
+- (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure {
   self.getDinnersCalled = YES;
 }
 

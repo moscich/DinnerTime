@@ -10,12 +10,25 @@
 
 }
 
+- (id)initWithArray:(NSArray *)dinnerArray {
+  self = [super init];
+  if (self) {
+    self.resultArray = dinnerArray;
+  }
+
+  return self;
+}
+
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {
   self.token = token;
   callback(@"sessionKey");
 }
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure {
+  if(self.resultArray)
+    callback(self.resultArray);
+  else
+    failure(DinnerServiceResult_Unauthorized);
   self.getDinnersCalled = YES;
 }
 

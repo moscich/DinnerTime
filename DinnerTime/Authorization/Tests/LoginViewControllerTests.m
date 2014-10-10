@@ -35,6 +35,10 @@
   XCTAssertNotNil(self.loginViewController.loginManager);
 }
 
+- (void)testLoginViewControllerInstantiateDinnerManager{
+  XCTAssertNotNil(self.loginViewController.dinnerManager);
+}
+
 - (void)testLoginViewControllerAsksForDinnersAfterViewDidLoad{
   DinnerManagerSpy *dinnerManagerSpy = [DinnerManagerSpy new];
   self.loginViewController.dinnerManager = dinnerManagerSpy;

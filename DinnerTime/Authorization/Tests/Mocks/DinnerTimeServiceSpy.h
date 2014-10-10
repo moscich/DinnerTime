@@ -10,4 +10,8 @@
 @interface DinnerTimeServiceSpy : DinnerTimeService
 @property (nonatomic, strong) NSString *token;
 @property(nonatomic, assign) BOOL getDinnersCalled;
+
+@property(nonatomic, strong) NSArray *resultArray;
+
+- (id)initWithArray:(NSArray *)dinnerArray;
 @end

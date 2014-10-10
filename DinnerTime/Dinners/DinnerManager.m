@@ -12,11 +12,13 @@
 
 }
 
-- (void)getDinners:(void (^)(DinnerServiceResultType type))pFunction {
+- (void)getDinners:(void (^)(DinnerServiceResultType type))callback {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
-  }                          failure:^(DinnerServiceResultType type) {
+    self.dinners = array;
+    callback(DinnerServiceResult_Success);
+  } failure:^(DinnerServiceResultType type) {
+    callback(type);
   }];
 }
-
 
 @end

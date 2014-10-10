@@ -15,14 +15,32 @@
 
 }
 
+//NOTE move dinner array private, call dataSourceMethods
 - (void)testDinnerManagerGetsDinners{
   DinnerManager *dinnerManager = [DinnerManager new];
-  DinnerTimeServiceSpy *serviceSpy = [DinnerTimeServiceSpy new];
+  NSArray *resultArray = @[@"element1", @"element2"];
+  DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
   dinnerManager.dinnerTimeService = serviceSpy;
+  XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
   [dinnerManager getDinners:^(DinnerServiceResultType type) {
-
+    [callbackExpectation fulfill];
+    XCTAssertEqual(type, DinnerServiceResult_Success);
+    XCTAssertEqual(dinnerManager.dinners, resultArray);
   }];
   XCTAssertTrue(serviceSpy.getDinnersCalled);
+  [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testDinnerManagerUnauthorizedDinners{
+  DinnerManager *dinnerManager = [DinnerManager new];
+  DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:nil];
+  dinnerManager.dinnerTimeService = serviceSpy;
+  XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
+  [dinnerManager getDinners:^(DinnerServiceResultType type) {
+    [callbackExpectation fulfill];
+    XCTAssertEqual(type, DinnerServiceResult_Unauthorized);
+  }];
+  [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
 @end

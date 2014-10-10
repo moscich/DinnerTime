@@ -20,6 +20,7 @@
   if(self){
     self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:[DinnerTimeService new]];
     self.loginManager.delegate = self;
+    self.dinnerManager = [DinnerManager new];
   }
   return self;
 }

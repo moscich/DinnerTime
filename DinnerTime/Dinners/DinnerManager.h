@@ -11,6 +11,7 @@
 
 @interface DinnerManager : NSObject
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
+@property(nonatomic, strong) NSArray *dinners;
 
-- (void)getDinners:(void (^)(DinnerServiceResultType type))pFunction;
+- (void)getDinners:(void (^)(DinnerServiceResultType type))callback;
 @end

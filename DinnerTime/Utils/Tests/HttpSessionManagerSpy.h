@@ -11,8 +11,12 @@
 @interface HttpSessionManagerSpy : AFHTTPSessionManager
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) NSString *calledAddress;
+@property (nonatomic, strong) NSArray *resultArray;
 
 @property(nonatomic) DinnerServiceResultType returnType;
 
 - (id)initWithReturnType:(DinnerServiceResultType)type;
+
+- (instancetype)initWithResultArray:(NSArray *)resultArray;
+
 @end

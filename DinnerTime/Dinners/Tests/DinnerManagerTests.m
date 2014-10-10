@@ -15,6 +15,12 @@
 
 }
 
+- (void)testDinnerManagerInitsWithDinnerTimeService{
+  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+  XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
+}
+
 //NOTE move dinner array private, call dataSourceMethods
 - (void)testDinnerManagerGetsDinners{
   DinnerManager *dinnerManager = [DinnerManager new];

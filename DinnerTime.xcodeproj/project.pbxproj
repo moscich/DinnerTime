@@ -26,6 +26,7 @@
 		5304272848D392372E6B7EBD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422829B2FB3DA9CEAF1FA /* LoginView.m */; };
 		530427950551199A9F852511 /* DinnerTimeLoginManagerDelegateSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */; };
 		530427DFCAAF954AB7870015 /* Marek Moscichowski's CA 1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */; };
+		530427F3DC3DA368025D9ACA /* DinnerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530429865D210BC5C0B09215 /* DinnerDTO.m */; };
 		530428C4CDC59223DF127EEB /* DinnerManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304237BE071EB074068B1A5 /* DinnerManagerSpy.m */; };
 		530429F9C3BCE7F7E98F429C /* GoogleSignInManagerDelegateSPY.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CFC7635AA908ED57F4A /* GoogleSignInManagerDelegateSPY.m */; };
 		53042A0782C5573422A0513B /* DinnerTimeServer.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */; };
@@ -97,10 +98,12 @@
 		530428897C88CF284D6EF481 /* DinnerTimeServiceSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceSpy.m; sourceTree = "<group>"; };
 		530428D6654BA410BAFA462B /* GoogleSignInManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerStub.h; sourceTree = "<group>"; };
 		5304297CF141DFC8868EC2C8 /* HttpSessionManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpSessionManagerSpy.h; sourceTree = "<group>"; };
+		530429865D210BC5C0B09215 /* DinnerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerDTO.m; sourceTree = "<group>"; };
 		53042990AA35C199D07FBA47 /* GoogleSignInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManager.h; sourceTree = "<group>"; };
 		530429DFE4468206D75774C5 /* TestsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsAppDelegate.m; sourceTree = "<group>"; };
 		53042A5AAD89B8429AA495C8 /* DinnerManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerManagerSpy.h; sourceTree = "<group>"; };
 		53042AB43B6C64A5F6ECA694 /* DinnerTimeLoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerTests.m; sourceTree = "<group>"; };
+		53042B112B7A783984BF38A5 /* DinnerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerDTO.h; sourceTree = "<group>"; };
 		53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerDelegateSpy.m; sourceTree = "<group>"; };
 		53042C61C2CABF52D296A9DB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		53042C63E9CAE5DE5008ED3E /* TestsAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestsAppDelegate.h; sourceTree = "<group>"; };
@@ -189,6 +192,8 @@
 				530422BB21E63FE84E0D1754 /* DinnerTimeServiceTests.m */,
 				5304297CF141DFC8868EC2C8 /* HttpSessionManagerSpy.h */,
 				53042CA7F11AD9760ACE6DD6 /* HttpSessionManagerSpy.m */,
+				530429865D210BC5C0B09215 /* DinnerDTO.m */,
+				53042B112B7A783984BF38A5 /* DinnerDTO.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				53042BEDD5F2F45598B69F88 /* DinnerListViewController.m in Sources */,
 				530426559ED609C902A8162B /* DinnerManager.m in Sources */,
 				5304272848D392372E6B7EBD /* LoginView.m in Sources */,
+				530427F3DC3DA368025D9ACA /* DinnerDTO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

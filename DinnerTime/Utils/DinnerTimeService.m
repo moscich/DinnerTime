@@ -38,7 +38,9 @@
     return;
   }
   [self.sessionManager.requestSerializer setValue:self.session forHTTPHeaderField:@"session_id"];
-  [self.sessionManager GET:@"/dinners" parameters:nil success:nil failure:^(NSURLSessionDataTask *task, NSError *error) {
+  [self.sessionManager GET:@"/dinners" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    callback(nil);
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
     if(error.code == 401)
       failure(DinnerServiceResult_Unauthorized);
   }];

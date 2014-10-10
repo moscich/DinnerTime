@@ -18,9 +18,10 @@
 - (instancetype)init {
   self = [super init];
   if(self){
-    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:[DinnerTimeService new]];
+    DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:dinnerTimeService];
     self.loginManager.delegate = self;
-    self.dinnerManager = [DinnerManager new];
+    self.dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   }
   return self;
 }

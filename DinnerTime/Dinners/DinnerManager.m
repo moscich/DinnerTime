@@ -12,6 +12,15 @@
 
 }
 
+- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
+  self = [super init];
+  if (self) {
+    self.dinnerTimeService = dinnerTimeService;
+  }
+
+  return self;
+}
+
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
     self.dinners = array;

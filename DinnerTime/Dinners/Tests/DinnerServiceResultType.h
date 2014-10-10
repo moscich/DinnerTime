@@ -5,7 +5,7 @@
 
 
 typedef enum{
-  DinnerServiceResult_Success,
+  DinnerServiceResult_Success = 1,
   DinnerServiceResult_Error,
   DinnerServiceResult_Unauthorized
 }DinnerServiceResultType;

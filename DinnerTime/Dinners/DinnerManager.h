@@ -13,5 +13,7 @@
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 @property(nonatomic, strong) NSArray *dinners;
 
+- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
+
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback;
 @end

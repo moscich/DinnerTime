@@ -20,6 +20,16 @@
   return self;
 }
 
+- (instancetype)initWithResultArray:(NSArray *)resultArray {
+  self = [super init];
+  if (self) {
+    self.resultArray = resultArray;
+    self.returnType = DinnerServiceResult_Success;
+  }
+
+  return self;
+}
+
 - (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   self.parameters = parameters;
   self.calledAddress = URLString;
@@ -29,9 +39,11 @@
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   switch(self.returnType){
-    case DinnerServiceResult_Success:
-      success(nil, nil);
+    case DinnerServiceResult_Success:{
+
+      success(nil, self.resultArray);
       break;
+    }
     case DinnerServiceResult_Unauthorized:{
       NSError *error = [[NSError alloc] initWithDomain:@"" code:401 userInfo:nil];
       failure(nil, error);

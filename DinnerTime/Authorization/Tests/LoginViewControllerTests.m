@@ -31,12 +31,10 @@
   XCTAssertTrue([self.loginViewController respondsToSelector:@selector(loginManagerLoginSuccessful)]);
 }
 
-- (void)testLoginViewControllerInstantiateLoginManager{
+- (void)testLoginViewControllerInjectsDinnerTimeServiceToHisIstantiatedManagers{
   XCTAssertNotNil(self.loginViewController.loginManager);
-}
-
-- (void)testLoginViewControllerInstantiateDinnerManager{
   XCTAssertNotNil(self.loginViewController.dinnerManager);
+  XCTAssertEqual(self.loginViewController.dinnerManager.dinnerTimeService, self.loginViewController.loginManager.dinnerTimeService);
 }
 
 - (void)testLoginViewControllerAsksForDinnersAfterViewDidLoad{
@@ -51,7 +49,7 @@
 }
 
 - (void)testLoginViewControllerHasProperViewsVisible{
-  [self.loginViewController viewDidLoad];
+  [self.loginViewController loadView];
   XCTAssertFalse(((LoginView *)self.loginViewController.view).activityIndicator.hidden);
   XCTAssertTrue([((LoginView *) self.loginViewController.view).activityIndicator isAnimating]);
   XCTAssertTrue(((LoginView *) self.loginViewController.view).signInButton.hidden);

@@ -17,6 +17,6 @@
 
 - (id)initWithReturnType:(DinnerServiceResultType)type;
 
-- (instancetype)initWithResultArray:(NSArray *)resultArray;
+- (instancetype)initWithResultData:(NSData *)resultArray;
 
 @end

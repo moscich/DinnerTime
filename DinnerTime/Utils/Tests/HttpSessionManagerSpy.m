@@ -20,7 +20,7 @@
   return self;
 }
 
-- (instancetype)initWithResultArray:(NSArray *)resultArray {
+- (instancetype)initWithResultData:(NSData *)resultArray {
   self = [super init];
   if (self) {
     self.resultArray = resultArray;

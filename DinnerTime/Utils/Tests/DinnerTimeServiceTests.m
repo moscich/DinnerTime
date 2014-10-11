@@ -70,11 +70,12 @@
 - (void)testGetDinnersSucceed{
   [UICKeyChainStore setString:@"mockSessionId" forKey:@"session_id"];
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  HttpSessionManagerSpy *sessionManagerSpy = [[HttpSessionManagerSpy alloc] initWithResultArray:[self mockResultInputArray]];
+  NSArray *resultArray = [self mockResultInputArray];
+  HttpSessionManagerSpy *sessionManagerSpy = [[HttpSessionManagerSpy alloc] initWithResultData:resultArray];
   dinnerTimeService.sessionManager = sessionManagerSpy;
   XCTestExpectation *successExpectation = [self expectationWithDescription:@"successCallback"];
   [dinnerTimeService getDinners:^(NSArray *array) {
-    XCTAssertEqualObjects(array, [self mockResultOutputArray]);
+    XCTAssertEqual(array, resultArray);
     [successExpectation fulfill];
   } failure:^(DinnerServiceResultType type) {
 

@@ -4,8 +4,6 @@
 //
 
 #import "DinnerSessionManager.h"
-#import "HttpSessionManagerSpy.h"
-
 
 @implementation DinnerSessionManager {
 
@@ -27,5 +25,9 @@
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
     failure(error);
   }];
+}
+
+- (void)POST:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
+
 }
 @end

@@ -5,42 +5,38 @@
 
 #import "DinnerTimeService.h"
 #import "UICKeyChainStore.h"
+#import "DinnerSessionBuilder.h"
+#import "DinnerSessionManager.h"
+#import "SessionDTO.h"
+#import "DinnerArrayDTO.h"
 
 @implementation DinnerTimeService {
 
 }
 
-- (instancetype)init {
+- (id)initWithDinnerSessionBuilder:(DinnerSessionBuilder *)dinnerSessionBuilder {
   self = [super init];
   if (self) {
-    NSURL *URL = [NSURL URLWithString:@"https://192.168.1.126"];
-    self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:URL];
-    self.sessionManager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    self.sessionManager.securityPolicy.allowInvalidCertificates = YES;
-    self.session = [UICKeyChainStore stringForKey:@"session_id"];
+    self.dinnerSessionManager = [dinnerSessionBuilder constructSessionManager];
+    self.dinnerSessionManager.sessionId = [UICKeyChainStore stringForKey:@"session_id"];
   }
 
   return self;
 }
 
-
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {
-  [self.sessionManager POST:@"/login" parameters:@{@"token": token} success:^(NSURLSessionDataTask *operation, id responseObject) {
-    callback(responseObject[@"session_id"]);
-  } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-    NSLog(@"error = %@", error);
-  }];
+  [self.dinnerSessionManager POST:@"/login" parameters:@{@"token":token} success:^(NSString *string) {
+    SessionDTO *sessionDTO = [[SessionDTO alloc] initWithString:string error:nil];
+    callback(sessionDTO.sessionId);
+  } failure:nil];
 }
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure {
-  if(self.session == nil){
-    failure(DinnerServiceResult_Unauthorized);
-    return;
-  }
-  [self.sessionManager.requestSerializer setValue:self.session forHTTPHeaderField:@"session_id"];
-  [self.sessionManager GET:@"/dinners" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    callback(responseObject);
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+  [self.dinnerSessionManager GET:nil parameters:nil success:^(NSString *string) {
+    JSONModelError *error;
+    DinnerArrayDTO *dinnerArrayDTO = [[DinnerArrayDTO alloc] initWithString:string error:&error];
+    callback(dinnerArrayDTO.dinners);
+  } failure:^(NSError *error) {
     if(error.code == 401)
       failure(DinnerServiceResult_Unauthorized);
   }];

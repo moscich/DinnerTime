@@ -7,12 +7,17 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "DinnerServiceResultType.h"
 
-@interface DinnerTimeService : NSObject
-@property(nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@class DinnerSessionBuilder;
+@class DinnerSessionManager;
 
+@interface DinnerTimeService : NSObject
+
+@property(nonatomic, strong) DinnerSessionManager *dinnerSessionManager;
 @property(nonatomic, copy) NSString *session;
 
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback;
+
+- (id)initWithDinnerSessionBuilder:(DinnerSessionBuilder *)dinnerSessionBuilder;
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure;
 @end

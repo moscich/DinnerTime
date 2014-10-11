@@ -10,6 +10,10 @@
 #import "OCMockObject.h"
 #import "OCMStubRecorder.h"
 #import "DinnerDTO.h"
+#import "DinnerSessionBuilder.h"
+#import "DinnerSessionManager.h"
+#import "DinnerSessionManagerSpy.h"
+#import "DinnerSessionBuilderStub.h"
 
 @interface DinnerTimeServiceTests : XCTestCase
 @end
@@ -18,76 +22,63 @@
 
 }
 
-- (void)testServiceInit{
-  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  XCTAssertNotNil(dinnerTimeService.sessionManager);
+- (void)testDinnerTimeServiceInstantiateSessionManagerWithSessionBuilder {
+  id dinnerSessionBuilderMock = [OCMockObject mockForClass:[DinnerSessionBuilder class]];
+  DinnerSessionManager *sessionManager = [DinnerSessionManager new];
+  [[[dinnerSessionBuilderMock stub] andReturn:sessionManager] constructSessionManager];
+  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:dinnerSessionBuilderMock];
+  XCTAssertEqual(dinnerTimeService.dinnerSessionManager, sessionManager);
 }
 
-- (void)testDinnerTimeServiceLogin{
+- (void)testDinnerTimeServiceLogin {
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
-  dinnerTimeService.sessionManager = sessionManagerSpy;
+  NSString *sessionJSON = @"{\"sessionId\":\"testSessionId\"}";
+  DinnerSessionManagerSpy *dinnerSessionManagerSpy = [[DinnerSessionManagerSpy alloc] initWithSessionJSON:sessionJSON];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManagerSpy;
   XCTestExpectation *expectation = [self expectationWithDescription:@"callback"];
   [dinnerTimeService loginWithToken:@"TestToken" withCallback:^(NSString *sessionId) {
-    XCTAssertEqualObjects(sessionId, @"testSessionID");
+    XCTAssertEqualObjects(sessionId, @"testSessionId");
     [expectation fulfill];
   }];
-  XCTAssertEqualObjects(sessionManagerSpy.parameters[@"token"], @"TestToken");
-  XCTAssertEqualObjects(sessionManagerSpy.calledAddress, @"/login");
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.parameters[@"token"], @"TestToken");
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.calledAddress, @"/login");
   [self waitForExpectationsWithTimeout:0.0001 handler:nil];
 }
 
-- (void)testGetDinnersWithoutSessionId{
-  [UICKeyChainStore removeAllItems];
-  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  XCTestExpectation *failureExpectation = [self expectationWithDescription:@"failureCallback"];
-  [dinnerTimeService getDinners:nil failure:^(DinnerServiceResultType type) {
-    XCTAssertEqual(type, DinnerServiceResult_Unauthorized);
-    [failureExpectation fulfill];
-  }];
-  [self waitForExpectationsWithTimeout:0 handler:nil];
-}
-
-- (void)testDinnerServiceSetSessionInHeader{
-  id mockRequestSerializer = [OCMockObject mockForClass:[AFHTTPRequestSerializer class]];
-  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
+- (void)testDinnerServiceSetSessionInHeader {
+  DinnerSessionManager *dinnerSessionManager = [DinnerSessionManager new];
   [UICKeyChainStore setString:@"mockSessionId" forKey:@"session_id"];
-  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  id partialSessionManagerSpy = [OCMockObject partialMockForObject:sessionManagerSpy];
-  [[[partialSessionManagerSpy stub] andReturn:mockRequestSerializer] requestSerializer];
-  [[mockRequestSerializer expect] setValue:@"mockSessionId" forHTTPHeaderField:@"session_id"];
-  dinnerTimeService.sessionManager = partialSessionManagerSpy;
+  DinnerSessionBuilderStub *dinnerSessionBuilderStub = [[DinnerSessionBuilderStub alloc] initWithDinnerSessionManager:dinnerSessionManager];
+  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:dinnerSessionBuilderStub];
 
   [dinnerTimeService getDinners:^(NSArray *array) {
 
-  } failure:^(DinnerServiceResultType type) {
+  }failure:^(DinnerServiceResultType type) {
 
   }];
 
-  [mockRequestSerializer verify];
+  XCTAssertEqualObjects(dinnerSessionManager.sessionId, @"mockSessionId");
 }
 
-- (void)testGetDinnersSucceed{
-  [UICKeyChainStore setString:@"mockSessionId" forKey:@"session_id"];
+- (void)testGetDinnersSucceed {
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  NSArray *resultArray = [self mockResultInputArray];
-  HttpSessionManagerSpy *sessionManagerSpy = [[HttpSessionManagerSpy alloc] initWithResultData:resultArray];
-  dinnerTimeService.sessionManager = sessionManagerSpy;
+  DinnerSessionManagerSpy *dinnerSessionManagerSpy = [[DinnerSessionManagerSpy alloc] initWithDinnerJSON:[self mockResultJSONString]];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManagerSpy;
   XCTestExpectation *successExpectation = [self expectationWithDescription:@"successCallback"];
-  [dinnerTimeService getDinners:^(NSArray *array) {
-    XCTAssertEqual(array, resultArray);
+  [dinnerTimeService getDinners:^(NSArray *dinnerArray) {
+    NSArray *array = [self mockResultOutputArray];
+    XCTAssertEqualObjects(dinnerArray, array);
     [successExpectation fulfill];
-  } failure:^(DinnerServiceResultType type) {
+  }failure:^(DinnerServiceResultType type) {
 
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (void)testGetDinnersWhenUnauthorized{
-  [UICKeyChainStore setString:@"mockSessionId" forKey:@"session_id"];
-  HttpSessionManagerSpy *sessionManagerSpy = [[HttpSessionManagerSpy alloc] initWithReturnType:DinnerServiceResult_Unauthorized];
+- (void)testGetDinnersWhenUnauthorized {
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  dinnerTimeService.sessionManager = sessionManagerSpy;
+  DinnerSessionManagerSpy *dinnerSessionManagerSpy = [[DinnerSessionManagerSpy alloc] initWithResultType:DinnerServiceResult_Unauthorized];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManagerSpy;
   XCTestExpectation *failureExpectation = [self expectationWithDescription:@"failureCallback"];
   [dinnerTimeService getDinners:nil failure:^(DinnerServiceResultType type) {
     XCTAssertEqual(type, DinnerServiceResult_Unauthorized);
@@ -96,36 +87,36 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (NSArray *)mockResultOutputArray
-{
+- (NSArray *)mockResultOutputArray {
   DinnerDTO *dinner1 = [DinnerDTO new];
-  dinner1.id = 1;
+  dinner1.dinnerId = 1;
   dinner1.owned = YES;
   dinner1.owner = @"MockOwner";
   dinner1.title = @"MockTitle";
   DinnerDTO *dinner2 = [DinnerDTO new];
-  dinner2.id = 2;
+  dinner2.dinnerId = 2;
   dinner2.owned = NO;
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
   return @[dinner1, dinner2];
 }
 
-- (NSArray *)mockResultInputArray {
-  return @[
-          @{
-                  @"dinner_id":@(1),
-                  @"owned":@(YES),
-                  @"owner":@"MockOwner",
-                  @"title":@"MockTitle"
-          },
-          @{
-                  @"dinner_id":@(2),
-                  @"owned":@(NO),
-                  @"owner":@"MockOwner2",
-                  @"title":@"MockTitle2"
-          },
-  ];
+- (NSString *)mockResultJSONString {
+  return @"{  "
+          "   \"dinners\":[  "
+          "      {  "
+          "         \"dinnerId\":1,"
+          "         \"title\":\"MockTitle\","
+          "         \"owner\":\"MockOwner\","
+          "         \"owned\":true"
+          "      },"
+          "      {  "
+          "         \"dinnerId\":2,"
+          "         \"title\":\"MockTitle2\","
+          "         \"owner\":\"MockOwner2\","
+          "         \"owned\":false"
+          "      }]"
+          "}";
 }
 
 @end

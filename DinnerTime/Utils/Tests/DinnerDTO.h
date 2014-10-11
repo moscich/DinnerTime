@@ -4,10 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 
 
-@interface DinnerDTO : NSObject
-@property(nonatomic) int id;
+@interface DinnerDTO : JSONModel
+@property(nonatomic) int dinnerId;
 @property(nonatomic) BOOL owned;
 @property(nonatomic, copy) NSString *owner;
 @property(nonatomic, copy) NSString *title;

@@ -32,7 +32,7 @@
 }
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure {
-  [self.dinnerSessionManager GET:nil parameters:nil success:^(NSString *string) {
+  [self.dinnerSessionManager GET:@"/dinners" parameters:nil success:^(NSString *string) {
     JSONModelError *error;
     DinnerArrayDTO *dinnerArrayDTO = [[DinnerArrayDTO alloc] initWithString:string error:&error];
     callback(dinnerArrayDTO.dinners);

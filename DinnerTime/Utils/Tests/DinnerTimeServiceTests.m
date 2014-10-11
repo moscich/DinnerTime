@@ -72,6 +72,7 @@
   }failure:^(DinnerServiceResultType type) {
 
   }];
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.calledAddress, @"/dinners");
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 

@@ -19,6 +19,7 @@
 }
 
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
+  [self.sessionManager.requestSerializer setValue:self.sessionId forHTTPHeaderField:@"session_id"];
   [self.sessionManager GET:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
     success(jsonString);

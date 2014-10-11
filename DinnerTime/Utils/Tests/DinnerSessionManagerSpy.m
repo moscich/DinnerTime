@@ -41,6 +41,7 @@
 }
 
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
+  self.calledAddress = string;
   if(self.returnType == DinnerServiceResult_Unauthorized){
     NSError *error = [[NSError alloc] initWithDomain:@"" code:401 userInfo:nil];
     failure(error);

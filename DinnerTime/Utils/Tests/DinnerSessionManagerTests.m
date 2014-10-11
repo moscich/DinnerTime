@@ -10,6 +10,8 @@
 #import <XCTest/XCTest.h>
 #import "DinnerSessionManager.h"
 #import "HttpSessionManagerSpy.h"
+#import "OCMockObject.h"
+#import "OCMStubRecorder.h"
 
 @interface DinnerSessionManagerTests : XCTestCase
 
@@ -33,6 +35,17 @@
   HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
   DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManagerSpy];
   XCTAssertTrue([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFHTTPResponseSerializer class]]);
+}
+
+- (void)testDinnerSessionManagerAddSessionToHeaders{
+  id mockSessionManager = [OCMockObject niceMockForClass:[AFHTTPSessionManager class]];
+  id mockRequestSerializer = [OCMockObject mockForClass:[AFHTTPRequestSerializer class]];
+  [[[mockSessionManager stub] andReturn:mockRequestSerializer] requestSerializer];
+  [[mockRequestSerializer expect] setValue:@"mockSessionId" forHTTPHeaderField:@"session_id"];
+  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:mockSessionManager];
+  dinnerSessionManager.sessionId = @"mockSessionId";
+  [dinnerSessionManager GET:nil parameters:nil success:nil failure:nil];
+  [mockRequestSerializer verify];
 }
 
 - (NSData *)mockResultInputJSONData {

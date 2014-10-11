@@ -15,7 +15,6 @@
   self = [super init];
   if (self) {
     self.sessionManager = sessionManager;
-    self.sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
   }
 
   return self;

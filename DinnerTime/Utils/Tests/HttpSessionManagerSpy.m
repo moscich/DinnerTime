@@ -20,10 +20,10 @@
   return self;
 }
 
-- (instancetype)initWithResultData:(NSData *)resultArray {
+- (instancetype)initWithResultData:(NSData *)resultData {
   self = [super init];
   if (self) {
-    self.resultArray = resultArray;
+    self.resultArray = resultData;
     self.returnType = DinnerServiceResult_Success;
   }
 

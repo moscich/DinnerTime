@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "DinnerSessionManager.h"
-#import "AFHTTPSessionManager.h"
-#import "OCMockObject.h"
-#import "OCMStubRecorder.h"
 #import "HttpSessionManagerSpy.h"
 
 @interface DinnerSessionManagerTests : XCTestCase
@@ -30,6 +27,12 @@
     XCTAssertEqualObjects(responseJSON, [self mockResultJSONString]);
   } failure:nil];
   [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testDinnerSessionManagerProperlyInstantiateSessionManager{
+  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
+  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManagerSpy];
+  XCTAssertTrue([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFHTTPResponseSerializer class]]);
 }
 
 - (NSData *)mockResultInputJSONData {

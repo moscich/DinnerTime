@@ -12,5 +12,7 @@
 @interface DinnerSessionManager : NSObject
 @property(nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
+- (instancetype)initWithSessionManager:(AFHTTPSessionManager *)sessionManager;
+
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure;
 @end

@@ -10,7 +10,7 @@
 @class DinnerTimeService;
 @protocol UITableViewDataSource;
 
-@interface DinnerManager : NSObject <DinnerListViewDataSource>
+@interface DinnerManager : NSObject <DinnerListViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;

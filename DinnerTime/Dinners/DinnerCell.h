@@ -10,4 +10,5 @@
 @interface DinnerCell : UITableViewCell
 @property(nonatomic, strong) IBOutlet UILabel *ownerLabel;
 @property(nonatomic, strong) IBOutlet UILabel *textLabel;
+@property(nonatomic, strong) IBOutlet UIView *ownerBackground;
 @end

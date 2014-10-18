@@ -23,7 +23,9 @@
   dinnerListViewController.dinnerManager = [DinnerManager new];
   dinnerListViewController.view;
   XCTAssertNotNil(dinnerListViewController.tableView.dataSource);
+  XCTAssertNotNil(dinnerListViewController.tableView.delegate);
   XCTAssertEqual(dinnerListViewController.tableView.dataSource,dinnerListViewController.dinnerManager);
+  XCTAssertEqual(dinnerListViewController.tableView.delegate,dinnerListViewController.dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinnersWhenDinnerManagerSucceed {

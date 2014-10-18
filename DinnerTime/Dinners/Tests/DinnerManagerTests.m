@@ -47,12 +47,13 @@
   DinnerCell *cell = (DinnerCell *) [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   [self assertDinnerCellProperlyInstantiated:cell];
   XCTAssertEqualObjects(cell.textLabel.text, @"MockTitle");
-//  XCTAssertEqualObjects(cell.ownerLabel.text, @"MockOwner");
+  XCTAssertEqualObjects(cell.ownerLabel.text, @"MockOwner");
   XCTAssertEqual([dataSource lastResultType], DinnerServiceResult_Success);
 }
 
 - (void)assertDinnerCellProperlyInstantiated:(DinnerCell *)dinnerCell{
   XCTAssertNotNil(dinnerCell.ownerLabel);
+  XCTAssertNotNil(dinnerCell.ownerBackground);
 }
 
 - (void)testDinnerManagerUnauthorizedDinners{
@@ -65,6 +66,11 @@
     XCTAssertEqual(type, DinnerServiceResult_Unauthorized);
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testDinnerManagerReturnsProperHeight{
+  id <UITableViewDelegate> tableViewDelegate = [DinnerManager new];
+  XCTAssertEqual([tableViewDelegate tableView:nil heightForRowAtIndexPath:nil], 60);
 }
 
 - (NSArray *)mockResultOutputArray {

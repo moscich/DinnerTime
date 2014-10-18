@@ -10,24 +10,38 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xvQ-P4-yGm">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARh-v4-C5B">
+                    <rect key="frame" x="0.0" y="0.0" width="306" height="60"/>
+                    <color key="backgroundColor" red="0.87861854488858249" green="1" blue="0.78657646746760501" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="xvQ-P4-yGm">
                     <rect key="frame" x="8" y="8" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2P-8K-Kqn">
-                    <rect key="frame" x="8" y="37" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2P-8K-Kqn">
+                    <rect key="frame" x="8" y="34" width="38" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="xvQ-P4-yGm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Bhx-lm-0Nw"/>
+                <constraint firstItem="xvQ-P4-yGm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Blp-WA-b9h"/>
+                <constraint firstItem="I2P-8K-Kqn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="IS3-N9-MvE"/>
+                <constraint firstAttribute="bottom" secondItem="I2P-8K-Kqn" secondAttribute="bottom" constant="8" id="IYO-JV-Zny"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="ownerLabel" destination="xvQ-P4-yGm" id="cHb-6E-jom"/>
-                <outlet property="textLabel" destination="I2P-8K-Kqn" id="Me6-kx-3HF"/>
+                <outlet property="ownerBackground" destination="ARh-v4-C5B" id="odu-kh-Kgr"/>
+                <outlet property="ownerLabel" destination="I2P-8K-Kqn" id="SE0-fw-Pvy"/>
+                <outlet property="textLabel" destination="xvQ-P4-yGm" id="iUa-GD-4vg"/>
             </connections>
+            <point key="canvasLocation" x="143" y="100"/>
         </view>
     </objects>
 </document>

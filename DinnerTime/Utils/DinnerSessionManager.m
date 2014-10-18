@@ -20,9 +20,11 @@
 
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
   [self.sessionManager.requestSerializer setValue:self.sessionId forHTTPHeaderField:@"session_id"];
+  NSLog(@"self.sessionId = %@", self.sessionId);
   [self.sessionManager GET:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     [self sendCallback:success withResponseObject:responseObject];
   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    NSLog(@"error = %@", error);
     failure(error);
   }];
 }

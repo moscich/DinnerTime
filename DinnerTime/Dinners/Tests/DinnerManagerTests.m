@@ -9,6 +9,7 @@
 #import "DinnerServiceResultType.h"
 #import "DinnerDTO.h"
 #import "DinnerListViewDataSource.h"
+#import "DinnerCell.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -40,10 +41,18 @@
 }
 
 - (void)assertDinnerManagerProperDataSource:(id <DinnerListViewDataSource>)dataSource{
+  UITableView *tableView = [UITableView new];
+  [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:0],2);
-  UITableViewCell *cell = [dataSource tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell = (DinnerCell *) [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  [self assertDinnerCellProperlyInstantiated:cell];
   XCTAssertEqualObjects(cell.textLabel.text, @"MockTitle");
+//  XCTAssertEqualObjects(cell.ownerLabel.text, @"MockOwner");
   XCTAssertEqual([dataSource lastResultType], DinnerServiceResult_Success);
+}
+
+- (void)assertDinnerCellProperlyInstantiated:(DinnerCell *)dinnerCell{
+  XCTAssertNotNil(dinnerCell.ownerLabel);
 }
 
 - (void)testDinnerManagerUnauthorizedDinners{
@@ -61,12 +70,12 @@
 - (NSArray *)mockResultOutputArray {
   DinnerDTO *dinner1 = [DinnerDTO new];
   dinner1.dinnerId = 1;
-  dinner1.owned = YES;
+  dinner1.owned = NO;
   dinner1.owner = @"MockOwner";
   dinner1.title = @"MockTitle";
   DinnerDTO *dinner2 = [DinnerDTO new];
   dinner2.dinnerId = 2;
-  dinner2.owned = NO;
+  dinner2.owned = YES;
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
   return @[dinner1, dinner2];

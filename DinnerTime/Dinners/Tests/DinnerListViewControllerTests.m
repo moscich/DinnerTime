@@ -46,4 +46,13 @@
   [mockTableView verify];
 }
 
+- (void)testRegisterNibInTableView{
+  id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  [[mockTableView expect] registerNib:OCMOCK_ANY forCellReuseIdentifier:@"DinnerCellIdentifier"];
+  dinnerListViewController.tableView = mockTableView;
+  [dinnerListViewController viewDidLoad];
+  [mockTableView verify];
+}
+
 @end

@@ -7,6 +7,7 @@
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerTimeService.h"
 #import "DinnerDTO.h"
+#import "DinnerCell.h"
 
 @interface DinnerManager ()
 
@@ -44,8 +45,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [UITableViewCell new];
-  cell.textLabel.text = ((DinnerDTO *)self.dinners[(NSUInteger) indexPath.row]).title;
+  DinnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerCellIdentifier"];
+  DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
+  cell.textLabel.text = dinner.title;
+  cell.ownerLabel.text = dinner.owner;
   return cell;
 }
 

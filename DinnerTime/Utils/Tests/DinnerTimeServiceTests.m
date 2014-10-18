@@ -42,6 +42,7 @@
   }];
   XCTAssertEqualObjects(dinnerSessionManagerSpy.parameters[@"token"], @"TestToken");
   XCTAssertEqualObjects(dinnerSessionManagerSpy.calledAddress, @"/login");
+  XCTAssertEqualObjects([UICKeyChainStore stringForKey:@"session_id"], @"testSessionId");
   [self waitForExpectationsWithTimeout:0.0001 handler:nil];
 }
 

@@ -27,6 +27,7 @@
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {
   [self.dinnerSessionManager POST:@"/login" parameters:@{@"token":token} success:^(NSString *string) {
     SessionDTO *sessionDTO = [[SessionDTO alloc] initWithString:string error:nil];
+    [UICKeyChainStore setString:sessionDTO.sessionId forKey:@"session_id"];
     callback(sessionDTO.sessionId);
   } failure:nil];
 }

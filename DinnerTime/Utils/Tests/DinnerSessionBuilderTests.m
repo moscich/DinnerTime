@@ -21,7 +21,7 @@
 - (void)testBuilderInstantiateDinnerSession{
   DinnerSessionBuilder *dinnerSessionBuilder = [DinnerSessionBuilder new];
   DinnerSessionManager *dinnerSessionManager = [dinnerSessionBuilder constructSessionManager];
-  XCTAssertEqualObjects(dinnerSessionManager.sessionManager.baseURL, [NSURL URLWithString:@"https://192.168.1.126"]);
+  XCTAssertEqualObjects(dinnerSessionManager.sessionManager.baseURL, [NSURL URLWithString:@"https://192.168.1.126:3002"]);
   XCTAssertTrue([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFHTTPResponseSerializer class]]);
   XCTAssertFalse([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFJSONResponseSerializer class]]);
   XCTAssertTrue(dinnerSessionManager.sessionManager.securityPolicy.allowInvalidCertificates);

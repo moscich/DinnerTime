@@ -10,6 +10,7 @@
 		13D318582D0543C995410A1B /* libPods-DinnerTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3857774FEAB456D9C6A40BC /* libPods-DinnerTimeTests.a */; };
 		4568AC57660742B2B9838B61 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35828E243B494F8FBBDFBBBF /* libPods.a */; };
 		5304210F4DA6CF6F36F96F3B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042C61C2CABF52D296A9DB /* LoginViewController.m */; };
+		5304215A91777F9036BB5093 /* DinnerListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */; };
 		5304217DD31269ECC260FEEC /* DinnerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042F1D6E2A22BC07FF9D70 /* DinnerManagerTests.m */; };
 		53042189DB1FD6A78C957C38 /* HttpSessionManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CA7F11AD9760ACE6DD6 /* HttpSessionManagerSpy.m */; };
 		5304219D5BA16582AF616CCE /* DinnerTimeServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422BB21E63FE84E0D1754 /* DinnerTimeServiceTests.m */; };
@@ -124,6 +125,7 @@
 		530429DFE4468206D75774C5 /* TestsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestsAppDelegate.m; sourceTree = "<group>"; };
 		53042A5AAD89B8429AA495C8 /* DinnerManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerManagerSpy.h; sourceTree = "<group>"; };
 		53042AB43B6C64A5F6ECA694 /* DinnerTimeLoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerTests.m; sourceTree = "<group>"; };
+		53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DinnerListView.xib; sourceTree = "<group>"; };
 		53042B112B7A783984BF38A5 /* DinnerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerDTO.h; sourceTree = "<group>"; };
 		53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerDelegateSpy.m; sourceTree = "<group>"; };
 		53042B984E3B27AD9D829850 /* SessionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDTO.h; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				5304281E09E969B9BEDF968F /* Tests */,
 				53042E44D20CBD5775905169 /* DinnerManager.h */,
 				53042CE0D18EF7952759154D /* DinnerManager.m */,
+				53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */,
 			);
 			path = Dinners;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				530427DFCAAF954AB7870015 /* Marek Moscichowski's CA 1.cer in Resources */,
 				53042A0782C5573422A0513B /* DinnerTimeServer.cer in Resources */,
 				53042596EB77FC1DF6A4FB5E /* LoginView.xib in Resources */,
+				5304215A91777F9036BB5093 /* DinnerListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

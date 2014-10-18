@@ -10,5 +10,6 @@
 @interface DinnerListViewController : UIViewController
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 
+@property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

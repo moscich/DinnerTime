@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "DinnerListViewController.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -15,6 +16,12 @@
 
 @implementation DinnerListViewControllerTests
 
-//- testDinnerManager
+- (void)testDinnerManagerHasTableViewProperlyInstantiated{
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  dinnerListViewController.dinnerManager = [DinnerManager new];
+  dinnerListViewController.view;
+  XCTAssertNotNil(dinnerListViewController.tableView.dataSource);
+  XCTAssertEqual(dinnerListViewController.tableView.dataSource,dinnerListViewController.dinnerManager);
+}
 
 @end

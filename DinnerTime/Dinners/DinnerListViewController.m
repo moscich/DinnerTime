@@ -10,4 +10,9 @@
 
 }
 
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  self.tableView.dataSource = self.dinnerManager;
+}
+
 @end

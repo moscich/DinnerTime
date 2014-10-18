@@ -10,13 +10,4 @@
 
 }
 
-- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager {
-  self = [super init];
-  if (self) {
-    self.dinnerManager = dinnerManager;
-  }
-
-  return self;
-}
-
 @end

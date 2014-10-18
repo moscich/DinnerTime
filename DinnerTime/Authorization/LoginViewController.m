@@ -32,7 +32,8 @@
 }
 
 - (void)navigateToDinnerList {
-  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:self.dinnerManager];
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  dinnerListViewController.dinnerManager = self.dinnerManager;
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 

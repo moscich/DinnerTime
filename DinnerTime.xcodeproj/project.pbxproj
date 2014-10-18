@@ -33,6 +33,7 @@
 		530428513DB6B9194FFFA7FF /* DinnerSessionBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042D78AAFA6015302F8917 /* DinnerSessionBuilderTests.m */; };
 		530428C4CDC59223DF127EEB /* DinnerManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304237BE071EB074068B1A5 /* DinnerManagerSpy.m */; };
 		530428C7A5BE8053FC85880B /* DinnerSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530421975E3FDA333BEDEB0E /* DinnerSessionManager.m */; };
+		530429C0F11BD21BEA369FBA /* DinnerListViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042812FC2562A64E7EBA06 /* DinnerListViewControllerTests.m */; };
 		530429F9C3BCE7F7E98F429C /* GoogleSignInManagerDelegateSPY.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CFC7635AA908ED57F4A /* GoogleSignInManagerDelegateSPY.m */; };
 		53042A0782C5573422A0513B /* DinnerTimeServer.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */; };
 		53042AB962E215BA6B2465F9 /* DinnerSessionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530423E8938FE824DC1006A7 /* DinnerSessionManagerTests.m */; };
@@ -110,6 +111,7 @@
 		53042798003E1C6DC84CEE39 /* DinnerTimeServiceSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerTimeServiceSpy.h; sourceTree = "<group>"; };
 		53042798FA4DC7F63F77D902 /* LoginManagerDelegateSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManagerDelegateSpy.h; sourceTree = "<group>"; };
 		530427E22BF298D0FFF7FA02 /* DinnerArrayDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerArrayDTO.m; sourceTree = "<group>"; };
+		53042812FC2562A64E7EBA06 /* DinnerListViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListViewControllerTests.m; sourceTree = "<group>"; };
 		5304287D70F7136A539532D2 /* DinnerSessionManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionManagerSpy.h; sourceTree = "<group>"; };
 		530428897C88CF284D6EF481 /* DinnerTimeServiceSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceSpy.m; sourceTree = "<group>"; };
 		530428D6654BA410BAFA462B /* GoogleSignInManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerStub.h; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				53042746CAB02DB4C5F5566B /* DinnerManagerStub.m */,
 				53042E78A7EEA264EBA0A027 /* DinnerManagerStub.h */,
 				53042E4F5F05E1EF9606A7BA /* DinnerServiceResultType.h */,
+				53042812FC2562A64E7EBA06 /* DinnerListViewControllerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				53042AB962E215BA6B2465F9 /* DinnerSessionManagerTests.m in Sources */,
 				530428513DB6B9194FFFA7FF /* DinnerSessionBuilderTests.m in Sources */,
 				530423459198B5F6AD03F43F /* DinnerSessionBuilderStub.m in Sources */,
+				530429C0F11BD21BEA369FBA /* DinnerListViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

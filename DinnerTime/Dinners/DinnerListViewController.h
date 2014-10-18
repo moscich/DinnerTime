@@ -10,6 +10,5 @@
 @interface DinnerListViewController : UIViewController
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 
-- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager;
 
 @end

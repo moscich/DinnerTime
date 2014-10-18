@@ -23,7 +23,7 @@
 - (instancetype)initWithResultData:(NSData *)resultData {
   self = [super init];
   if (self) {
-    self.resultArray = resultData;
+    self.resultData = resultData;
     self.returnType = DinnerServiceResult_Success;
   }
 
@@ -33,7 +33,7 @@
 - (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
   self.parameters = parameters;
   self.calledAddress = URLString;
-  success(nil, @{@"session_id":@"testSessionID"});
+  success(nil, self.resultData);
   return nil;
 }
 
@@ -41,7 +41,7 @@
   switch(self.returnType){
     case DinnerServiceResult_Success:{
 
-      success(nil, self.resultArray);
+      success(nil, self.resultData);
       break;
     }
     case DinnerServiceResult_Unauthorized:{

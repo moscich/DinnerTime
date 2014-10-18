@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMArg.h>
 #import "DinnerSessionManager.h"
 #import "HttpSessionManagerSpy.h"
 #import "OCMockObject.h"
 #import "OCMStubRecorder.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface DinnerSessionManagerTests : XCTestCase
 
@@ -19,6 +21,12 @@
 
 @implementation DinnerSessionManagerTests
 
+
+- (void)testDinnerSessionManagerProperlyInstantiateSessionManager{
+  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
+  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManagerSpy];
+  XCTAssertTrue([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFHTTPResponseSerializer class]]);
+}
 
 - (void)testDinnerSessionManagerTranslatesResponseObjectToJSON{
   DinnerSessionManager *dinnerSessionManager = [DinnerSessionManager new];
@@ -31,12 +39,6 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (void)testDinnerSessionManagerProperlyInstantiateSessionManager{
-  HttpSessionManagerSpy *sessionManagerSpy = [HttpSessionManagerSpy new];
-  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManagerSpy];
-  XCTAssertTrue([dinnerSessionManager.sessionManager.responseSerializer isKindOfClass:[AFHTTPResponseSerializer class]]);
-}
-
 - (void)testDinnerSessionManagerAddSessionToHeaders{
   id mockSessionManager = [OCMockObject niceMockForClass:[AFHTTPSessionManager class]];
   id mockRequestSerializer = [OCMockObject mockForClass:[AFHTTPRequestSerializer class]];
@@ -46,12 +48,36 @@
   dinnerSessionManager.sessionId = @"mockSessionId";
   [dinnerSessionManager GET:nil parameters:nil success:nil failure:nil];
   [mockRequestSerializer verify];
+  [[mockRequestSerializer expect] setValue:@"mockSessionId" forHTTPHeaderField:@"session_id"];
+  [dinnerSessionManager POST:nil parameters:nil success:nil failure:nil];
+  [mockRequestSerializer verify];
+}
+
+- (void)testDinnerSessionManagerPOST{
+  HttpSessionManagerSpy *sessionManagerSpy = [[HttpSessionManagerSpy alloc] initWithResultData:[self mockPostJSONData]];
+  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManagerSpy];
+  XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
+  [dinnerSessionManager POST:@"/login" parameters:@{@"param1":@"value1"} success:^(NSString *string) {
+    [callbackExpectation fulfill];
+    XCTAssertEqualObjects(string, [self mockPostJSONString]);
+  } failure:^(NSError *error) {
+
+  }];
+  XCTAssertEqualObjects(sessionManagerSpy.calledAddress,@"/login");
+  XCTAssertEqualObjects(sessionManagerSpy.parameters,@{@"param1":@"value1"});
+  [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
 - (NSData *)mockResultInputJSONData {
-  NSString *json = [self mockResultJSONString];
+  return [[self mockResultJSONString] dataUsingEncoding:NSUTF8StringEncoding];
+}
 
-  return [json dataUsingEncoding:NSUTF8StringEncoding];
+- (NSData *)mockPostJSONData{
+  return [[self mockPostJSONString] dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (NSString *)mockPostJSONString{
+  return @"{\"sessionId\":\"mock_session\"}";
 }
 
 - (NSString *)mockResultJSONString {

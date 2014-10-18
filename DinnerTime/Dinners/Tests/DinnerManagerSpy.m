@@ -10,8 +10,23 @@
 
 }
 
-- (void)getDinners:(void (^)())pFunction {
+- (DinnerServiceResultType)lastResultType {
+  return self.resultType;
+}
+
+- (id)initWithResultType:(DinnerServiceResultType)type {
+  self = [super init];
+  if (self) {
+    self.resultType = type;
+  }
+
+  return self;
+}
+
+- (void)getDinners:(void (^)(DinnerServiceResultType))pFunction {
+  pFunction(DinnerServiceResult_Success);
   self.getDinnersAsked = YES;
+  [NSThread sleepForTimeInterval:0.01f];
 }
 
 @end

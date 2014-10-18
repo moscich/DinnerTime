@@ -13,6 +13,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.dataSource = self.dinnerManager;
+  if([self.dinnerManager lastResultType] != DinnerServiceResult_Success){
+    [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
+      [self.tableView reloadData];
+    }];
+  }
 }
 
 @end

@@ -5,11 +5,12 @@
 
 #import <Foundation/Foundation.h>
 #import "DinnerServiceResultType.h"
+#import "DinnerListViewDataSource.h"
 
 @class DinnerTimeService;
 @protocol UITableViewDataSource;
 
-@interface DinnerManager : NSObject <UITableViewDataSource>
+@interface DinnerManager : NSObject <DinnerListViewDataSource>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;

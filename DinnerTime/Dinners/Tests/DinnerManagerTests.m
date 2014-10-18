@@ -8,6 +8,7 @@
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerServiceResultType.h"
 #import "DinnerDTO.h"
+#import "DinnerListViewDataSource.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -24,6 +25,7 @@
 
 - (void)testDinnerManagerGetsDinners{
   DinnerManager *dinnerManager = [DinnerManager new];
+  XCTAssertNotEqual([dinnerManager lastResultType], DinnerServiceResult_Success);
   NSArray *resultArray = [self mockResultOutputArray];
   DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
   dinnerManager.dinnerTimeService = serviceSpy;
@@ -37,10 +39,11 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (void)assertDinnerManagerProperDataSource:(id <UITableViewDataSource>)dataSource{
+- (void)assertDinnerManagerProperDataSource:(id <DinnerListViewDataSource>)dataSource{
   XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:0],2);
   UITableViewCell *cell = [dataSource tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text, @"MockTitle");
+  XCTAssertEqual([dataSource lastResultType], DinnerServiceResult_Success);
 }
 
 - (void)testDinnerManagerUnauthorizedDinners{

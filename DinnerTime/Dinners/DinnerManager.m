@@ -11,6 +11,7 @@
 @interface DinnerManager ()
 
 @property(nonatomic, strong) NSArray *dinners;
+@property(nonatomic, assign) DinnerServiceResultType resultType;
 
 @end
 
@@ -30,8 +31,10 @@
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
     self.dinners = array;
+    self.resultType = DinnerServiceResult_Success;
     callback(DinnerServiceResult_Success);
   } failure:^(DinnerServiceResultType type) {
+    self.resultType = type;
     callback(type);
   }];
 }
@@ -44,6 +47,10 @@
   UITableViewCell *cell = [UITableViewCell new];
   cell.textLabel.text = ((DinnerDTO *)self.dinners[(NSUInteger) indexPath.row]).title;
   return cell;
+}
+
+- (DinnerServiceResultType)lastResultType {
+  return self.resultType;
 }
 
 @end

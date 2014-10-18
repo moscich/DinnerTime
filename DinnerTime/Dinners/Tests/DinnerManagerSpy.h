@@ -10,5 +10,7 @@
 @interface DinnerManagerSpy : DinnerManager
 
 @property(nonatomic) BOOL getDinnersAsked;
+@property(nonatomic) DinnerServiceResultType resultType;
 
+- (id)initWithResultType:(DinnerServiceResultType)type;
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "DinnerListViewController.h"
+#import "DinnerManagerSpy.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -22,6 +24,26 @@
   dinnerListViewController.view;
   XCTAssertNotNil(dinnerListViewController.tableView.dataSource);
   XCTAssertEqual(dinnerListViewController.tableView.dataSource,dinnerListViewController.dinnerManager);
+}
+
+- (void)testDinnerManagerGetsDinnersWhenDinnerManagerSucceed {
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  DinnerManagerSpy *spy = [[DinnerManagerSpy alloc] initWithResultType:DinnerServiceResult_Success];
+  dinnerListViewController.dinnerManager = spy;
+  dinnerListViewController.view;
+  XCTAssertFalse(spy.getDinnersAsked);
+}
+
+- (void)testReloadTableAfterSucceeding{
+  id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  [[mockTableView expect] reloadData];
+  dinnerListViewController.tableView = mockTableView;
+  DinnerManagerSpy *spy = [[DinnerManagerSpy alloc] initWithResultType:DinnerServiceResult_Unauthorized];
+  dinnerListViewController.dinnerManager = spy;
+  [dinnerListViewController viewDidLoad];
+  XCTAssertTrue(spy.getDinnersAsked);
+  [mockTableView verify];
 }
 
 @end

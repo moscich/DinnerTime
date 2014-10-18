@@ -37,7 +37,7 @@
     DinnerArrayDTO *dinnerArrayDTO = [[DinnerArrayDTO alloc] initWithString:string error:&error];
     callback(dinnerArrayDTO.dinners);
   } failure:^(NSError *error) {
-    if(error.code == 401)
+    if([error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey] statusCode] == 401)
       failure(DinnerServiceResult_Unauthorized);
   }];
 }

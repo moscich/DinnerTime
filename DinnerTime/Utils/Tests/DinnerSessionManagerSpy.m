@@ -43,7 +43,8 @@
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
   self.calledAddress = string;
   if(self.returnType == DinnerServiceResult_Unauthorized){
-    NSError *error = [[NSError alloc] initWithDomain:@"" code:401 userInfo:nil];
+    NSHTTPURLResponse *mockResponse = [[NSHTTPURLResponse alloc] initWithURL:nil statusCode:401 HTTPVersion:nil headerFields:nil];
+    NSError *error = [[NSError alloc] initWithDomain:@"" code:-1011 userInfo:@{AFNetworkingOperationFailingURLResponseErrorKey:mockResponse}];
     failure(error);
   }else
     success(self.dinnerJSON);

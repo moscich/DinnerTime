@@ -9,6 +9,7 @@
 #import "DinnerManager.h"
 #import "DinnerServiceResultType.h"
 #import "LoginView.h"
+#import "DinnerSessionBuilder.h"
 
 
 @implementation LoginViewController {
@@ -18,7 +19,7 @@
 - (instancetype)init {
   self = [super init];
   if(self){
-    DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+    DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
     self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:dinnerTimeService];
     self.loginManager.delegate = self;
     self.dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];

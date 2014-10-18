@@ -6,7 +6,13 @@
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerTimeService.h"
+#import "DinnerDTO.h"
 
+@interface DinnerManager ()
+
+@property(nonatomic, strong) NSArray *dinners;
+
+@end
 
 @implementation DinnerManager {
 
@@ -28,6 +34,16 @@
   } failure:^(DinnerServiceResultType type) {
     callback(type);
   }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.dinners.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell = [UITableViewCell new];
+  cell.textLabel.text = ((DinnerDTO *)self.dinners[(NSUInteger) indexPath.row]).title;
+  return cell;
 }
 
 @end

@@ -7,11 +7,10 @@
 #import "DinnerServiceResultType.h"
 
 @class DinnerTimeService;
+@protocol UITableViewDataSource;
 
-
-@interface DinnerManager : NSObject
+@interface DinnerManager : NSObject <UITableViewDataSource>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
-@property(nonatomic, strong) NSArray *dinners;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
 

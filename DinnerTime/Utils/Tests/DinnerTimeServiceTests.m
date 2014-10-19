@@ -94,8 +94,12 @@
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
   DinnerSessionManagerSpy *dinnerSessionManagerSpy = [DinnerSessionManagerSpy new];
   dinnerTimeService.dinnerSessionManager = dinnerSessionManagerSpy;
-  [dinnerTimeService logout];
+  XCTestExpectation *expectation = [self expectationWithDescription:@"logoutCallback"];
+  [dinnerTimeService logout:^(DinnerServiceResultType type) {
+    [expectation fulfill];
+  }];
   XCTAssertEqualObjects(dinnerSessionManagerSpy.postCalledAddress, @"/logout");
+  [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
 - (NSArray *)mockResultOutputArray {

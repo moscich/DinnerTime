@@ -15,7 +15,7 @@
 @property(nonatomic, strong) DinnerSessionManager *dinnerSessionManager;
 @property(nonatomic, copy) NSString *session;
 
-- (void)logout;
+- (void)logout:(void (^)(DinnerServiceResultType))callback;
 
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback;
 

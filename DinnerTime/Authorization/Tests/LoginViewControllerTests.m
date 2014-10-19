@@ -27,42 +27,43 @@
   self.loginViewController = [LoginViewController new];
 }
 
-- (void)testLoginViewControllerRespondToDelegateSelector{
-  XCTAssertTrue([self.loginViewController respondsToSelector:@selector(loginManagerLoginSuccessful)]);
+- (void)testLoginViewControllerRespondToDelegateSelector {
+  XCTAssertTrue([self.loginViewController respondsToSelector:@
+          selector(loginManagerLoginSuccessful)]);
 }
 
-- (void)testLoginViewControllerInjectsDinnerTimeServiceToHisIstantiatedManagers{
+- (void)testLoginViewControllerInjectsDinnerTimeServiceToHisIstantiatedManagers {
   XCTAssertNotNil(self.loginViewController.loginManager);
   XCTAssertNotNil(self.loginViewController.dinnerManager);
   XCTAssertEqual(self.loginViewController.dinnerManager.dinnerTimeService, self.loginViewController.loginManager.dinnerTimeService);
 }
 
-- (void)testLoginViewControllerAsksForDinnersAfterViewDidLoad{
+- (void)testLoginViewControllerAsksForDinnersAfterViewDidLoad {
   DinnerManagerSpy *dinnerManagerSpy = [DinnerManagerSpy new];
   self.loginViewController.dinnerManager = dinnerManagerSpy;
   [self.loginViewController viewDidLoad];
   XCTAssertTrue(dinnerManagerSpy.getDinnersAsked);
 }
 
-- (void)testLoginViewControllerHasLoginView{
+- (void)testLoginViewControllerHasLoginView {
   XCTAssertTrue([self.loginViewController.view isKindOfClass:[LoginView class]]);
 }
 
-- (void)testLoginViewControllerHasProperViewsVisible{
+- (void)testLoginViewControllerHasProperViewsVisible {
   [self.loginViewController loadView];
-  XCTAssertFalse(((LoginView *)self.loginViewController.view).activityIndicator.hidden);
+  XCTAssertFalse(((LoginView *) self.loginViewController.view).activityIndicator.hidden);
   XCTAssertTrue([((LoginView *) self.loginViewController.view).activityIndicator isAnimating]);
   XCTAssertTrue(((LoginView *) self.loginViewController.view).signInButton.hidden);
 }
 
-- (void)testLoginViewControllerShowsLoginButtonWhenUnauthorised{
+- (void)testLoginViewControllerShowsLoginButtonWhenUnauthorised {
   self.loginViewController.dinnerManager = [[DinnerManagerStub alloc] initWithReturnType:DinnerServiceResult_Unauthorized];
   [self.loginViewController viewDidLoad];
-  XCTAssertTrue(((LoginView *)self.loginViewController.view).activityIndicator.hidden);
-  XCTAssertFalse(((LoginView *)self.loginViewController.view).signInButton.hidden);
+  XCTAssertTrue(((LoginView *) self.loginViewController.view).activityIndicator.hidden);
+  XCTAssertFalse(((LoginView *) self.loginViewController.view).signInButton.hidden);
 }
 
-- (void)testLoginViewControllerNavigateToDinnerListWithDinnerAndLoginManagerWhenSuccessfullyReceivedDinners{
+- (void)testLoginViewControllerNavigateToDinnerListWithDinnerAndLoginManagerWhenSuccessfullyReceivedDinners {
   DinnerManagerStub *dinnerManagerStub = [[DinnerManagerStub alloc] initWithReturnType:DinnerServiceResult_Success];
   LoginManager *loginManager = [LoginManager new];
   self.loginViewController.dinnerManager = dinnerManagerStub;
@@ -71,28 +72,25 @@
   id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
   [[[loginViewController1 stub] andReturn:mockNavController] navigationController];
 
-  NSArray *expectedPushedViewControllerArray = [OCMArg checkWithBlock:^BOOL(id obj) {
-    if([obj isKindOfClass:[NSArray class]]){
-      NSArray *array = obj;
-      if(array.count == 1 && [[array firstObject] isKindOfClass:[DinnerListViewController class]]){
-        DinnerListViewController *dinnerListViewController = [array firstObject];
-        return dinnerListViewController.dinnerManager == dinnerManagerStub && dinnerListViewController.loginManager == loginManager;
-      }
+  UIViewController *expectedViewController = [OCMArg checkWithBlock:^BOOL(id obj) {
+    if ([obj isKindOfClass:[DinnerListViewController class]]) {
+      DinnerListViewController *dinnerListViewController = obj;
+      return dinnerListViewController.dinnerManager == dinnerManagerStub && dinnerListViewController.loginManager == loginManager;
     }
-      
+
     return NO;
   }];
 
-  [[mockNavController expect] setViewControllers:expectedPushedViewControllerArray animated:YES];
+  [[mockNavController expect] pushViewController:expectedViewController animated:YES];
   [self.loginViewController viewDidLoad];
   [mockNavController verify];
 }
 
-- (void)testLoginViewControllerIsLoginManagerDelegate{
+- (void)testLoginViewControllerIsLoginManagerDelegate {
   XCTAssertEqual(self.loginViewController.loginManager.delegate, self.loginViewController);
 }
 
-- (void)testLoginViewControllerInitsWithDinnerService{
+- (void)testLoginViewControllerInitsWithDinnerService {
   XCTAssertNotNil(self.loginViewController.loginManager.dinnerTimeService);
 }
 

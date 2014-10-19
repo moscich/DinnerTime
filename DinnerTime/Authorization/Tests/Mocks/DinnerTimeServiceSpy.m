@@ -19,8 +19,9 @@
   return self;
 }
 
-- (void)logout{
+- (void)logout:(void (^)(DinnerServiceResultType))callback {
   self.logoutCalled = YES;
+  callback(DinnerServiceResult_Success);
 }
 
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {

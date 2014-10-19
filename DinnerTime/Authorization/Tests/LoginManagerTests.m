@@ -9,6 +9,7 @@
 #import "LoginManagerDelegateSpy.h"
 #import "DinnerTimeServiceSpy.h"
 #import "GoogleSignInManagerStub.h"
+#import <OCMock/OCMock.h>
 
 @interface LoginManagerTests : XCTestCase
 @end
@@ -51,11 +52,15 @@
 }
 
 - (void)testLoginManagerLogout{
+  id logoutDelegate = [OCMockObject mockForProtocol:@protocol(LoginManagerLogoutDelegate)];
+  [[logoutDelegate expect] logoutManagerDidLogout];
   LoginManager *loginManager = [LoginManager new];
+  loginManager.logoutDelegate = logoutDelegate;
   DinnerTimeServiceSpy *dinnerTimeServiceSpy = [DinnerTimeServiceSpy new];
   loginManager.dinnerTimeService = dinnerTimeServiceSpy;
   [loginManager logout];
   XCTAssertTrue(dinnerTimeServiceSpy.logoutCalled);
+  [logoutDelegate verify];
 }
 
 @end

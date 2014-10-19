@@ -35,7 +35,7 @@
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   dinnerListViewController.dinnerManager = self.dinnerManager;
   dinnerListViewController.loginManager = self.loginManager;
-  [self.navigationController setViewControllers:@[dinnerListViewController] animated:YES];
+  [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 
 - (void)viewDidLoad {

@@ -6,6 +6,7 @@
 #import "LoginManager.h"
 #import "UICKeyChainStore.h"
 #import "DinnerTimeService.h"
+#import "DinnerListViewController.h"
 
 
 @implementation LoginManager {
@@ -43,6 +44,8 @@
 
 
 - (void)logout {
-  [self.dinnerTimeService logout];
+  [self.dinnerTimeService logout:^(DinnerServiceResultType type) {
+    [self.logoutDelegate logoutManagerDidLogout];
+  }];
 }
 @end

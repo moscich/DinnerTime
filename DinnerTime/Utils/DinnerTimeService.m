@@ -24,9 +24,9 @@
   return self;
 }
 
-- (void)logout {
+- (void)logout:(void (^)(DinnerServiceResultType))callback {
   [self.dinnerSessionManager POST:@"/logout" parameters:nil success:^(NSString *string) {
-
+    callback(DinnerServiceResult_Success);
   } failure:^(NSError *error) {
 
   }];

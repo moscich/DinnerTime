@@ -9,9 +9,14 @@
 @class GoogleSignInManager;
 @class LoginManagerDelegateSpy;
 @class DinnerTimeService;
+@class DinnerListViewController;
 
 @protocol LoginManagerDelegate
 - (void)loginManagerLoginSuccessful;
+@end
+
+@protocol LoginManagerLogoutDelegate
+- (void)logoutManagerDidLogout;
 @end
 
 @interface LoginManager : NSObject <GoogleSignInManagerDelegate>
@@ -21,6 +26,8 @@
 @property(nonatomic, strong) GoogleSignInManager *googleManger;
 
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
+
+@property(nonatomic, strong) id <LoginManagerLogoutDelegate> logoutDelegate;
 
 - (IBAction)signIn;
 

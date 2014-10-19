@@ -11,6 +11,7 @@
 #import <OCMock/OCMock.h>
 #import "DinnerListViewController.h"
 #import "DinnerManagerSpy.h"
+#import "LoginViewController.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -36,12 +37,31 @@
   XCTAssertFalse(spy.getDinnersAsked);
 }
 
-- (void)testDinnerListHasProperlyConnectedLogoutButton {
+- (void)testHidesBackButton{
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  dinnerListViewController.view;
+  XCTAssertTrue(dinnerListViewController.navigationItem.hidesBackButton);
+}
+
+- (void)testDinnerListControllerHasProperlySetupInteractionWithLoginManager {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   LoginManager *loginManager = [LoginManager new];
   dinnerListViewController.loginManager = loginManager;
   dinnerListViewController.view;
   XCTAssertEqual(dinnerListViewController.navigationItem.rightBarButtonItem.target, loginManager);
+  XCTAssertEqual(loginManager.logoutDelegate, dinnerListViewController);
+}
+
+- (void)testDinnerListPopToLoginViewController{
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+
+  id dinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+  [[[dinnerListViewControllerMock stub] andReturn:mockNavController] navigationController];
+
+  [[mockNavController expect] popViewControllerAnimated:YES];
+  [dinnerListViewController logoutManagerDidLogout];
+  [mockNavController verify];
 }
 
 - (void)testReloadTableAfterSucceeding{

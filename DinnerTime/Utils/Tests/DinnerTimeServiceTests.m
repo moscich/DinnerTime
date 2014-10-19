@@ -41,7 +41,7 @@
     [expectation fulfill];
   }];
   XCTAssertEqualObjects(dinnerSessionManagerSpy.parameters[@"token"], @"TestToken");
-  XCTAssertEqualObjects(dinnerSessionManagerSpy.calledAddress, @"/login");
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.postCalledAddress, @"/login");
   XCTAssertEqualObjects(dinnerSessionManagerSpy.sessionId, @"testSessionId");
   XCTAssertEqualObjects([UICKeyChainStore stringForKey:@"session_id"], @"testSessionId");
   [self waitForExpectationsWithTimeout:0.0001 handler:nil];
@@ -74,7 +74,7 @@
   }failure:^(DinnerServiceResultType type) {
 
   }];
-  XCTAssertEqualObjects(dinnerSessionManagerSpy.calledAddress, @"/dinners");
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.getCalledAddress, @"/dinners");
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
@@ -88,6 +88,14 @@
     [failureExpectation fulfill];
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testLogout{
+  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+  DinnerSessionManagerSpy *dinnerSessionManagerSpy = [DinnerSessionManagerSpy new];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManagerSpy;
+  [dinnerTimeService logout];
+  XCTAssertEqualObjects(dinnerSessionManagerSpy.postCalledAddress, @"/logout");
 }
 
 - (NSArray *)mockResultOutputArray {

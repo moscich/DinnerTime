@@ -24,6 +24,14 @@
   return self;
 }
 
+- (void)logout {
+  [self.dinnerSessionManager POST:@"/logout" parameters:nil success:^(NSString *string) {
+
+  } failure:^(NSError *error) {
+
+  }];
+}
+
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {
   [self.dinnerSessionManager POST:@"/login" parameters:@{@"token":token} success:^(NSString *string) {
     SessionDTO *sessionDTO = [[SessionDTO alloc] initWithString:string error:nil];

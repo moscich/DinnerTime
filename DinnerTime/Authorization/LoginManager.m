@@ -42,4 +42,7 @@
 }
 
 
+- (void)logout {
+  [self.dinnerTimeService logout];
+}
 @end

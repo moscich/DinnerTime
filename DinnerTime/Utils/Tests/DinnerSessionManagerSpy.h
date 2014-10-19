@@ -11,11 +11,13 @@
 @interface DinnerSessionManagerSpy : DinnerSessionManager
 @property(nonatomic, copy) NSString *sessionJSON;
 @property(nonatomic, strong) NSDictionary *parameters;
-@property(nonatomic, strong) NSString *calledAddress;
+@property(nonatomic, strong) NSString *postCalledAddress;
 
 @property(nonatomic, copy) NSString *dinnerJSON;
 
 @property(nonatomic, assign) DinnerServiceResultType returnType;
+
+@property(nonatomic, copy) NSString *getCalledAddress;
 
 - (id)initWithSessionJSON:(NSString *)sessionJSON;
 

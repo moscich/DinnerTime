@@ -25,4 +25,6 @@
 - (IBAction)signIn;
 
 - (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
+
+- (void)logout;
 @end

@@ -19,6 +19,10 @@
   return self;
 }
 
+- (void)logout{
+  self.logoutCalled = YES;
+}
+
 - (void)loginWithToken:(NSString *)token withCallback:(void (^)(NSString *sessionId))callback {
   self.token = token;
   callback(@"sessionKey");

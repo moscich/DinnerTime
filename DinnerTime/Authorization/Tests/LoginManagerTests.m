@@ -50,4 +50,12 @@
   XCTAssertTrue(delegateSpy.wasCalled);
 }
 
+- (void)testLoginManagerLogout{
+  LoginManager *loginManager = [LoginManager new];
+  DinnerTimeServiceSpy *dinnerTimeServiceSpy = [DinnerTimeServiceSpy new];
+  loginManager.dinnerTimeService = dinnerTimeServiceSpy;
+  [loginManager logout];
+  XCTAssertTrue(dinnerTimeServiceSpy.logoutCalled);
+}
+
 @end

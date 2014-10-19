@@ -69,16 +69,19 @@
   id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
   [[[loginViewController1 stub] andReturn:mockNavController] navigationController];
 
-  UIViewController* expectedPushedViewController = [OCMArg checkWithBlock:^BOOL(id obj) {
-    if([obj isKindOfClass:[DinnerListViewController class]]){
-      DinnerListViewController *dinnerListViewController = obj;
-      return dinnerListViewController.dinnerManager == dinnerManagerStub;
+  NSArray *expectedPushedViewControllerArray = [OCMArg checkWithBlock:^BOOL(id obj) {
+    if([obj isKindOfClass:[NSArray class]]){
+      NSArray *array = obj;
+      if(array.count == 1 && [[array firstObject] isKindOfClass:[DinnerListViewController class]]){
+        DinnerListViewController *dinnerListViewController = [array firstObject];
+        return dinnerListViewController.dinnerManager == dinnerManagerStub;
+      }
     }
       
     return NO;
   }];
 
-  [[mockNavController expect] pushViewController:expectedPushedViewController animated:YES];
+  [[mockNavController expect] setViewControllers:expectedPushedViewControllerArray animated:YES];
   [self.loginViewController viewDidLoad];
   [mockNavController verify];
 }

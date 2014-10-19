@@ -7,11 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DinnerCell">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="409" height="74"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARh-v4-C5B">
-                    <rect key="frame" x="0.0" y="0.0" width="306" height="60"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ARh-v4-C5B">
+                    <rect key="frame" x="0.0" y="0.0" width="409" height="74"/>
                     <color key="backgroundColor" red="0.87861854488858249" green="1" blue="0.78657646746760501" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="xvQ-P4-yGm">
@@ -21,7 +21,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2P-8K-Kqn">
-                    <rect key="frame" x="8" y="34" width="38" height="18"/>
+                    <rect key="frame" x="8" y="48" width="38" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -31,8 +31,12 @@
             <constraints>
                 <constraint firstItem="xvQ-P4-yGm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Bhx-lm-0Nw"/>
                 <constraint firstItem="xvQ-P4-yGm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Blp-WA-b9h"/>
+                <constraint firstItem="ARh-v4-C5B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HWF-fn-s6P"/>
                 <constraint firstItem="I2P-8K-Kqn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="IS3-N9-MvE"/>
                 <constraint firstAttribute="bottom" secondItem="I2P-8K-Kqn" secondAttribute="bottom" constant="8" id="IYO-JV-Zny"/>
+                <constraint firstAttribute="bottom" secondItem="ARh-v4-C5B" secondAttribute="bottom" id="KAN-ho-vth"/>
+                <constraint firstAttribute="trailing" secondItem="ARh-v4-C5B" secondAttribute="trailing" id="KHf-Zc-jkh"/>
+                <constraint firstItem="ARh-v4-C5B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VPH-zm-1Gn"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -41,7 +45,7 @@
                 <outlet property="ownerLabel" destination="I2P-8K-Kqn" id="SE0-fw-Pvy"/>
                 <outlet property="textLabel" destination="xvQ-P4-yGm" id="iUa-GD-4vg"/>
             </connections>
-            <point key="canvasLocation" x="143" y="100"/>
+            <point key="canvasLocation" x="47.5" y="-163"/>
         </view>
     </objects>
 </document>

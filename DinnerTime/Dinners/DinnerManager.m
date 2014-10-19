@@ -31,13 +31,28 @@
 
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
-    self.dinners = array;
+    self.dinners = [self sortOwnedDinnersFirst:array];
     self.resultType = DinnerServiceResult_Success;
     callback(DinnerServiceResult_Success);
   } failure:^(DinnerServiceResultType type) {
     self.resultType = type;
     callback(type);
   }];
+}
+
+- (NSArray *)sortOwnedDinnersFirst:(NSArray *)inputArray{
+  NSMutableArray *resultArray = [@[] mutableCopy];
+  for(int i = 0; i < inputArray.count; i++){
+    if(((DinnerDTO *)inputArray[(NSUInteger) i]).owned){
+      [resultArray addObject:inputArray[(NSUInteger) i]];
+    }
+  }
+  for(int i = 0; i < inputArray.count; i++){
+    if(!((DinnerDTO *)inputArray[(NSUInteger) i]).owned){
+      [resultArray addObject:inputArray[(NSUInteger) i]];
+    }
+  }
+  return resultArray;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,6 +64,7 @@
   DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
   cell.textLabel.text = dinner.title;
   cell.ownerLabel.text = dinner.owner;
+  cell.ownerBackground.hidden = !dinner.owned;
   return cell;
 }
 

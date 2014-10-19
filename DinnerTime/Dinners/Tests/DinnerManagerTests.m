@@ -34,20 +34,29 @@
   [dinnerManager getDinners:^(DinnerServiceResultType type) {
     [callbackExpectation fulfill];
     XCTAssertEqual(type, DinnerServiceResult_Success);
-    [self assertDinnerManagerProperDataSource:dinnerManager];
+    [self assertDinnerManagerProperDataSourceSortsDinnersProperly:dinnerManager];
   }];
   XCTAssertTrue(serviceSpy.getDinnersCalled);
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (void)assertDinnerManagerProperDataSource:(id <DinnerListViewDataSource>)dataSource{
+- (void)assertDinnerManagerProperDataSourceSortsDinnersProperly:(id <DinnerListViewDataSource>)dataSource{
   UITableView *tableView = [UITableView new];
   [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:0],2);
-  DinnerCell *cell = (DinnerCell *) [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-  [self assertDinnerCellProperlyInstantiated:cell];
-  XCTAssertEqualObjects(cell.textLabel.text, @"MockTitle");
-  XCTAssertEqualObjects(cell.ownerLabel.text, @"MockOwner");
+
+  DinnerCell *firstCell = (DinnerCell *) [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  [self assertDinnerCellProperlyInstantiated:firstCell];
+  XCTAssertEqualObjects(firstCell.textLabel.text, @"MockTitle2");
+  XCTAssertEqualObjects(firstCell.ownerLabel.text, @"MockOwner2");
+  XCTAssertFalse(firstCell.ownerBackground.hidden);
+
+  DinnerCell *secondCell = (DinnerCell *) [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  [self assertDinnerCellProperlyInstantiated:secondCell];
+  XCTAssertEqualObjects(secondCell.textLabel.text, @"MockTitle");
+  XCTAssertEqualObjects(secondCell.ownerLabel.text, @"MockOwner");
+  XCTAssertTrue(secondCell.ownerBackground.hidden);
+
   XCTAssertEqual([dataSource lastResultType], DinnerServiceResult_Success);
 }
 

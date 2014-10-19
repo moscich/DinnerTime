@@ -36,6 +36,14 @@
   XCTAssertFalse(spy.getDinnersAsked);
 }
 
+- (void)testDinnerListHasProperlyConnectedLogoutButton {
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  LoginManager *loginManager = [LoginManager new];
+  dinnerListViewController.loginManager = loginManager;
+  dinnerListViewController.view;
+  XCTAssertEqual(dinnerListViewController.navigationItem.rightBarButtonItem.target, loginManager);
+}
+
 - (void)testReloadTableAfterSucceeding{
   id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];

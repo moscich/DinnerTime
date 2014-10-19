@@ -29,6 +29,7 @@
 		530426A3455407B42B55BE02 /* GoogleSignInManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304256BA21AA13EC32B4223 /* GoogleSignInManagerSpy.m */; };
 		5304272848D392372E6B7EBD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422829B2FB3DA9CEAF1FA /* LoginView.m */; };
 		530427950551199A9F852511 /* DinnerTimeLoginManagerDelegateSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */; };
+		530427C3B70DD6CEC5487D30 /* turn_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */; };
 		530427DFCAAF954AB7870015 /* Marek Moscichowski's CA 1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */; };
 		530427F3DC3DA368025D9ACA /* DinnerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530429865D210BC5C0B09215 /* DinnerDTO.m */; };
 		530428513DB6B9194FFFA7FF /* DinnerSessionBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042D78AAFA6015302F8917 /* DinnerSessionBuilderTests.m */; };
@@ -141,6 +142,7 @@
 		53042CA7F11AD9760ACE6DD6 /* HttpSessionManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpSessionManagerSpy.m; sourceTree = "<group>"; };
 		53042CE0D18EF7952759154D /* DinnerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerManager.m; sourceTree = "<group>"; };
 		53042CEA4E0490042AEC3D6E /* DinnerSessionBuilderStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionBuilderStub.m; sourceTree = "<group>"; };
+		53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turn_off@2x.png"; sourceTree = "<group>"; };
 		53042CFC7635AA908ED57F4A /* GoogleSignInManagerDelegateSPY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerDelegateSPY.m; sourceTree = "<group>"; };
 		53042D641CE4649B8BFE550D /* DinnerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListViewController.m; sourceTree = "<group>"; };
 		53042D78AAFA6015302F8917 /* DinnerSessionBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionBuilderTests.m; sourceTree = "<group>"; };
@@ -234,6 +236,14 @@
 				530425C1D84AF46966F13AE1 /* DinnerSessionBuilderStub.h */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		530421CF5B9C50B9FC059924 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		530422EA7E1991426FE74A99 /* Mocks */ = {
@@ -397,6 +407,7 @@
 				53042A7EC15AE79E52006A8A /* Authorization */,
 				53042E2CA958E5BECFA704B8 /* Utils */,
 				53042B758914A8E7F2C6F74C /* Dinners */,
+				530421CF5B9C50B9FC059924 /* Resources */,
 			);
 			path = DinnerTime;
 			sourceTree = "<group>";
@@ -520,6 +531,7 @@
 				53042596EB77FC1DF6A4FB5E /* LoginView.xib in Resources */,
 				5304215A91777F9036BB5093 /* DinnerListView.xib in Resources */,
 				53042D378EB13ADF08AAE2EC /* DinnerCell.xib in Resources */,
+				530427C3B70DD6CEC5487D30 /* turn_off@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

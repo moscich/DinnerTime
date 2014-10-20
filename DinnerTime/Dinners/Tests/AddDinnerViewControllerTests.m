@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <OCMock/OCMockObject.h>
+#import <OCMock/OCMock.h>
 #import "AddDinnerViewController.h"
-#import "OCMArg.h"
 #import "DinnerDTO.h"
 
 @interface AddDinnerViewControllerTests : XCTestCase
@@ -62,6 +61,8 @@
   addDinnerViewController.delegate = mockDelegate;
   addDinnerViewController.view;
   addDinnerViewController.titleTextField.text = @"mockText";
+  id addDinnerPartialMock = [OCMockObject partialMockForObject:addDinnerViewController];
+  [[addDinnerPartialMock expect] dismissViewControllerAnimated:YES completion:nil];
   id target = [addDinnerViewController.sendButton targetForAction:@selector(sendButtonTapped:) withSender:addDinnerViewController.sendButton];
   XCTAssertEqual(addDinnerViewController, target);
   [[mockDelegate expect] addDinnerViewControllerCreatedDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -73,6 +74,7 @@
   }]];
   [addDinnerViewController sendButtonTapped:addDinnerViewController.sendButton];
   [mockDelegate verify];
+  [addDinnerPartialMock verify];
 }
 
 @end

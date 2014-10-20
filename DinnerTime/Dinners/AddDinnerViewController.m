@@ -20,6 +20,7 @@
 }
 
 - (IBAction)sendButtonTapped:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.title = self.titleTextField.text;
   [self.delegate addDinnerViewControllerCreatedDinner:dinner];

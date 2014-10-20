@@ -68,6 +68,17 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
+- (void)testDontSetSessionIfNull{
+    id mockSessionManager = [OCMockObject niceMockForClass:[AFHTTPSessionManager class]];
+    id mockRequestSerializer = [OCMockObject mockForClass:[AFHTTPRequestSerializer class]];
+    [[[mockSessionManager stub] andReturn:mockRequestSerializer] requestSerializer];
+    DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:mockSessionManager];
+    dinnerSessionManager.sessionId = nil;
+    [dinnerSessionManager GET:nil parameters:nil success:nil failure:nil];
+    [dinnerSessionManager POST:nil parameters:nil success:nil failure:nil];
+    [mockRequestSerializer verify];
+}
+
 - (NSData *)mockResultInputJSONData {
   return [[self mockResultJSONString] dataUsingEncoding:NSUTF8StringEncoding];
 }

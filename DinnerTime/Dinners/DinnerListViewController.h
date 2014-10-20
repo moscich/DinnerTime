@@ -7,8 +7,9 @@
 #import <UIKit/UIKit.h>
 #import "DinnerManager.h"
 #import "LoginManager.h"
+#import "AddDinnerViewController.h"
 
-@interface DinnerListViewController : UIViewController <LoginManagerLogoutDelegate>
+@interface DinnerListViewController : UIViewController <LoginManagerLogoutDelegate, AddDinnerViewControllerDelegate>
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 
 @property(nonatomic, strong) IBOutlet UITableView *tableView;

@@ -40,6 +40,12 @@
   }];
 }
 
+- (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType type))callback {
+  [self.dinnerTimeService postDinner:dinner withCallback:^(DinnerServiceResultType type){
+    callback(type);
+  }];
+}
+
 - (NSArray *)sortOwnedDinnersFirst:(NSArray *)inputArray{
   NSMutableArray *resultArray = [@[] mutableCopy];
   for(int i = 0; i < inputArray.count; i++){

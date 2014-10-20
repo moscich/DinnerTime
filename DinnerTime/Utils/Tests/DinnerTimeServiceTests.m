@@ -4,11 +4,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+#import <AFNetworking/AFHTTPRequestOperationManager.h>
 #import "DinnerTimeService.h"
 #import "HttpSessionManagerSpy.h"
 #import "UICKeyChainStore.h"
-#import "OCMockObject.h"
-#import "OCMStubRecorder.h"
 #import "DinnerDTO.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerSessionManager.h"
@@ -99,6 +99,28 @@
     [expectation fulfill];
   }];
   XCTAssertEqualObjects(dinnerSessionManagerSpy.postCalledAddress, @"/logout");
+  [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testPostDinner{
+  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+  id dinnerSessionManager = [OCMockObject mockForClass:[DinnerSessionManager class]];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
+  DinnerDTO *dinner = [DinnerDTO new];
+  dinner.title = @"mockTitle";
+  XCTestExpectation *expectation = [self expectationWithDescription:@"dinnerCallback"];
+
+  void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+    void (^passedBlock)( NSString *);
+    [invocation getArgument: &passedBlock atIndex: 4];
+    passedBlock(@"mockJSON");
+  };
+
+  [((DinnerSessionManager *)[[dinnerSessionManager stub] andDo:proxyBlock ]) POST:@"/dinners" parameters:@{@"title" : @"mockTitle"} success:OCMOCK_ANY failure:OCMOCK_ANY];
+  [dinnerTimeService postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+    [expectation fulfill];
+  }];
+  [dinnerSessionManager verify];
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 

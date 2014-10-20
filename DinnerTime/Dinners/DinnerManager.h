@@ -9,6 +9,7 @@
 
 @class DinnerTimeService;
 @protocol UITableViewDataSource;
+@class DinnerDTO;
 
 @interface DinnerManager : NSObject <DinnerListViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
@@ -16,4 +17,5 @@
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
 
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback;
+- (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType type))callback;
 @end

@@ -9,6 +9,7 @@
 
 @class DinnerSessionBuilder;
 @class DinnerSessionManager;
+@class DinnerDTO;
 
 @interface DinnerTimeService : NSObject
 
@@ -22,4 +23,6 @@
 - (id)initWithDinnerSessionBuilder:(DinnerSessionBuilder *)dinnerSessionBuilder;
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure;
+
+- (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerServiceResultType))callback;
 @end

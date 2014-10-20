@@ -9,6 +9,7 @@
 #import "DinnerSessionManager.h"
 #import "SessionDTO.h"
 #import "DinnerArrayDTO.h"
+#import "DinnerDTO.h"
 
 @implementation DinnerTimeService {
 
@@ -52,4 +53,9 @@
   }];
 }
 
+- (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType))callback {
+  [self.dinnerSessionManager POST:@"/dinners" parameters:@{@"title":dinner.title} success:^(NSString *string) {
+    callback(DinnerServiceResult_Success);
+  } failure:nil];
+}
 @end

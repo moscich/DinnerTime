@@ -11,8 +11,7 @@
 #import <OCMock/OCMock.h>
 #import "DinnerListViewController.h"
 #import "DinnerManagerSpy.h"
-#import "LoginViewController.h"
-#import "AddDinnerViewController.h"
+#import "DinnerDTO.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -20,14 +19,14 @@
 
 @implementation DinnerListViewControllerTests
 
-- (void)testDinnerManagerHasTableViewProperlyInstantiated{
+- (void)testDinnerManagerHasTableViewProperlyInstantiated {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   dinnerListViewController.dinnerManager = [DinnerManager new];
   dinnerListViewController.view;
   XCTAssertNotNil(dinnerListViewController.tableView.dataSource);
   XCTAssertNotNil(dinnerListViewController.tableView.delegate);
-  XCTAssertEqual(dinnerListViewController.tableView.dataSource,dinnerListViewController.dinnerManager);
-  XCTAssertEqual(dinnerListViewController.tableView.delegate,dinnerListViewController.dinnerManager);
+  XCTAssertEqual(dinnerListViewController.tableView.dataSource, dinnerListViewController.dinnerManager);
+  XCTAssertEqual(dinnerListViewController.tableView.delegate, dinnerListViewController.dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinnersWhenDinnerManagerSucceed {
@@ -39,7 +38,7 @@
   XCTAssertTrue(dinnerListViewController.dinnerManager.needUpdate);
 }
 
-- (void)testHidesBackButton{
+- (void)testHidesBackButton {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   dinnerListViewController.view;
   XCTAssertTrue(dinnerListViewController.navigationItem.hidesBackButton);
@@ -55,18 +54,51 @@
   XCTAssertEqual(loginManager.logoutDelegate, dinnerListViewController);
 }
 
-- (void)testDinnerPresentsAddDinnerModal{
-    DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+- (void)testDinnerPresentsAddDinnerModal {
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
 
-    id partialMock = [OCMockObject partialMockForObject:dinnerListViewController];
-    [[partialMock expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [obj isKindOfClass:[AddDinnerViewController class]];
-    }] animated:YES completion:nil];
-    [dinnerListViewController addButtonTapped];
-    [partialMock verify];
+  id partialMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  [[partialMock expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
+    if ([obj isKindOfClass:[AddDinnerViewController class]]) {
+      AddDinnerViewController *addDinnerViewController = obj;
+      return addDinnerViewController.delegate == dinnerListViewController;
+    }
+    return NO;
+  }]                                 animated:YES completion:nil];
+  [dinnerListViewController addButtonTapped];
+  [partialMock verify];
 }
 
-- (void)testDinnerListPopToLoginViewController{
+- (void)testAddNewDinnerCalledInService{
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+
+  id dinnerManager = [OCMockObject mockForClass:[DinnerManager class]];
+  id mockTableView = [OCMockObject mockForClass:[UITableView class]];
+  dinnerListViewController.dinnerManager = dinnerManager;
+  dinnerListViewController.tableView = mockTableView;
+  DinnerDTO *dinner = [DinnerDTO new];
+  dinner.title = @"mockTitle";
+
+  void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+    void (^passedBlock)( DinnerServiceResultType);
+    [invocation getArgument: &passedBlock atIndex: 3];
+    passedBlock(DinnerServiceResult_Success);
+  };
+
+  [[[dinnerManager stub] andDo:proxyBlock] postDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
+    if ([obj isKindOfClass:[DinnerDTO class]]) {
+      DinnerDTO *receivedDinner = obj;
+      return [receivedDinner.title isEqualToString:@"mockTitle"];
+    }
+    return NO;
+  }]             withCallback:OCMOCK_ANY];
+  [[mockTableView expect] reloadData];
+  [dinnerListViewController addDinnerViewControllerCreatedDinner:dinner];
+  [dinnerManager verify];
+  [mockTableView verify];
+}
+
+- (void)testDinnerListPopToLoginViewController {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
 
   id dinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
@@ -78,7 +110,7 @@
   [mockNavController verify];
 }
 
-- (void)testReloadTableAfterSucceeding{
+- (void)testReloadTableAfterSucceeding {
   id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   [[mockTableView expect] reloadData];
@@ -90,7 +122,7 @@
   [mockTableView verify];
 }
 
-- (void)testRegisterNibInTableView{
+- (void)testRegisterNibInTableView {
   id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   [[mockTableView expect] registerNib:OCMOCK_ANY forCellReuseIdentifier:@"DinnerCellIdentifier"];

@@ -4,6 +4,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerServiceResultType.h"
@@ -81,6 +82,29 @@
 - (void)testDinnerManagerReturnsProperHeight{
   id <UITableViewDelegate> tableViewDelegate = [DinnerManager new];
   XCTAssertEqual([tableViewDelegate tableView:nil heightForRowAtIndexPath:nil], 60);
+}
+
+- (void)testPostDinner{
+  DinnerManager *dinnerManager = [DinnerManager new];
+  id dinnerTimeService = [OCMockObject mockForClass:[DinnerTimeService class]];
+  dinnerManager.dinnerTimeService = dinnerTimeService;
+  XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
+  DinnerDTO *dinner = [DinnerDTO new];
+
+  void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+    void (^passedBlock)( DinnerServiceResultType);
+    [invocation getArgument: &passedBlock atIndex: 3];
+    passedBlock(DinnerServiceResult_Success);
+  };
+
+  [[[dinnerTimeService stub] andDo:proxyBlock] postDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
+    return obj == dinner;
+  }] withCallback:OCMOCK_ANY];
+  [dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+    [expectation fulfill];
+  }];
+  [self waitForExpectationsWithTimeout:0 handler:nil];
+  [dinnerTimeService verify];
 }
 
 - (NSArray *)mockResultOutputArray {

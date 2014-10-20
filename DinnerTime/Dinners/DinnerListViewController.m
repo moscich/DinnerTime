@@ -5,6 +5,7 @@
 
 #import "DinnerListViewController.h"
 #import "AddDinnerViewController.h"
+#import "DinnerDTO.h"
 
 
 @implementation DinnerListViewController {
@@ -29,11 +30,19 @@
 }
 
 - (void)addButtonTapped {
-    [self presentViewController:[AddDinnerViewController new] animated:YES completion:nil];
+  AddDinnerViewController *addDinnerViewController = [AddDinnerViewController new];
+  addDinnerViewController.delegate = self;
+  [self presentViewController:addDinnerViewController animated:YES completion:nil];
 }
 
 - (void)logoutManagerDidLogout {
   [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addDinnerViewControllerCreatedDinner:(DinnerDTO *)dinnerDTO {
+  [self.dinnerManager postDinner:dinnerDTO withCallback:^(DinnerServiceResultType type) {
+    [self.tableView reloadData];
+  }];
 }
 
 @end

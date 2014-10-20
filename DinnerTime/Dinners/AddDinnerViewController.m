@@ -9,4 +9,7 @@
 @implementation AddDinnerViewController {
 
 }
+- (void)cancelButtonTapped {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

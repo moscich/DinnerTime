@@ -7,4 +7,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddDinnerViewController : UIViewController
+@property (nonatomic, weak) IBOutlet UITextField *titleTextField;
+@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UIButton *sendButton;
+
+- (IBAction)cancelButtonTapped;
 @end

@@ -14,4 +14,6 @@
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 @property(nonatomic, strong) LoginManager *loginManager;
+
+- (void)addButtonTapped;
 @end

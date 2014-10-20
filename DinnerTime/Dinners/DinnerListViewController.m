@@ -4,6 +4,7 @@
 //
 
 #import "DinnerListViewController.h"
+#import "AddDinnerViewController.h"
 
 
 @implementation DinnerListViewController {
@@ -13,7 +14,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.hidesBackButton = YES;
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"turn_off"] style:UIBarButtonItemStylePlain target:self.loginManager action:@selector(logout)];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"turn_off"] style:UIBarButtonItemStylePlain target:self.loginManager action:@selector(logout)];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
   self.loginManager.logoutDelegate = self;
   [self.tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   self.tableView.dataSource = self.dinnerManager;
@@ -24,6 +26,10 @@
     }];
   }
   self.dinnerManager.needUpdate = YES;
+}
+
+- (void)addButtonTapped {
+    [self presentViewController:[AddDinnerViewController new] animated:YES completion:nil];
 }
 
 - (void)logoutManagerDidLogout {

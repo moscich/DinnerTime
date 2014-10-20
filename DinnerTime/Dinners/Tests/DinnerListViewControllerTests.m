@@ -12,6 +12,7 @@
 #import "DinnerListViewController.h"
 #import "DinnerManagerSpy.h"
 #import "LoginViewController.h"
+#import "AddDinnerViewController.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -49,8 +50,20 @@
   LoginManager *loginManager = [LoginManager new];
   dinnerListViewController.loginManager = loginManager;
   dinnerListViewController.view;
-  XCTAssertEqual(dinnerListViewController.navigationItem.rightBarButtonItem.target, loginManager);
+  XCTAssertEqual(dinnerListViewController.navigationItem.leftBarButtonItem.target, loginManager);
+  XCTAssertEqual(dinnerListViewController.navigationItem.rightBarButtonItem.target, dinnerListViewController);
   XCTAssertEqual(loginManager.logoutDelegate, dinnerListViewController);
+}
+
+- (void)testDinnerPresentsAddDinnerModal{
+    DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+
+    id partialMock = [OCMockObject partialMockForObject:dinnerListViewController];
+    [[partialMock expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
+        return [obj isKindOfClass:[AddDinnerViewController class]];
+    }] animated:YES completion:nil];
+    [dinnerListViewController addButtonTapped];
+    [partialMock verify];
 }
 
 - (void)testDinnerListPopToLoginViewController{

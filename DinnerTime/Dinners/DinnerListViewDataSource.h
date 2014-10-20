@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
 @protocol DinnerListViewDataSource <UITableViewDataSource>
-- (DinnerServiceResultType)lastResultType;
+@property(nonatomic, assign) BOOL needUpdate;
 @end

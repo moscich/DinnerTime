@@ -12,7 +12,6 @@
 @interface DinnerManager ()
 
 @property(nonatomic, strong) NSArray *dinners;
-@property(nonatomic, assign) DinnerServiceResultType resultType;
 
 @end
 
@@ -20,10 +19,13 @@
 
 }
 
+@synthesize needUpdate;
+
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
   self = [super init];
   if (self) {
     self.dinnerTimeService = dinnerTimeService;
+    self.needUpdate = YES;
   }
 
   return self;
@@ -32,10 +34,8 @@
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback {
   [self.dinnerTimeService getDinners:^(NSArray *array) {
     self.dinners = [self sortOwnedDinnersFirst:array];
-    self.resultType = DinnerServiceResult_Success;
     callback(DinnerServiceResult_Success);
   } failure:^(DinnerServiceResultType type) {
-    self.resultType = type;
     callback(type);
   }];
 }
@@ -66,10 +66,6 @@
   cell.ownerLabel.text = dinner.owner;
   cell.ownerBackground.hidden = !dinner.owned;
   return cell;
-}
-
-- (DinnerServiceResultType)lastResultType {
-  return self.resultType;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

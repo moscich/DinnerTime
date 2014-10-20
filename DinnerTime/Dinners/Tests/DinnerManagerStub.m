@@ -12,7 +12,7 @@
 }
 
 - (instancetype)initWithReturnType:(DinnerServiceResultType)type {
-  self = [super init];
+  self = [super initWithDinnerTimeService:nil];
   if (self) {
     self.type = type;
   }

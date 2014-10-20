@@ -18,11 +18,12 @@
   [self.tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   self.tableView.dataSource = self.dinnerManager;
   self.tableView.delegate = self.dinnerManager;
-  if([self.dinnerManager lastResultType] != DinnerServiceResult_Success){
+  if(self.dinnerManager.needUpdate){
     [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
       [self.tableView reloadData];
     }];
   }
+  self.dinnerManager.needUpdate = YES;
 }
 
 - (void)logoutManagerDidLogout {

@@ -75,7 +75,7 @@
   UIViewController *expectedViewController = [OCMArg checkWithBlock:^BOOL(id obj) {
     if ([obj isKindOfClass:[DinnerListViewController class]]) {
       DinnerListViewController *dinnerListViewController = obj;
-      return dinnerListViewController.dinnerManager == dinnerManagerStub && dinnerListViewController.loginManager == loginManager;
+      return dinnerListViewController.dinnerManager == dinnerManagerStub && dinnerListViewController.loginManager == loginManager && !dinnerListViewController.dinnerManager.needUpdate;
     }
 
     return NO;

@@ -13,4 +13,6 @@
 @property(nonatomic) DinnerServiceResultType resultType;
 
 - (id)initWithResultType:(DinnerServiceResultType)type;
+
+- (id)initWithNeedsUpdate;
 @end

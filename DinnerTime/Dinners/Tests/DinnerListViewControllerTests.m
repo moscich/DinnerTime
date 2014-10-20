@@ -35,6 +35,7 @@
   dinnerListViewController.dinnerManager = spy;
   dinnerListViewController.view;
   XCTAssertFalse(spy.getDinnersAsked);
+  XCTAssertTrue(dinnerListViewController.dinnerManager.needUpdate);
 }
 
 - (void)testHidesBackButton{
@@ -69,7 +70,7 @@
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   [[mockTableView expect] reloadData];
   dinnerListViewController.tableView = mockTableView;
-  DinnerManagerSpy *spy = [[DinnerManagerSpy alloc] initWithResultType:DinnerServiceResult_Unauthorized];
+  DinnerManagerSpy *spy = [[DinnerManagerSpy alloc] initWithNeedsUpdate];
   dinnerListViewController.dinnerManager = spy;
   [dinnerListViewController viewDidLoad];
   XCTAssertTrue(spy.getDinnersAsked);

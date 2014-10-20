@@ -29,4 +29,13 @@
   [NSThread sleepForTimeInterval:0.01f];
 }
 
+- (id)initWithNeedsUpdate {
+    self = [super init];
+    if (self) {
+        self.needUpdate = YES;
+    }
+
+    return self;
+}
+
 @end

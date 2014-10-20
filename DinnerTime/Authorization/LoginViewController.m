@@ -46,6 +46,7 @@
       ((LoginView *)self.view).activityIndicator.hidden = YES;
       ((LoginView *)self.view).signInButton.hidden = NO;
     }else if(type == DinnerServiceResult_Success){
+      self.dinnerManager.needUpdate = NO;
       [self navigateToDinnerList];
     }
   }];

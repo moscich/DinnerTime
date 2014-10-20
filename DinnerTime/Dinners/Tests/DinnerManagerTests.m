@@ -22,11 +22,12 @@
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
+  XCTAssertTrue(dinnerManager.needUpdate);
 }
 
 - (void)testDinnerManagerGetsDinners{
   DinnerManager *dinnerManager = [DinnerManager new];
-  XCTAssertNotEqual([dinnerManager lastResultType], DinnerServiceResult_Success);
+  XCTAssertFalse(dinnerManager.needUpdate);
   NSArray *resultArray = [self mockResultOutputArray];
   DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
   dinnerManager.dinnerTimeService = serviceSpy;
@@ -57,7 +58,7 @@
   XCTAssertEqualObjects(secondCell.ownerLabel.text, @"MockOwner");
   XCTAssertTrue(secondCell.ownerBackground.hidden);
 
-  XCTAssertEqual([dataSource lastResultType], DinnerServiceResult_Success);
+  XCTAssertFalse(dataSource.needUpdate);
 }
 
 - (void)assertDinnerCellProperlyInstantiated:(DinnerCell *)dinnerCell{

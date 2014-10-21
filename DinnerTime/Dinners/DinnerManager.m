@@ -11,7 +11,7 @@
 
 @interface DinnerManager ()
 
-@property(nonatomic, strong) NSArray *dinners;
+@property(nonatomic, strong) NSMutableArray *dinners;
 
 @end
 
@@ -41,12 +41,18 @@
 }
 
 - (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType type))callback {
-  [self.dinnerTimeService postDinner:dinner withCallback:^(DinnerServiceResultType type){
-    callback(type);
+  [self.dinnerTimeService postDinner:dinner withCallback:^(DinnerDTO *dinnerDTO){
+    if(self.dinners){
+      [self.dinners insertObject:dinner atIndex:0];
+      self.dinners = self.dinners; // stupid mocking failing :(
+    }
+    else
+      self.dinners = [@[dinnerDTO] mutableCopy];
+    callback(DinnerServiceResult_Success);
   }];
 }
 
-- (NSArray *)sortOwnedDinnersFirst:(NSArray *)inputArray{
+- (NSMutableArray *)sortOwnedDinnersFirst:(NSArray *)inputArray{
   NSMutableArray *resultArray = [@[] mutableCopy];
   for(int i = 0; i < inputArray.count; i++){
     if(((DinnerDTO *)inputArray[(NSUInteger) i]).owned){

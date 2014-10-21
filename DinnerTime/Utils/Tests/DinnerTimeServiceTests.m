@@ -113,11 +113,12 @@
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
     void (^passedBlock)( NSString *);
     [invocation getArgument: &passedBlock atIndex: 4];
-    passedBlock(@"mockJSON");
+    passedBlock([self mockPOSTDinnerResponse]);
   };
 
   [((DinnerSessionManager *)[[dinnerSessionManager stub] andDo:proxyBlock ]) POST:@"/dinners" parameters:@{@"title" : @"mockTitle"} success:OCMOCK_ANY failure:OCMOCK_ANY];
-  [dinnerTimeService postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+  [dinnerTimeService postDinner:dinner withCallback:^(DinnerDTO *dinnerDTO){
+    XCTAssertEqualObjects(dinnerDTO, [self resultPOSTDinner]);
     [expectation fulfill];
   }];
   [dinnerSessionManager verify];
@@ -154,6 +155,24 @@
           "         \"owned\":false"
           "      }]"
           "}";
+}
+
+- (NSString *)mockPOSTDinnerResponse{
+  return @"{"
+          "    \"dinnerId\": 11,"
+          "    \"title\": \"Test title\","
+          "    \"owned\": true,"
+          "    \"owner\": \"Test user\""
+          "}";
+}
+
+- (DinnerDTO *)resultPOSTDinner{
+  DinnerDTO *result = [DinnerDTO new];
+  result.dinnerId = 11;
+  result.title = @"Test title";
+  result.owned = YES;
+  result.owner = @"Test user";
+  return result;
 }
 
 @end

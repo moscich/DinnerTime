@@ -24,5 +24,5 @@
 
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure;
 
-- (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerServiceResultType))callback;
+- (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerDTO *))callback;
 @end

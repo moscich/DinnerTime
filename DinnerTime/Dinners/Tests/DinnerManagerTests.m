@@ -11,6 +11,7 @@
 #import "DinnerDTO.h"
 #import "DinnerListViewDataSource.h"
 #import "DinnerCell.h"
+#import "DinnerArrayDTO.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -90,11 +91,12 @@
   dinnerManager.dinnerTimeService = dinnerTimeService;
   XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
   DinnerDTO *dinner = [DinnerDTO new];
+  dinner.title = @"mockTitle";
 
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
-    void (^passedBlock)( DinnerServiceResultType);
+    void (^passedBlock)(DinnerDTO *);
     [invocation getArgument: &passedBlock atIndex: 3];
-    passedBlock(DinnerServiceResult_Success);
+    passedBlock(dinner);
   };
 
   [[[dinnerTimeService stub] andDo:proxyBlock] postDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
@@ -105,6 +107,43 @@
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
   [dinnerTimeService verify];
+  NSInteger numberOfRows = [dinnerManager tableView:nil numberOfRowsInSection:0];
+  XCTAssertEqual(numberOfRows, 1);
+
+  UITableView *tableView = [UITableView new];
+  [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
+  DinnerCell *cell = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  XCTAssertEqualObjects(cell.textLabel.text,dinner.title);
+
+  dinner = [DinnerDTO new];
+  dinner.title = @"new dinner title";
+
+  void (^proxyBlock2)(NSInvocation *) = ^(NSInvocation *invocation) {
+    void (^passedBlock)(DinnerDTO *);
+    [invocation getArgument: &passedBlock atIndex: 3];
+    passedBlock(dinner);
+  };
+
+  [[[dinnerTimeService stub] andDo:proxyBlock2] postDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
+    return obj == dinner;
+  }] withCallback:OCMOCK_ANY];
+
+  id partialDinnerManagerMock = [OCMockObject partialMockForObject:dinnerManager];
+  [[[partialDinnerManagerMock stub] andReturn:[self sortedMockDinnerArray] ] dinners];
+
+  [dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+  }];
+
+  [partialDinnerManagerMock stopMocking];
+
+//  XCTAssertEqual(numberOfRows, 3);
+
+  DinnerCell *cell0 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell1 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  DinnerCell *cell2 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+  XCTAssertEqualObjects(cell0.textLabel.text,@"new dinner title");
+  XCTAssertEqualObjects(cell1.textLabel.text,@"MockTitle");
+  XCTAssertEqualObjects(cell2.textLabel.text,@"MockTitle2");
 }
 
 - (NSArray *)mockResultOutputArray {
@@ -119,6 +158,16 @@
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
   return @[dinner1, dinner2];
+}
+
+- (NSMutableArray *)sortedMockDinnerArray{
+  DinnerDTO *dinner = [DinnerDTO new];
+  dinner.title = @"MockTitle";
+  dinner.owned = YES;
+  DinnerDTO *dinner2 = [DinnerDTO new];
+  dinner2.title = @"MockTitle2";
+  dinner2.owned = NO;
+  return [@[dinner, dinner2] mutableCopy];
 }
 
 @end

@@ -53,9 +53,9 @@
   }];
 }
 
-- (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType))callback {
+- (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerDTO *))callback {
   [self.dinnerSessionManager POST:@"/dinners" parameters:@{@"title":dinner.title} success:^(NSString *string) {
-    callback(DinnerServiceResult_Success);
+    callback([[DinnerDTO alloc] initWithString:string error:nil]);
   } failure:nil];
 }
 @end

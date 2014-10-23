@@ -87,9 +87,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0DEA1A90A58166DBB207A2B7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2F457252379E1A2FD0AE3B7F /* Pods-DinnerTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinnerTimeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DinnerTimeTests/Pods-DinnerTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		35828E243B494F8FBBDFBBBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		410C63BD0C3148D08071111E /* Pods-DinnerTimeTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinnerTimeTests.xcconfig"; path = "Pods/Pods-DinnerTimeTests.xcconfig"; sourceTree = "<group>"; };
-		41FE7BB592244A4788FF7A88 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		530420264317ACE772D8A7A8 /* LoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerTests.m; sourceTree = "<group>"; };
 		5304205342C294996D94C2CA /* GoogleSignInManagerStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerStub.m; sourceTree = "<group>"; };
 		5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
@@ -190,6 +190,8 @@
 		7908975519D4976300145E7E /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
 		79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		79D86A9C19E1793F00525456 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
+		9624EED7A4E1746A817AA7E2 /* Pods-DinnerTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinnerTimeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DinnerTimeTests/Pods-DinnerTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		D6010DA00EABCDF94F1D6A86 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F3857774FEAB456D9C6A40BC /* libPods-DinnerTimeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DinnerTimeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -387,8 +389,7 @@
 				7908973119D4969600145E7E /* DinnerTimeTests */,
 				7908971619D4969600145E7E /* Products */,
 				53042AE5A9F85B4874CDF9A0 /* Frameworks */,
-				41FE7BB592244A4788FF7A88 /* Pods.xcconfig */,
-				410C63BD0C3148D08071111E /* Pods-DinnerTimeTests.xcconfig */,
+				86B896A40A409C943CE73D81 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,6 +448,17 @@
 				7908973319D4969600145E7E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86B896A40A409C943CE73D81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6010DA00EABCDF94F1D6A86 /* Pods.debug.xcconfig */,
+				0DEA1A90A58166DBB207A2B7 /* Pods.release.xcconfig */,
+				2F457252379E1A2FD0AE3B7F /* Pods-DinnerTimeTests.debug.xcconfig */,
+				9624EED7A4E1746A817AA7E2 /* Pods-DinnerTimeTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,6 +532,8 @@
 			mainGroup = 7908970C19D4969600145E7E;
 			productRefGroup = 7908971619D4969600145E7E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				7908971419D4969600145E7E /* DinnerTime */,
@@ -584,7 +598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		73AA4436E6414EF3A5849285 /* Copy Pods Resources */ = {
@@ -599,7 +613,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-DinnerTimeTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DinnerTimeTests/Pods-DinnerTimeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		753458E3C6D841CE8C0DFA6D /* Check Pods Manifest.lock */ = {
@@ -784,7 +798,7 @@
 		};
 		7908973919D4969600145E7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41FE7BB592244A4788FF7A88 /* Pods.xcconfig */;
+			baseConfigurationReference = D6010DA00EABCDF94F1D6A86 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -801,7 +815,7 @@
 		};
 		7908973A19D4969600145E7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41FE7BB592244A4788FF7A88 /* Pods.xcconfig */;
+			baseConfigurationReference = 0DEA1A90A58166DBB207A2B7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -818,7 +832,7 @@
 		};
 		7908973C19D4969600145E7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 410C63BD0C3148D08071111E /* Pods-DinnerTimeTests.xcconfig */;
+			baseConfigurationReference = 2F457252379E1A2FD0AE3B7F /* Pods-DinnerTimeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -834,13 +848,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
 		7908973D19D4969600145E7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 410C63BD0C3148D08071111E /* Pods-DinnerTimeTests.xcconfig */;
+			baseConfigurationReference = 9624EED7A4E1746A817AA7E2 /* Pods-DinnerTimeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -852,7 +866,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};

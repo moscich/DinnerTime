@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13D318582D0543C995410A1B /* libPods-DinnerTimeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3857774FEAB456D9C6A40BC /* libPods-DinnerTimeTests.a */; };
 		4568AC57660742B2B9838B61 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35828E243B494F8FBBDFBBBF /* libPods.a */; };
+		530420CA461B11F94D68FB34 /* DinnerWebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042555B98822CB354EE982 /* DinnerWebSocketManager.m */; };
 		5304210F4DA6CF6F36F96F3B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042C61C2CABF52D296A9DB /* LoginViewController.m */; };
 		5304215A91777F9036BB5093 /* DinnerListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */; };
 		5304217DD31269ECC260FEEC /* DinnerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042F1D6E2A22BC07FF9D70 /* DinnerManagerTests.m */; };
@@ -22,6 +23,7 @@
 		53042398BC7803ED4569037C /* AddDinnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422554439CEE2177B5E91 /* AddDinnerViewController.m */; };
 		530423C291BAC728B0797530 /* GoogleSignInManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530424E7B1ED64363727BD23 /* GoogleSignInManagerTests.m */; };
 		530423E9810BB1CDEBDCB770 /* DinnerTimeLoginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042AB43B6C64A5F6ECA694 /* DinnerTimeLoginManagerTests.m */; };
+		5304248BC9578D3F08511930 /* DinnerWebSocketManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304222E72AAC3BB6F87DA7F /* DinnerWebSocketManagerTests.m */; };
 		530424EB7F7E5A8D68DE960F /* SessionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428E25B31A897D75B91BE /* SessionDTO.m */; };
 		53042591778FA720C40A1135 /* GoogleSignInManagerStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304205342C294996D94C2CA /* GoogleSignInManagerStub.m */; };
 		53042596EB77FC1DF6A4FB5E /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042FF090942248984C063A /* LoginView.xib */; };
@@ -101,6 +103,7 @@
 		530421903C0236FF8B82531A /* DinnerTimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerTimeService.h; sourceTree = "<group>"; };
 		530421975E3FDA333BEDEB0E /* DinnerSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionManager.m; sourceTree = "<group>"; };
 		530421C68E88A77F90CC7330 /* DinnerTimeLoginManagerDelegateSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerTimeLoginManagerDelegateSpy.h; sourceTree = "<group>"; };
+		5304222E72AAC3BB6F87DA7F /* DinnerWebSocketManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerWebSocketManagerTests.m; sourceTree = "<group>"; };
 		53042243B672E561B6B7E306 /* DinnerArrayDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerArrayDTO.h; sourceTree = "<group>"; };
 		530422554439CEE2177B5E91 /* AddDinnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDinnerViewController.m; sourceTree = "<group>"; };
 		53042262A2460E01ED7AED16 /* DinnerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DinnerCell.xib; sourceTree = "<group>"; };
@@ -110,8 +113,10 @@
 		530422E551632CB91CBD45E2 /* LoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerDelegateSpy.m; sourceTree = "<group>"; };
 		5304233041B8685993194866 /* DinnerSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionManager.h; sourceTree = "<group>"; };
 		5304237BE071EB074068B1A5 /* DinnerManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerManagerSpy.m; sourceTree = "<group>"; };
+		530423B3BB01879CB9D69608 /* DinnerWebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerWebSocketManager.h; sourceTree = "<group>"; };
 		530423E8938FE824DC1006A7 /* DinnerSessionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionManagerTests.m; sourceTree = "<group>"; };
 		530424E7B1ED64363727BD23 /* GoogleSignInManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerTests.m; sourceTree = "<group>"; };
+		53042555B98822CB354EE982 /* DinnerWebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerWebSocketManager.m; sourceTree = "<group>"; };
 		5304256BA21AA13EC32B4223 /* GoogleSignInManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerSpy.m; sourceTree = "<group>"; };
 		530425711E8EEBAEDC687896 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5304259653FC61C7780242EA /* AddDinnerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDinnerView.xib; sourceTree = "<group>"; };
@@ -284,6 +289,7 @@
 				53042E78A7EEA264EBA0A027 /* DinnerManagerStub.h */,
 				53042812FC2562A64E7EBA06 /* DinnerListViewControllerTests.m */,
 				53042AF076F1BFC11F3FF41F /* AddDinnerViewControllerTests.m */,
+				5304222E72AAC3BB6F87DA7F /* DinnerWebSocketManagerTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -346,6 +352,8 @@
 				53042C6225093D22B84BE825 /* AddDinnerViewController.h */,
 				530422554439CEE2177B5E91 /* AddDinnerViewController.m */,
 				5304259653FC61C7780242EA /* AddDinnerView.xib */,
+				53042555B98822CB354EE982 /* DinnerWebSocketManager.m */,
+				530423B3BB01879CB9D69608 /* DinnerWebSocketManager.h */,
 			);
 			path = Dinners;
 			sourceTree = "<group>";
@@ -658,6 +666,7 @@
 				5304231015C20742F01EF0EC /* DinnerArrayDTO.m in Sources */,
 				53042E5E8F9B3C12E95620B2 /* DinnerCell.m in Sources */,
 				53042398BC7803ED4569037C /* AddDinnerViewController.m in Sources */,
+				530420CA461B11F94D68FB34 /* DinnerWebSocketManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +694,7 @@
 				530423459198B5F6AD03F43F /* DinnerSessionBuilderStub.m in Sources */,
 				530429C0F11BD21BEA369FBA /* DinnerListViewControllerTests.m in Sources */,
 				53042DF4C3DDA894413A2EFB /* AddDinnerViewControllerTests.m in Sources */,
+				5304248BC9578D3F08511930 /* DinnerWebSocketManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,7 +858,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
@@ -866,7 +876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};

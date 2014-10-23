@@ -20,11 +20,12 @@
 
 }
 
-- (void)testDinnerManagerInitsWithDinnerTimeService{
+- (void)testInitsWithDinnerTimeServiceAndWebSockets{
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
   XCTAssertTrue(dinnerManager.needUpdate);
+  XCTAssertNotNil(dinnerManager.webSocketManager);
 }
 
 - (void)testDinnerManagerGetsDinners{
@@ -135,8 +136,6 @@
   }];
 
   [partialDinnerManagerMock stopMocking];
-
-//  XCTAssertEqual(numberOfRows, 3);
 
   DinnerCell *cell0 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   DinnerCell *cell1 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];

@@ -7,12 +7,14 @@
 #import "DinnerServiceResultType.h"
 #import "DinnerListViewDataSource.h"
 
-@class DinnerTimeService;
 @protocol UITableViewDataSource;
+@class DinnerTimeService;
 @class DinnerDTO;
+@class DinnerWebSocketManager;
 
 @interface DinnerManager : NSObject <DinnerListViewDataSource, UITableViewDelegate>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
+@property(nonatomic, strong) DinnerWebSocketManager *webSocketManager;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
 

@@ -8,6 +8,7 @@
 #import "DinnerTimeService.h"
 #import "DinnerDTO.h"
 #import "DinnerCell.h"
+#import "DinnerWebSocketManager.h"
 
 @interface DinnerManager ()
 
@@ -26,6 +27,7 @@
   if (self) {
     self.dinnerTimeService = dinnerTimeService;
     self.needUpdate = YES;
+    self.webSocketManager = [DinnerWebSocketManager new];
   }
 
   return self;

@@ -1,4 +1,4 @@
-//
+#import "DinnerWebSocketManager.h"//
 // Created by Marek Moscichowski on 05/10/14.
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
@@ -26,6 +26,7 @@
   XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
   XCTAssertTrue(dinnerManager.needUpdate);
   XCTAssertNotNil(dinnerManager.webSocketManager);
+  XCTAssertEqual(dinnerManager.webSocketManager.delegate, dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinners{

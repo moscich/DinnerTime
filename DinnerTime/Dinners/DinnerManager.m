@@ -28,6 +28,7 @@
     self.dinnerTimeService = dinnerTimeService;
     self.needUpdate = YES;
     self.webSocketManager = [DinnerWebSocketManager new];
+    self.webSocketManager.delegate = self;
   }
 
   return self;

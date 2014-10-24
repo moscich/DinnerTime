@@ -131,4 +131,26 @@
   [mockTableView verify];
 }
 
+- (void)testAskForDinnerAfterDinnerUpdateNotification{
+    id dinnerManager = [OCMockObject mockForClass:[DinnerManager class]];
+    id tableView = [OCMockObject mockForClass:[UITableView class]];
+
+    void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+        void (^passedBlock)( DinnerServiceResultType);
+        [invocation getArgument: &passedBlock atIndex: 2];
+        passedBlock(DinnerServiceResult_Success);
+    };
+
+    [[[dinnerManager stub] andDo:proxyBlock ] getDinners:OCMOCK_ANY];
+    [[tableView expect] reloadData];
+    DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+    dinnerListViewController.view;
+    dinnerListViewController.dinnerManager = dinnerManager;
+    dinnerListViewController.tableView = tableView;
+
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
+    [dinnerManager verify];
+    [tableView verify];
+}
+
 @end

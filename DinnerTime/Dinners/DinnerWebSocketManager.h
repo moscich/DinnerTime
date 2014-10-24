@@ -9,7 +9,7 @@
 @class SRWebSocket;
 
 @protocol DinnerWebSocketManagerDelegate
-- (void)webSocketReceivedDinners:(NSArray *)array;
+- (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID;
 @end
 
 @interface DinnerWebSocketManager : NSObject<SRWebSocketDelegate>

@@ -5,6 +5,7 @@
 
 #import "DinnerWebSocketManager.h"
 #import "DinnerArrayDTO.h"
+#import "DinnerUpdateDTO.h"
 
 
 @implementation DinnerWebSocketManager {
@@ -14,7 +15,7 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    NSString *urlString = @"wss://192.168.1.126:8001";
+    NSString *urlString = @"ws://192.168.1.133:8001";
     self.webSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
     self.webSocket.delegate = self;
   }
@@ -23,8 +24,8 @@
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-  DinnerArrayDTO *dinners = [[DinnerArrayDTO alloc] initWithString:message error:nil];
-  [self.delegate webSocketReceivedDinners:dinners.dinners];
+    DinnerUpdateDTO *dinnerUpdate = [[DinnerUpdateDTO alloc] initWithString:message error:nil];
+    [self.delegate webSocketReceivedDinnerUpdate:@(dinnerUpdate.dinnerId)];
 }
 
 

@@ -12,6 +12,7 @@
 #import "DinnerListViewDataSource.h"
 #import "DinnerCell.h"
 #import "DinnerArrayDTO.h"
+#import "DinnerListViewController.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -144,6 +145,15 @@
   XCTAssertEqualObjects(cell0.textLabel.text,@"new dinner title");
   XCTAssertEqualObjects(cell1.textLabel.text,@"MockTitle");
   XCTAssertEqualObjects(cell2.textLabel.text,@"MockTitle2");
+}
+
+- (void)testSendNotificationWhenUpdateArrives{
+    DinnerManager *dinnerManager = [DinnerManager new];
+    id mock = [OCMockObject observerMock];
+    [[NSNotificationCenter defaultCenter] addMockObserver:mock name:@"DinnerUpdate" object:nil];
+    [[mock expect] notificationWithName:@"DinnerUpdate" object:[OCMArg any]];
+    [dinnerManager webSocketReceivedDinnerUpdate:@42];
+    [mock verify];
 }
 
 - (NSArray *)mockResultOutputArray {

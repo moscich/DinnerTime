@@ -10,12 +10,6 @@
 #import "DinnerCell.h"
 #import "DinnerWebSocketManager.h"
 
-@interface DinnerManager ()
-
-@property(nonatomic, strong) NSMutableArray *dinners;
-
-@end
-
 @implementation DinnerManager {
 
 }
@@ -85,6 +79,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 60;
+}
+
+- (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID {
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
 }
 
 @end

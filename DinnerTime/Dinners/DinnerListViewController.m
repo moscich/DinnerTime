@@ -22,11 +22,20 @@
   self.tableView.dataSource = self.dinnerManager;
   self.tableView.delegate = self.dinnerManager;
   if(self.dinnerManager.needUpdate){
-    [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
-      [self.tableView reloadData];
-    }];
+      [self updateDinners];
   }
   self.dinnerManager.needUpdate = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDinnerUpdate) name:@"DinnerUpdate" object:nil];
+}
+
+- (void)didReceiveDinnerUpdate {
+    [self updateDinners];
+}
+
+- (void)updateDinners {
+    [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)addButtonTapped {

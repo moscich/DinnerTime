@@ -18,53 +18,20 @@
 
 @implementation DinnerWebSocketManagerTests
 
+// REMOVED SSL
+//- (void)testHasSocketRocketWebSocketInstantiated{
+//  DinnerWebSocketManager *socketManager = [DinnerWebSocketManager new];
+//  XCTAssertEqualObjects(socketManager.webSocket.url.absoluteString,@"wss://192.168.1.126:8001");
+//  XCTAssertEqual(socketManager.webSocket.delegate,socketManager);
+//}
 
-- (void)testHasSocketRocketWebSocketInstantiated{
-  DinnerWebSocketManager *socketManager = [DinnerWebSocketManager new];
-  XCTAssertEqualObjects(socketManager.webSocket.url.absoluteString,@"wss://192.168.1.126:8001");
-  XCTAssertEqual(socketManager.webSocket.delegate,socketManager);
-}
-
-- (void)testTranslatesAndSendDinnersToDelegate{
+- (void)testTranslatesAndSendUpdateToDelegate{
   DinnerWebSocketManager *socketManager = [DinnerWebSocketManager new];
   id delegate = [OCMockObject mockForProtocol:@protocol(DinnerWebSocketManagerDelegate)];
-  [[delegate expect] webSocketReceivedDinners:[self mockResultOutputArray]];
+  [[delegate expect] webSocketReceivedDinnerUpdate:@(42)];
   socketManager.delegate = delegate;
-  [socketManager webSocket:socketManager.webSocket didReceiveMessage:[self mockResultJSONString]];
+  [socketManager webSocket:socketManager.webSocket didReceiveMessage:@"{\"dinnerId\":42}"];
   [delegate verify];
 }
-
-- (NSArray *)mockResultOutputArray {
-  DinnerDTO *dinner1 = [DinnerDTO new];
-  dinner1.dinnerId = 1;
-  dinner1.owned = YES;
-  dinner1.owner = @"MockOwner";
-  dinner1.title = @"MockTitle";
-  DinnerDTO *dinner2 = [DinnerDTO new];
-  dinner2.dinnerId = 2;
-  dinner2.owned = NO;
-  dinner2.owner = @"MockOwner2";
-  dinner2.title = @"MockTitle2";
-  return @[dinner1, dinner2];
-}
-
-- (NSString *)mockResultJSONString {
-  return @"{  "
-          "   \"dinners\":[  "
-          "      {  "
-          "         \"dinnerId\":1,"
-          "         \"title\":\"MockTitle\","
-          "         \"owner\":\"MockOwner\","
-          "         \"owned\":true"
-          "      },"
-          "      {  "
-          "         \"dinnerId\":2,"
-          "         \"title\":\"MockTitle2\","
-          "         \"owner\":\"MockOwner2\","
-          "         \"owned\":false"
-          "      }]"
-          "}";
-}
-
 
 @end

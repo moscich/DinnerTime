@@ -44,7 +44,8 @@
 
 
 - (void)logout {
-  [self.dinnerTimeService logout:^(DinnerServiceResultType type) {
+    [self.googleManger logout];
+    [self.dinnerTimeService logout:^(DinnerServiceResultType type) {
     [self.logoutDelegate logoutManagerDidLogout];
   }];
 }

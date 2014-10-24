@@ -13,5 +13,9 @@
 @interface GoogleSignInManager : NSObject <GPPSignInDelegate>
 @property(nonatomic, weak) id <GoogleSignInManagerDelegate> delegate;
 
+@property(nonatomic, strong) GPPSignIn *googleSignIn;
+
 - (void)signIn;
+
+- (void)logout;
 @end

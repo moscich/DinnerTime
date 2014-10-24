@@ -18,6 +18,7 @@
     NSString *urlString = @"ws://192.168.1.133:8001";
     self.webSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
     self.webSocket.delegate = self;
+    [self.webSocket open];
   }
 
   return self;

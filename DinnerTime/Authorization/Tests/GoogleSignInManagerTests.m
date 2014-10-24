@@ -5,11 +5,9 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import "GoogleSignInManager.h"
+#import <OCMock/OCMock.h>
 #import "GoogleSignInManagerDelegateSPY.h"
-
 
 @interface GoogleSignInManagerTests : XCTestCase
 @end
@@ -32,6 +30,17 @@
   authentication.accessToken = @"TestToken";
   [singInDelegate finishedWithAuth:authentication error:nil];
   XCTAssertEqualObjects(delegateSPY.token, @"TestToken");
+}
+
+- (void)testLogout{
+    id mock = [OCMockObject mockForClass:[GPPSignIn class]];
+    GoogleSignInManager *loginManager = [GoogleSignInManager new];
+    [[mock expect] disconnect];
+    loginManager.googleSignIn = mock;
+
+    [loginManager logout];
+
+    [mock verify];
 }
 
 @end

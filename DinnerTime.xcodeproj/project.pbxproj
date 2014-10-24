@@ -74,9 +74,23 @@
 		7908975119D4974700145E7E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974619D4974700145E7E /* Security.framework */; };
 		7908975219D4974700145E7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974719D4974700145E7E /* SystemConfiguration.framework */; };
 		7908975319D4974700145E7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974819D4974700145E7E /* UIKit.framework */; };
+		797B519119FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */; };
+		797B519219FA749500C96E60 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9C19E1793F00525456 /* GooglePlus.framework */; };
+		797B519319FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908975419D4976300145E7E /* GoogleOpenSource.framework */; };
+		797B519419FA749500C96E60 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908975519D4976300145E7E /* GooglePlus.framework */; };
+		797B519519FA749500C96E60 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908973E19D4974700145E7E /* AddressBook.framework */; };
+		797B519619FA749500C96E60 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908973F19D4974700145E7E /* AssetsLibrary.framework */; };
+		797B519719FA749500C96E60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974019D4974700145E7E /* CoreGraphics.framework */; };
+		797B519819FA749500C96E60 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974119D4974700145E7E /* CoreLocation.framework */; };
+		797B519919FA749500C96E60 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974219D4974700145E7E /* CoreMotion.framework */; };
+		797B519A19FA749500C96E60 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974319D4974700145E7E /* CoreText.framework */; };
+		797B519B19FA749500C96E60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974419D4974700145E7E /* Foundation.framework */; };
+		797B519C19FA749500C96E60 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974519D4974700145E7E /* MediaPlayer.framework */; };
+		797B519D19FA749500C96E60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974619D4974700145E7E /* Security.framework */; };
+		797B519E19FA749500C96E60 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974719D4974700145E7E /* SystemConfiguration.framework */; };
+		797B519F19FA749500C96E60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974819D4974700145E7E /* UIKit.framework */; };
 		79D86A9D19E1793F00525456 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */; };
 		79D86A9E19E1793F00525456 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9C19E1793F00525456 /* GooglePlus.framework */; };
-		79D86A9F19E1797900525456 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,8 +243,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79D86A9F19E1797900525456 /* GoogleOpenSource.framework in Frameworks */,
 				13D318582D0543C995410A1B /* libPods-DinnerTimeTests.a in Frameworks */,
+				797B519119FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */,
+				797B519219FA749500C96E60 /* GooglePlus.framework in Frameworks */,
+				797B519319FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */,
+				797B519419FA749500C96E60 /* GooglePlus.framework in Frameworks */,
+				797B519519FA749500C96E60 /* AddressBook.framework in Frameworks */,
+				797B519619FA749500C96E60 /* AssetsLibrary.framework in Frameworks */,
+				797B519719FA749500C96E60 /* CoreGraphics.framework in Frameworks */,
+				797B519819FA749500C96E60 /* CoreLocation.framework in Frameworks */,
+				797B519919FA749500C96E60 /* CoreMotion.framework in Frameworks */,
+				797B519A19FA749500C96E60 /* CoreText.framework in Frameworks */,
+				797B519B19FA749500C96E60 /* Foundation.framework in Frameworks */,
+				797B519C19FA749500C96E60 /* MediaPlayer.framework in Frameworks */,
+				797B519D19FA749500C96E60 /* Security.framework in Frameworks */,
+				797B519E19FA749500C96E60 /* SystemConfiguration.framework in Frameworks */,
+				797B519F19FA749500C96E60 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,8 +573,6 @@
 			mainGroup = 7908970C19D4969600145E7E;
 			productRefGroup = 7908971619D4969600145E7E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				7908971419D4969600145E7E /* DinnerTime */,
@@ -819,7 +845,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/marekmoscichowski/Downloads/google-plus-ios-sdk-1.7.1",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = DinnerTime/Info.plist;
@@ -836,7 +861,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/marekmoscichowski/Downloads/google-plus-ios-sdk-1.7.1",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = DinnerTime/Info.plist;
@@ -855,6 +879,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"/Downloads/google-plus-ios-sdk-1.7.1",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -877,6 +902,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+					"/Downloads/google-plus-ios-sdk-1.7.1",
 				);
 				INFOPLIST_FILE = DinnerTimeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

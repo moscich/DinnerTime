@@ -53,14 +53,18 @@
 
 - (void)testLoginManagerLogout{
   id logoutDelegate = [OCMockObject mockForProtocol:@protocol(LoginManagerLogoutDelegate)];
-  [[logoutDelegate expect] logoutManagerDidLogout];
+  id googleManager = [OCMockObject mockForClass:[GoogleSignInManager class]];
+    [[googleManager expect] logout];
+    [[logoutDelegate expect] logoutManagerDidLogout];
   LoginManager *loginManager = [LoginManager new];
   loginManager.logoutDelegate = logoutDelegate;
+    loginManager.googleManger = googleManager;
   DinnerTimeServiceSpy *dinnerTimeServiceSpy = [DinnerTimeServiceSpy new];
   loginManager.dinnerTimeService = dinnerTimeServiceSpy;
   [loginManager logout];
   XCTAssertTrue(dinnerTimeServiceSpy.logoutCalled);
   [logoutDelegate verify];
+    [googleManager verify];
 }
 
 @end

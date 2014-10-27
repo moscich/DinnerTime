@@ -9,20 +9,20 @@
 #import "DinnerDTO.h"
 #import "DinnerCell.h"
 #import "DinnerWebSocketManager.h"
+#import "DinnerListManager.h"
 
 @implementation DinnerManager {
 
 }
 
-@synthesize needUpdate;
-
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
   self = [super init];
   if (self) {
     self.dinnerTimeService = dinnerTimeService;
-    self.needUpdate = YES;
     self.webSocketManager = [DinnerWebSocketManager new];
     self.webSocketManager.delegate = self;
+    self.dinnerListManager = [DinnerListManager new];
+    self.dinnerListManager.dataSource = self;
   }
 
   return self;
@@ -62,19 +62,6 @@
     }
   }
   return resultArray;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.dinners.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  DinnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerCellIdentifier"];
-  DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
-  cell.textLabel.text = dinner.title;
-  cell.ownerLabel.text = dinner.owner;
-  cell.ownerBackground.hidden = !dinner.owned;
-  return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

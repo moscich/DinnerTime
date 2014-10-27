@@ -32,7 +32,6 @@
 - (id)initWithNeedsUpdate {
     self = [super init];
     if (self) {
-        self.needUpdate = YES;
     }
 
     return self;

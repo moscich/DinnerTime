@@ -4,8 +4,8 @@
 //
 
 #import "DinnerListViewController.h"
-#import "AddDinnerViewController.h"
 #import "DinnerDTO.h"
+#import "DinnerListManager.h"
 
 
 @implementation DinnerListViewController {
@@ -19,14 +19,11 @@
   self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
   self.loginManager.logoutDelegate = self;
   [self.tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
-  self.tableView.dataSource = self.dinnerManager;
+  self.tableView.dataSource = self.dinnerManager.dinnerListManager;
   self.tableView.delegate = self.dinnerManager;
   self.dinnerManager.delegate = self;
-  if(self.dinnerManager.needUpdate){
-      [self updateDinners];
-  }
-  self.dinnerManager.needUpdate = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDinnerUpdate) name:@"DinnerUpdate" object:nil];
+  [self updateDinners];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDinnerUpdate) name:@"DinnerUpdate" object:nil];
 }
 
 - (void)didReceiveDinnerUpdate {

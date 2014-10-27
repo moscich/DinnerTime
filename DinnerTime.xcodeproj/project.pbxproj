@@ -33,6 +33,7 @@
 		53042692DA0B42516264D3C9 /* DinnerTimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042175BCF128D69757E67B /* DinnerTimeService.m */; };
 		530426A3455407B42B55BE02 /* GoogleSignInManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304256BA21AA13EC32B4223 /* GoogleSignInManagerSpy.m */; };
 		5304272848D392372E6B7EBD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422829B2FB3DA9CEAF1FA /* LoginView.m */; };
+		530427712041E3A2B2C264E4 /* DinnerListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428BE0851F2A5351839E3 /* DinnerListManager.m */; };
 		530427950551199A9F852511 /* DinnerTimeLoginManagerDelegateSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */; };
 		530427C3B70DD6CEC5487D30 /* turn_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */; };
 		530427DFCAAF954AB7870015 /* Marek Moscichowski's CA 1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */; };
@@ -139,6 +140,7 @@
 		530425711E8EEBAEDC687896 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5304259653FC61C7780242EA /* AddDinnerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDinnerView.xib; sourceTree = "<group>"; };
 		530425C1D84AF46966F13AE1 /* DinnerSessionBuilderStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionBuilderStub.h; sourceTree = "<group>"; };
+		530425E43EA0905E7FD6D81E /* DinnerListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerListManager.h; sourceTree = "<group>"; };
 		530425E67D1181FC3823D6BD /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
 		530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = DinnerTimeServer.cer; sourceTree = "<group>"; };
 		53042746CAB02DB4C5F5566B /* DinnerManagerStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerManagerStub.m; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		53042812FC2562A64E7EBA06 /* DinnerListViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListViewControllerTests.m; sourceTree = "<group>"; };
 		5304287D70F7136A539532D2 /* DinnerSessionManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionManagerSpy.h; sourceTree = "<group>"; };
 		530428897C88CF284D6EF481 /* DinnerTimeServiceSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceSpy.m; sourceTree = "<group>"; };
+		530428BE0851F2A5351839E3 /* DinnerListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListManager.m; sourceTree = "<group>"; };
 		530428D6654BA410BAFA462B /* GoogleSignInManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerStub.h; sourceTree = "<group>"; };
 		530428E25B31A897D75B91BE /* SessionDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDTO.m; sourceTree = "<group>"; };
 		530429087AD50FF3DFB9972D /* DinnerSessionBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionBuilder.h; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 				530423B3BB01879CB9D69608 /* DinnerWebSocketManager.h */,
 				530424A9248996344D044C11 /* DinnerUpdateDTO.m */,
 				53042D2736EC5A89304FFB69 /* DinnerUpdateDTO.h */,
+				530428BE0851F2A5351839E3 /* DinnerListManager.m */,
+				530425E43EA0905E7FD6D81E /* DinnerListManager.h */,
 			);
 			path = Dinners;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				530420CA461B11F94D68FB34 /* DinnerWebSocketManager.m in Sources */,
 				5304264AC9EA388DDF910A75 /* DinnerUpdateDTO.m in Sources */,
 				530429DF7815A4543843EE52 /* OrderDTO.m in Sources */,
+				530427712041E3A2B2C264E4 /* DinnerListManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

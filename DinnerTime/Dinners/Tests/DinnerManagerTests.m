@@ -7,12 +7,10 @@
 #import <OCMock/OCMock.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
-#import "DinnerServiceResultType.h"
 #import "DinnerDTO.h"
-#import "DinnerListViewDataSource.h"
 #import "DinnerCell.h"
 #import "DinnerArrayDTO.h"
-#import "DinnerListViewController.h"
+#import "DinnerListManager.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -25,22 +23,19 @@
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
-  XCTAssertTrue(dinnerManager.needUpdate);
   XCTAssertNotNil(dinnerManager.webSocketManager);
   XCTAssertEqual(dinnerManager.webSocketManager.delegate, dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinners{
-  DinnerManager *dinnerManager = [DinnerManager new];
-  XCTAssertFalse(dinnerManager.needUpdate);
   NSArray *resultArray = [self mockResultOutputArray];
-  DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
-  dinnerManager.dinnerTimeService = serviceSpy;
-  XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
+    DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
+    DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:serviceSpy];
+    XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
   [dinnerManager getDinners:^(DinnerServiceResultType type) {
     [callbackExpectation fulfill];
     XCTAssertEqual(type, DinnerServiceResult_Success);
-    [self assertDinnerManagerProperDataSourceSortsDinnersProperly:dinnerManager];
+    [self assertDinnerManagerProperDataSourceSortsDinnersProperly:dinnerManager.dinnerListManager];
   }];
   XCTAssertTrue(serviceSpy.getDinnersCalled);
   [self waitForExpectationsWithTimeout:0 handler:nil];
@@ -62,8 +57,6 @@
   XCTAssertEqualObjects(secondCell.textLabel.text, @"MockTitle");
   XCTAssertEqualObjects(secondCell.ownerLabel.text, @"MockOwner");
   XCTAssertTrue(secondCell.ownerBackground.hidden);
-
-  XCTAssertFalse(dataSource.needUpdate);
 }
 
 - (void)assertDinnerCellProperlyInstantiated:(DinnerCell *)dinnerCell{
@@ -89,9 +82,8 @@
 }
 
 - (void)testPostDinner{
-  DinnerManager *dinnerManager = [DinnerManager new];
   id dinnerTimeService = [OCMockObject mockForClass:[DinnerTimeService class]];
-  dinnerManager.dinnerTimeService = dinnerTimeService;
+  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.title = @"mockTitle";
@@ -110,12 +102,12 @@
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
   [dinnerTimeService verify];
-  NSInteger numberOfRows = [dinnerManager tableView:nil numberOfRowsInSection:0];
+  NSInteger numberOfRows = [dinnerManager.dinnerListManager tableView:nil numberOfRowsInSection:0];
   XCTAssertEqual(numberOfRows, 1);
 
   UITableView *tableView = [UITableView new];
   [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
-  DinnerCell *cell = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell = (DinnerCell *)[dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text,dinner.title);
 
   dinner = [DinnerDTO new];
@@ -139,9 +131,9 @@
 
   [partialDinnerManagerMock stopMocking];
 
-  DinnerCell *cell0 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-  DinnerCell *cell1 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
-  DinnerCell *cell2 = (DinnerCell *)[dinnerManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+  DinnerCell *cell0 = (DinnerCell *)[dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell1 = (DinnerCell *)[dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  DinnerCell *cell2 = (DinnerCell *)[dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
   XCTAssertEqualObjects(cell0.textLabel.text,@"new dinner title");
   XCTAssertEqualObjects(cell1.textLabel.text,@"MockTitle");
   XCTAssertEqualObjects(cell2.textLabel.text,@"MockTitle2");

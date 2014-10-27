@@ -11,10 +11,10 @@
 
 }
 - (DinnerSessionManager *)constructSessionManager {
-  AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://192.168.1.126:3002"]];
+  AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://192.168.1.131:3001"]];
   sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-  sessionManager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-  sessionManager.securityPolicy.allowInvalidCertificates = YES;
+//  sessionManager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+//  sessionManager.securityPolicy.allowInvalidCertificates = YES;
   DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:sessionManager];
 
   return dinnerSessionManager;

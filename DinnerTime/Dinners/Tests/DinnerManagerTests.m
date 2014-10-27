@@ -41,7 +41,7 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
-- (void)assertDinnerManagerProperDataSourceSortsDinnersProperly:(id <DinnerListViewDataSource>)dataSource{
+- (void)assertDinnerManagerProperDataSourceSortsDinnersProperly:(id <UITableViewDataSource>)dataSource{
   UITableView *tableView = [UITableView new];
   [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:0],2);

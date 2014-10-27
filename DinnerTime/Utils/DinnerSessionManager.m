@@ -19,26 +19,26 @@
 }
 
 - (void)GET:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
-    [self addSessionToHeader];
-    [self.sessionManager GET:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self addSessionToHeader];
+  [self.sessionManager GET:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     [self sendCallback:success withResponseObject:responseObject];
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+  }                failure:^(NSURLSessionDataTask *task, NSError *error) {
     NSLog(@"error = %@", error);
     failure(error);
   }];
 }
 
 - (void)POST:(NSString *)string parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
-    [self addSessionToHeader];
-    [self.sessionManager POST:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+  [self addSessionToHeader];
+  [self.sessionManager POST:string parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
     [self sendCallback:success withResponseObject:responseObject];
-  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+  }                 failure:^(NSURLSessionDataTask *task, NSError *error) {
 
   }];
 }
 
 - (void)addSessionToHeader {
-    if(self.sessionId)
+  if (self.sessionId)
     [self.sessionManager.requestSerializer setValue:self.sessionId forHTTPHeaderField:@"session_id"];
 }
 

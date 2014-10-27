@@ -186,7 +186,6 @@
 		53042D7D2960FAA7D3DC0EDF /* DinnerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerListViewController.h; sourceTree = "<group>"; };
 		53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManager.m; sourceTree = "<group>"; };
 		53042E44D20CBD5775905169 /* DinnerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerManager.h; sourceTree = "<group>"; };
-		53042E6C0EFB8D2B9B728993 /* DinnerListViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerListViewDataSource.h; sourceTree = "<group>"; };
 		53042E78A7EEA264EBA0A027 /* DinnerManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerManagerStub.h; sourceTree = "<group>"; };
 		53042E9C1ECA1E47E384525C /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		53042F1D6E2A22BC07FF9D70 /* DinnerManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerManagerTests.m; sourceTree = "<group>"; };
@@ -386,7 +385,6 @@
 				53042E44D20CBD5775905169 /* DinnerManager.h */,
 				53042CE0D18EF7952759154D /* DinnerManager.m */,
 				53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */,
-				53042E6C0EFB8D2B9B728993 /* DinnerListViewDataSource.h */,
 				53042A9E0197E2C4FC41465A /* DinnerCell.m */,
 				53042264EFF40BBD92E74AC5 /* DinnerCell.h */,
 				53042A17C61A3188B826993A /* DinnerServiceResultType.h */,

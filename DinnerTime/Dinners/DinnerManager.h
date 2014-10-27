@@ -5,10 +5,10 @@
 
 #import <Foundation/Foundation.h>
 #import "DinnerServiceResultType.h"
-#import "DinnerListViewDataSource.h"
 #import "DinnerWebSocketManager.h"
 
 @protocol UITableViewDataSource;
+@protocol UITableViewDelegate;
 @class DinnerTimeService;
 @class DinnerDTO;
 @class DinnerWebSocketManager;

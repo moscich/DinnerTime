@@ -5,12 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "DinnerListViewDataSource.h"
 
 @protocol DinnerManagerDataSource;
 
 
-@interface DinnerListManager : NSObject <DinnerListViewDataSource>
+@interface DinnerListManager : NSObject <UITableViewDataSource>
 
 @property(nonatomic, weak) id <DinnerManagerDataSource> dataSource;
 

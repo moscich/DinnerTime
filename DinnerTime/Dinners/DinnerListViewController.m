@@ -6,6 +6,7 @@
 #import "DinnerListViewController.h"
 #import "AddDinnerViewController.h"
 #import "DinnerDTO.h"
+#import "DinnerTableViewDelegate.h"
 
 
 @implementation DinnerListViewController {
@@ -20,7 +21,7 @@
   self.loginManager.logoutDelegate = self;
   [self.tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   self.tableView.dataSource = self.dinnerManager;
-  self.tableView.delegate = self.dinnerManager;
+  self.tableView.delegate = self.dinnerTableViewDelegate = [DinnerTableViewDelegate new];
   if(self.dinnerManager.needUpdate){
       [self updateDinners];
   }

@@ -9,9 +9,11 @@
 #import "LoginManager.h"
 #import "AddDinnerViewController.h"
 
+@class DinnerTableViewDelegate;
+
 @interface DinnerListViewController : UIViewController <LoginManagerLogoutDelegate, AddDinnerViewControllerDelegate>
 @property(nonatomic, strong) DinnerManager *dinnerManager;
-
+@property(nonatomic, strong) DinnerTableViewDelegate *dinnerTableViewDelegate;
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 @property(nonatomic, strong) LoginManager *loginManager;

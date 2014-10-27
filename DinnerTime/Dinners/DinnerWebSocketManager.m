@@ -15,7 +15,7 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    NSString *urlString = @"ws://192.168.1.131:8001";
+    NSString *urlString = @"wss://192.168.1.126:8001";
     self.webSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
     self.webSocket.delegate = self;
     [self.webSocket open];

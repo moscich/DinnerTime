@@ -15,14 +15,22 @@
 
 }
 
-- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
+- (instancetype)init{
   self = [super init];
   if (self) {
-    self.dinnerTimeService = dinnerTimeService;
     self.webSocketManager = [DinnerWebSocketManager new];
     self.webSocketManager.delegate = self;
     self.dinnerListManager = [DinnerListManager new];
     self.dinnerListManager.dataSource = self;
+  }
+
+  return self;
+}
+
+- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
+  self = [self init];
+  if (self) {
+    self.dinnerTimeService = dinnerTimeService;
   }
 
   return self;

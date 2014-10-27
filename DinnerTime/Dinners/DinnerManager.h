@@ -13,10 +13,16 @@
 @class DinnerDTO;
 @class DinnerWebSocketManager;
 
+@protocol DinnerManagerDelegate
+- (void)dinnerManagerDidSelectDinnerWithId:(NSNumber *)id;
+@end
+
 @interface DinnerManager : NSObject <DinnerListViewDataSource, UITableViewDelegate, DinnerWebSocketManagerDelegate>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 @property(nonatomic, strong) DinnerWebSocketManager *webSocketManager;
 @property(nonatomic, strong) NSMutableArray *dinners;
+
+@property(nonatomic, strong) id <DinnerManagerDelegate> delegate;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
 

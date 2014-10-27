@@ -21,6 +21,7 @@
   [self.tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
   self.tableView.dataSource = self.dinnerManager;
   self.tableView.delegate = self.dinnerManager;
+  self.dinnerManager.delegate = self;
   if(self.dinnerManager.needUpdate){
       [self updateDinners];
   }
@@ -52,6 +53,10 @@
   [self.dinnerManager postDinner:dinnerDTO withCallback:^(DinnerServiceResultType type) {
     [self.tableView reloadData];
   }];
+}
+
+- (void)dinnerManagerDidSelectDinnerWithId:(NSNumber *)dinnerId {
+
 }
 
 @end

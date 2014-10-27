@@ -27,6 +27,7 @@
   XCTAssertNotNil(dinnerListViewController.tableView.delegate);
   XCTAssertEqual(dinnerListViewController.tableView.dataSource, dinnerListViewController.dinnerManager);
   XCTAssertEqual(dinnerListViewController.tableView.delegate, dinnerListViewController.dinnerManager);
+  XCTAssertEqual(dinnerListViewController.dinnerManager.delegate, dinnerListViewController);
 }
 
 - (void)testDinnerManagerGetsDinnersWhenDinnerManagerSucceed {
@@ -152,5 +153,7 @@
     [dinnerManager verify];
     [tableView verify];
 }
+
+- (void)testNavigateToOrderListWith
 
 @end

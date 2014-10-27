@@ -81,6 +81,11 @@
   return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
+    [self.delegate dinnerManagerDidSelectDinnerWithId:@(dinner.dinnerId)];
+}
+
 - (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID {
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
 }

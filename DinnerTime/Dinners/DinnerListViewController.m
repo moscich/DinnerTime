@@ -26,6 +26,14 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDinnerUpdate) name:@"DinnerUpdate" object:nil];
 }
 
+- (id)initWithDinnerManager:(DinnerManager *)dinnerManager {
+  self = [super init];
+  if(self){
+    self.dinnerManager = dinnerManager;
+  }
+  return self;
+}
+
 - (void)didReceiveDinnerUpdate {
     [self updateDinners];
 }

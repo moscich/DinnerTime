@@ -16,19 +16,19 @@
 
 }
 
-- (instancetype)init {
-  self = [super init];
-  if(self){
-    DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
-    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:dinnerTimeService];
-    self.loginManager.delegate = self;
-    self.dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
-  }
-  return self;
-}
-
 - (void)loginManagerLoginSuccessful {
   [self navigateToDinnerList];
+}
+
+- (id)initWithDinnerManager:(DinnerManager *)dinnerManager {
+  self = [super init];
+  if(self){
+    self.dinnerManager = dinnerManager;
+    DinnerTimeService *dinnerTimeService = dinnerManager.dinnerTimeService;
+    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:dinnerTimeService];
+    self.loginManager.delegate = self;
+  }
+  return self;
 }
 
 - (void)navigateToDinnerList {

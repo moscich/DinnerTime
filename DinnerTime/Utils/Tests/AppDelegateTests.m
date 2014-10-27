@@ -10,7 +10,6 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "AppDelegate.h"
-#import "OCObserverMockObject.h"
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
 
@@ -26,10 +25,15 @@
   id mockWindow = [OCMockObject niceMockForClass:[UIWindow class]];
   [[mockWindow expect] setRootViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
     UINavigationController *nav = obj;
-    return [nav.viewControllers[0] isKindOfClass:[LoginViewController class]] && [nav.viewControllers[1] isKindOfClass:[DinnerListViewController class]];
+    LoginViewController *loginViewController = nav.viewControllers[0];
+    DinnerListViewController *dinnerListViewController = nav.viewControllers[1];
+    BOOL isDinnerManagerNotNil = loginViewController.dinnerManager != nil;
+    BOOL isDinnerManagerProperlyInstantiated = loginViewController.dinnerManager == dinnerListViewController.dinnerManager;
+    return isDinnerManagerNotNil && isDinnerManagerProperlyInstantiated;
   }]];
   [[[partialAppDelegateMock stub] andReturn:mockWindow] window];
   [appDelegate application:nil didFinishLaunchingWithOptions:nil];
+  [mockWindow verify];
 }
 
 

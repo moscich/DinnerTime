@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
+#import "DinnerSessionBuilder.h"
+#import "DinnerTimeService.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +27,12 @@
   [self.window makeKeyAndVisible];
 
   UINavigationController *navigationController = [UINavigationController new];
-  navigationController.viewControllers = @[[LoginViewController new],[DinnerListViewController new]];
+  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
+  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+
+  LoginViewController *loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
+  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:dinnerManager];
+  navigationController.viewControllers = @[loginViewController, dinnerListViewController];
   self.window.rootViewController = navigationController;
 
   return YES;

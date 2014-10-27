@@ -17,4 +17,6 @@
 @property(nonatomic, strong) LoginManager *loginManager;
 
 - (void)addButtonTapped;
+
+- (id)initWithDinnerManager:(DinnerManager *)dinnerManager;
 @end

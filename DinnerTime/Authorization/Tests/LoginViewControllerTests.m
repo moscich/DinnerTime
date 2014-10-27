@@ -12,6 +12,8 @@
 #import "OCMStubRecorder.h"
 #import "OCMArg.h"
 #import "DinnerListViewController.h"
+#import "DinnerSessionBuilder.h"
+#import "DinnerTimeService.h"
 #import <XCTest/XCTest.h>
 
 @interface LoginViewControllerTests : XCTestCase
@@ -24,7 +26,10 @@
 
 - (void)setUp {
   [super setUp];
-  self.loginViewController = [LoginViewController new];
+  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
+  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+
+  self.loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
 }
 
 - (void)testLoginViewControllerRespondToDelegateSelector {

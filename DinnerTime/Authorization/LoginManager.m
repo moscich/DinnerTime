@@ -31,7 +31,6 @@
   return self;
 }
 
-
 - (void)signIn {
   [self.googleManger signIn];
 }

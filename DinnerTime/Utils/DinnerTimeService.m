@@ -55,7 +55,9 @@
 
 - (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerDTO *))callback {
   [self.dinnerSessionManager POST:@"/dinners" parameters:@{@"title":dinner.title} success:^(NSString *string) {
-    callback([[DinnerDTO alloc] initWithString:string error:nil]);
+    JSONModelError *error;
+      DinnerDTO *dto = [[DinnerDTO alloc] initWithString:string error:&error];
+      callback(dto);
   } failure:nil];
 }
 @end

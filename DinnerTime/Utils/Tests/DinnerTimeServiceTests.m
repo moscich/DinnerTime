@@ -14,6 +14,7 @@
 #import "DinnerSessionManager.h"
 #import "DinnerSessionManagerSpy.h"
 #import "DinnerSessionBuilderStub.h"
+#import "OrderDTO.h"
 
 @interface DinnerTimeServiceTests : XCTestCase
 @end
@@ -131,11 +132,23 @@
   dinner1.owned = YES;
   dinner1.owner = @"MockOwner";
   dinner1.title = @"MockTitle";
+  OrderDTO *order1 = [OrderDTO new];
+  order1.orderId = 1;
+  order1.order = @"Order name";
+  order1.owner = @"Test owner";
+  order1.owned = YES;
+  OrderDTO *order2 = [OrderDTO new];
+  order2.orderId = 2;
+  order2.order = @"Test order";
+  order2.owner = @"Test owner 2";
+  order2.owned = NO;
+  dinner1.orders = (NSArray <OrderDTO> *) @[order1, order2];
   DinnerDTO *dinner2 = [DinnerDTO new];
   dinner2.dinnerId = 2;
   dinner2.owned = NO;
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
+  dinner2.orders = (NSArray <OrderDTO> *) @[];
   return @[dinner1, dinner2];
 }
 
@@ -146,13 +159,27 @@
           "         \"dinnerId\":1,"
           "         \"title\":\"MockTitle\","
           "         \"owner\":\"MockOwner\","
-          "         \"owned\":true"
+          "         \"owned\":true,"
+          "         \"orders\": ["
+          "           {"
+          "                \"orderId\": 1,"
+          "                \"order\": \"Order name\","
+          "                \"owner\": \"Test owner\","
+          "                \"owned\": true"
+          "            }"
+          "          , {"
+          "                    \"orderId\": 2,"
+          "                    \"order\": \"Test order\","
+          "                    \"owner\": \"Test owner 2\","
+          "                    \"owned\": false"
+          "                }]"
           "      },"
           "      {  "
           "         \"dinnerId\":2,"
           "         \"title\":\"MockTitle2\","
           "         \"owner\":\"MockOwner2\","
-          "         \"owned\":false"
+          "         \"owned\":false,"
+          "         \"orders\":[]"
           "      }]"
           "}";
 }

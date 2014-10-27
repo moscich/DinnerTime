@@ -30,14 +30,6 @@
   XCTAssertEqual(dinnerListViewController.dinnerManager.delegate, dinnerListViewController);
 }
 
-//- (void)testDinnerManagerGetsDinnersWhenDinnerManagerSucceed {
-//  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
-//  DinnerManagerSpy *spy = [[DinnerManagerSpy alloc] initWithResultType:DinnerServiceResult_Success];
-//  dinnerListViewController.dinnerManager = spy;
-//  dinnerListViewController.view;
-//  XCTAssertFalse(spy.getDinnersAsked);
-//}
-
 - (void)testHidesBackButton {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   dinnerListViewController.view;
@@ -151,6 +143,26 @@
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
     [dinnerManager verify];
     [tableView verify];
+}
+
+- (void)testUnauthorizedGetDinners{
+  id mockDinnerManager = [OCMockObject niceMockForClass:[DinnerManager class]];
+  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+  [[mockNavController expect] popViewControllerAnimated:YES];
+  void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+    void (^passedBlock)( DinnerServiceResultType);
+    [invocation getArgument: &passedBlock atIndex: 2];
+    passedBlock(DinnerServiceResult_Unauthorized);
+  };
+
+  [[[mockDinnerManager stub] andDo:proxyBlock] getDinners:OCMOCK_ANY];
+  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:mockDinnerManager];
+  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  [[[partialDinnerListViewControllerMock stub] andReturn:mockNavController] navigationController];
+
+  [dinnerListViewController viewDidLoad];
+  [mockDinnerManager verify];
+  [mockNavController verify];
 }
 
 @end

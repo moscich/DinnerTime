@@ -40,7 +40,16 @@
 
 - (void)updateDinners {
     [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
-        [self.tableView reloadData];
+      switch (type){
+        case DinnerServiceResult_Success:
+          [self.tableView reloadData];
+          break;
+        case DinnerServiceResult_Unauthorized:
+          [self.navigationController popViewControllerAnimated:YES];
+          break;
+        default:
+          break;
+      }
     }];
 }
 

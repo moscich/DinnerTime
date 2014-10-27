@@ -38,19 +38,6 @@
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
-    if(type == DinnerServiceResult_Unauthorized){
-      ((LoginView *)self.view).activityIndicator.hidden = YES;
-      ((LoginView *)self.view).signInButton.hidden = NO;
-    }else if(type == DinnerServiceResult_Success){
-      [self navigateToDinnerList];
-    }
-  }];
-}
-
 - (IBAction)signIn {
   [self.loginManager signIn];
 }

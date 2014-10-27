@@ -13,9 +13,10 @@
 @class DinnerDTO;
 @class DinnerWebSocketManager;
 @class DinnerListManager;
+@class OrderListManager;
 
 @protocol DinnerManagerDelegate
-- (void)dinnerManagerDidSelectDinnerWithId:(NSNumber *)id;
+- (void)dinnerManagerDidSelectDinner;
 @end
 
 @protocol DinnerManagerDataSource
@@ -27,6 +28,7 @@
 @property(nonatomic, strong) DinnerWebSocketManager *webSocketManager;
 @property(nonatomic, strong) NSMutableArray *dinners;
 @property(nonatomic, strong) DinnerListManager *dinnerListManager;
+@property(nonatomic, strong) OrderListManager *orderListManager;
 @property(nonatomic, weak) id <DinnerManagerDelegate> delegate;
 
 - (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;

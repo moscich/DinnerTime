@@ -6,6 +6,7 @@
 #import "DinnerListViewController.h"
 #import "DinnerDTO.h"
 #import "DinnerListManager.h"
+#import "OrderListViewController.h"
 
 
 @implementation DinnerListViewController {
@@ -69,8 +70,8 @@
   }];
 }
 
-- (void)dinnerManagerDidSelectDinnerWithId:(NSNumber *)dinnerId {
-
+- (void)dinnerManagerDidSelectDinner {
+  [self.navigationController pushViewController:[[OrderListViewController alloc] initWithDinnerManager:self.dinnerManager] animated:YES];
 }
 
 @end

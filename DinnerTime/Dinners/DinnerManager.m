@@ -10,6 +10,7 @@
 #import "DinnerCell.h"
 #import "DinnerWebSocketManager.h"
 #import "DinnerListManager.h"
+#import "OrderListManager.h"
 
 @implementation DinnerManager {
 
@@ -77,8 +78,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
-    [self.delegate dinnerManagerDidSelectDinnerWithId:@(dinner.dinnerId)];
+    [self.delegate dinnerManagerDidSelectDinner];
 }
 
 - (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID {

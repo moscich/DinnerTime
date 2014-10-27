@@ -151,7 +151,7 @@
 - (void)testSendDelegateDinnerIdWhenRowTapped {
     DinnerManager *dinnerManager = [DinnerManager new];
     id mockDelegate = [OCMockObject mockForProtocol:@protocol(DinnerManagerDelegate)];
-    [[mockDelegate expect] dinnerManagerDidSelectDinnerWithId:@(2)];
+    [[mockDelegate expect] dinnerManagerDidSelectDinner];
     dinnerManager.delegate = mockDelegate;
     dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
     [dinnerManager tableView:nil didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];

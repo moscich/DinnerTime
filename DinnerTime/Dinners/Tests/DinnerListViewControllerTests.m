@@ -12,6 +12,7 @@
 #import "DinnerListViewController.h"
 #import "DinnerManagerSpy.h"
 #import "DinnerDTO.h"
+#import "OrderListViewController.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
@@ -162,6 +163,25 @@
 
   [dinnerListViewController viewDidLoad];
   [mockDinnerManager verify];
+  [mockNavController verify];
+}
+
+- (void)testNavigateToOrders{
+  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:[DinnerManager new]];
+  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  [[[partialDinnerListViewControllerMock stub] andReturn:mockNavController] navigationController];
+  [[mockNavController expect] pushViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
+    if([obj isKindOfClass:[OrderListViewController class]]){
+      OrderListViewController *orderListViewController = obj;
+      return orderListViewController.dinnerManager == dinnerListViewController.dinnerManager;
+    }
+    return NO;
+  }] animated:YES];
+
+  id <DinnerManagerDelegate> dinerManagerDelegate = dinnerListViewController;
+  [dinerManagerDelegate dinnerManagerDidSelectDinner];
+
   [mockNavController verify];
 }
 

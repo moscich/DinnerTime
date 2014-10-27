@@ -13,12 +13,12 @@
 - (BOOL)isEqual:(id)object {
   if ([object isKindOfClass:[DinnerDTO class]]) {
     DinnerDTO *dinner = object;
-    if (dinner.dinnerId == self.dinnerId &&
+    return dinner.dinnerId == self.dinnerId &&
             dinner.owned == self.owned &&
             [dinner.owner isEqualToString:self.owner] &&
-            [dinner.title isEqualToString:self.title]
-            )
-      return YES;
+            [dinner.title isEqualToString:self.title] &&
+            ([dinner.orders isEqualToArray:self.orders] || (dinner.orders == nil && self.orders == nil));
+
   }
   return NO;
 }

@@ -29,7 +29,8 @@
     DinnerListViewController *dinnerListViewController = nav.viewControllers[1];
     BOOL isDinnerManagerNotNil = loginViewController.dinnerManager != nil;
     BOOL isDinnerManagerProperlyInstantiated = loginViewController.dinnerManager == dinnerListViewController.dinnerManager;
-    return isDinnerManagerNotNil && isDinnerManagerProperlyInstantiated;
+    BOOL hasDinnerListHaveLoginManager = dinnerListViewController.loginManager == loginViewController.loginManager;
+    return isDinnerManagerNotNil && isDinnerManagerProperlyInstantiated && hasDinnerListHaveLoginManager;
   }]];
   [[[partialAppDelegateMock stub] andReturn:mockWindow] window];
   [appDelegate application:nil didFinishLaunchingWithOptions:nil];

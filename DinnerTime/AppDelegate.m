@@ -32,6 +32,7 @@
 
   LoginViewController *loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
   DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:dinnerManager];
+  dinnerListViewController.loginManager = loginViewController.loginManager;
   navigationController.viewControllers = @[loginViewController, dinnerListViewController];
   self.window.rootViewController = navigationController;
 

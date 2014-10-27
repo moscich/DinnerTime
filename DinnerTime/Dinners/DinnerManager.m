@@ -77,6 +77,10 @@
   return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return 60;
+}
+
 - (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID {
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
 }

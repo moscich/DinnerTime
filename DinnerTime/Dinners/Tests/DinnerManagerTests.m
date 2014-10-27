@@ -13,7 +13,6 @@
 #import "DinnerCell.h"
 #import "DinnerArrayDTO.h"
 #import "DinnerListViewController.h"
-#import "DinnerTableViewDelegate.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -85,7 +84,7 @@
 }
 
 - (void)testDinnerManagerReturnsProperHeight{
-  id <UITableViewDelegate> tableViewDelegate = [DinnerTableViewDelegate new];
+  id <UITableViewDelegate> tableViewDelegate = [DinnerManager new];
   XCTAssertEqual([tableViewDelegate tableView:nil heightForRowAtIndexPath:nil], 60);
 }
 

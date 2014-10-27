@@ -6,6 +6,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@protocol DinnerManagerDataSource;
 
 @interface OrderListManager : NSObject <UITableViewDataSource>
+@property(nonatomic, assign) int dinnerId;
+
+@property(nonatomic, weak) id <DinnerManagerDataSource> dataSource;
+
+- (instancetype)initWithDinnerId:(int)dinnerId;
+
 @end

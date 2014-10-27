@@ -9,4 +9,22 @@
 @implementation OrderListManager {
 
 }
+- (instancetype)initWithDinnerId:(int)dinnerId {
+  self = [super init];
+  if (self) {
+    self.dinnerId = dinnerId;
+  }
+
+  return self;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return nil;
+}
+
+
 @end

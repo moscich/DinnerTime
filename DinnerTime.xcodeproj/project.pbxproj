@@ -54,6 +54,7 @@
 		53042D72D1E1787E37955582 /* DinnerManagerStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042746CAB02DB4C5F5566B /* DinnerManagerStub.m */; };
 		53042DF4C3DDA894413A2EFB /* AddDinnerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042AF076F1BFC11F3FF41F /* AddDinnerViewControllerTests.m */; };
 		53042E5E8F9B3C12E95620B2 /* DinnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042A9E0197E2C4FC41465A /* DinnerCell.m */; };
+		53042E74AD0FF2803A716834 /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422742F2685537EEC1294 /* AppDelegateTests.m */; };
 		53042ED0404D4AA3AD3A85BA /* DinnerSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 530421611B2A805A71068306 /* DinnerSessionBuilder.m */; };
 		53042EEFB8697516AC756719 /* LoginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530420264317ACE772D8A7A8 /* LoginManagerTests.m */; };
 		53042FA80A00332FFA532BE6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */; };
@@ -126,6 +127,7 @@
 		530422554439CEE2177B5E91 /* AddDinnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDinnerViewController.m; sourceTree = "<group>"; };
 		53042262A2460E01ED7AED16 /* DinnerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DinnerCell.xib; sourceTree = "<group>"; };
 		53042264EFF40BBD92E74AC5 /* DinnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerCell.h; sourceTree = "<group>"; };
+		530422742F2685537EEC1294 /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
 		530422829B2FB3DA9CEAF1FA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		530422BB21E63FE84E0D1754 /* DinnerTimeServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceTests.m; sourceTree = "<group>"; };
 		530422E551632CB91CBD45E2 /* LoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerDelegateSpy.m; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				530425C1D84AF46966F13AE1 /* DinnerSessionBuilderStub.h */,
 				5304218F17F2DF6D939C16BA /* OrderDTO.m */,
 				53042D23F63C04821250036A /* OrderDTO.h */,
+				530422742F2685537EEC1294 /* AppDelegateTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				530429C0F11BD21BEA369FBA /* DinnerListViewControllerTests.m in Sources */,
 				53042DF4C3DDA894413A2EFB /* AddDinnerViewControllerTests.m in Sources */,
 				5304248BC9578D3F08511930 /* DinnerWebSocketManagerTests.m in Sources */,
+				53042E74AD0FF2803A716834 /* AppDelegateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

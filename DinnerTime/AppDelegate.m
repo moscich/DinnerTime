@@ -9,6 +9,7 @@
 #import <GooglePlus/GooglePlus.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "DinnerListViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,8 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
 
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+  UINavigationController *navigationController = [UINavigationController new];
+  navigationController.viewControllers = @[[LoginViewController new],[DinnerListViewController new]];
   self.window.rootViewController = navigationController;
 
   return YES;

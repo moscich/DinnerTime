@@ -30,7 +30,13 @@
 }
 
 - (void)addButtonTapped {
-    [self presentViewController:[AddOrderViewController new] animated:YES completion:nil];
+    AddOrderViewController *addOrderViewController = [AddOrderViewController new];
+    addOrderViewController.delegate = self;
+    [self presentViewController:addOrderViewController animated:YES completion:nil];
+}
+
+- (void)addNewOrderNamed:(NSString *)title {
+    [self.dinnerManager postOrder:title];
 }
 
 @end

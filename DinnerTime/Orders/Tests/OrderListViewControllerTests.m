@@ -13,6 +13,7 @@
 #import "DinnerManager.h"
 #import "OrderListManager.h"
 #import "AddOrderViewController.h"
+#import "OrderDTO.h"
 
 @interface OrderListViewControllerTests : XCTestCase
 
@@ -44,10 +45,19 @@
     OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:manager];
     id partialOrderListViewController = [OCMockObject partialMockForObject:orderListViewController];
     [[partialOrderListViewController expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
-        return [obj isKindOfClass:[AddOrderViewController class]];
+        AddOrderViewController *addOrderViewController = obj;
+        return addOrderViewController.delegate == orderListViewController;
     }] animated:YES completion:nil];
     [orderListViewController addButtonTapped];
     [partialOrderListViewController verify];
+}
+
+- (void)testPostNewOrder{
+    id mockManager = [OCMockObject mockForClass:[DinnerManager class]];
+    OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:mockManager];
+    [[mockManager expect] postOrder:@"test"];
+    [orderListViewController addNewOrderNamed:@"test"];
+    [mockManager verify];
 }
 
 @end

@@ -5,17 +5,17 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AddOrderViewController.h"
 
 @class DinnerManager;
 
 
-@interface OrderListViewController : UIViewController
-@property(nonatomic, strong) DinnerManager *dinnerManager;
+@interface OrderListViewController : UIViewController <AddOrderViewControllerDelegate>
 
+@property(nonatomic, strong) DinnerManager *dinnerManager;
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 - (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager;
-
-
 - (void)addButtonTapped;
+
 @end

@@ -21,7 +21,13 @@
   return self;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  if(section == 0)
+    return 1;
   NSArray *dinners = [self.dataSource dinnerManagerDinners];
   for(DinnerDTO *dinner in dinners){
     if(dinner.dinnerId == self.dinnerId)
@@ -34,9 +40,15 @@
   NSArray *dinners = [self.dataSource dinnerManagerDinners];
   for(DinnerDTO *dinner in dinners){
     if(dinner.dinnerId == self.dinnerId){
-      UITableViewCell *cell = [UITableViewCell new];
-      cell.textLabel.text = ((OrderDTO *)dinner.orders[(NSUInteger) indexPath.row]).order;
-      return cell;
+      if(indexPath.section == 0){
+        UITableViewCell *cell = [UITableViewCell new];
+        cell.textLabel.text = dinner.title;
+        return cell;
+      }else{
+        UITableViewCell *cell = [UITableViewCell new];
+        cell.textLabel.text = ((OrderDTO *)dinner.orders[(NSUInteger) indexPath.row]).order;
+        return cell;
+      }
     }
   }
 

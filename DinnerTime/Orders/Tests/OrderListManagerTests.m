@@ -27,11 +27,26 @@
   orderListManager.dataSource = mockDataSource;
   [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
 
-  int numberOfRows = [orderListManager tableView:nil numberOfRowsInSection:0];
+  int numberOfRows = [orderListManager tableView:nil numberOfRowsInSection:1];
   XCTAssertEqual(numberOfRows, 2);
 
-  UITableViewCell *cell = [orderListManager tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  UITableViewCell *cell = [orderListManager tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
   XCTAssertEqualObjects(cell.textLabel.text,@"Test order");
+}
+
+- (void)testFirstSectionHaveDinnerInfo{
+  OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
+  id mockDataSource = [OCMockObject mockForProtocol:@protocol(DinnerManagerDataSource)];
+  orderListManager.dataSource = mockDataSource;
+  [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
+  UITableViewCell *cell = [orderListManager tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  XCTAssertEqualObjects(cell.textLabel.text,@"MockTitle2");
+}
+
+- (void)testThereAreTwoSections{
+  OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
+  XCTAssertEqual([orderListManager numberOfSectionsInTableView:nil],2);
+  XCTAssertEqual([orderListManager tableView:nil numberOfRowsInSection:0],1);
 }
 
 - (NSArray *)mockResultOutputArray {

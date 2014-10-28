@@ -22,7 +22,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSArray *dinners = self.dataSource.dinners;
+  NSArray *dinners = [self.dataSource dinnerManagerDinners];
   for(DinnerDTO *dinner in dinners){
     if(dinner.dinnerId == self.dinnerId)
       return dinner.orders.count;
@@ -31,7 +31,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSArray *dinners = self.dataSource.dinners;
+  NSArray *dinners = [self.dataSource dinnerManagerDinners];
   for(DinnerDTO *dinner in dinners){
     if(dinner.dinnerId == self.dinnerId){
       UITableViewCell *cell = [UITableViewCell new];

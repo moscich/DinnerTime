@@ -20,7 +20,7 @@
 @end
 
 @protocol DinnerManagerDataSource
-- (NSArray *)dinners;
+- (NSArray *)dinnerManagerDinners;
 @end
 
 @interface DinnerManager : NSObject <UITableViewDelegate, DinnerWebSocketManagerDelegate, DinnerManagerDataSource>

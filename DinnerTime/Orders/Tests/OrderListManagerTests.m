@@ -25,7 +25,7 @@
   OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
   id mockDataSource = [OCMockObject mockForProtocol:@protocol(DinnerManagerDataSource)];
   orderListManager.dataSource = mockDataSource;
-  [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinners];
+  [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
 
   int numberOfRows = [orderListManager tableView:nil numberOfRowsInSection:0];
   XCTAssertEqual(numberOfRows, 2);

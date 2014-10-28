@@ -54,10 +54,19 @@
 
 - (void)testPostNewOrder{
     id mockManager = [OCMockObject mockForClass:[DinnerManager class]];
+    id mockTableView = [OCMockObject mockForClass:[UITableView class]];
+    [[mockTableView expect] reloadData];
     OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:mockManager];
-    [[mockManager expect] postOrder:@"test"];
+    orderListViewController.tableView = mockTableView;
+    void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+        void (^passedBlock)(DinnerServiceResultType);
+        [invocation getArgument:&passedBlock atIndex:3];
+        passedBlock(DinnerServiceResult_Success);
+    };
+    [[[mockManager stub] andDo:proxyBlock ] postOrder:@"test" withCallback:OCMOCK_ANY];
     [orderListViewController addNewOrderNamed:@"test"];
     [mockManager verify];
+    [mockTableView verify];
 }
 
 @end

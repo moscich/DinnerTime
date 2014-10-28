@@ -35,6 +35,6 @@
 
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback;
 - (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType type))callback;
+- (void)postOrder:(NSString *)string withCallback:(void (^)(DinnerServiceResultType type))callback;
 
-- (void)postOrder:(NSString *)order;
 @end

@@ -12,6 +12,7 @@
 #import "DinnerArrayDTO.h"
 #import "DinnerListManager.h"
 #import "OrderListManager.h"
+#import "OrderDTO.h"
 
 @interface DinnerManagerTests : XCTestCase
 @end
@@ -140,6 +141,32 @@
   XCTAssertEqualObjects(cell2.textLabel.text, @"MockTitle2");
 }
 
+- (void)testPostOrder{
+    DinnerManager *dinnerManager = [DinnerManager new];
+    OrderListManager *orderListManager = [OrderListManager new];
+    orderListManager.dinnerId = 2;
+    dinnerManager.orderListManager = orderListManager;
+    dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
+    id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
+    void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+        void (^passedBlock)(OrderDTO *);
+        OrderDTO *order = [self mockOrderPostResult];
+        [invocation getArgument:&passedBlock atIndex:3];
+        passedBlock(order);
+    };
+    [[[mockService stub] andDo:proxyBlock] postOrder:@"test" withCallback:OCMOCK_ANY];
+    dinnerManager.dinnerTimeService = mockService;
+    XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
+    [dinnerManager postOrder:@"test" withCallback:^(DinnerServiceResultType type) {
+        [expectation fulfill];
+        XCTAssertEqual(type, DinnerServiceResult_Success);
+    }];
+    [mockService verify];
+    DinnerDTO *dinner = dinnerManager.dinners[1];
+    XCTAssertEqualObjects([dinner.orders firstObject],[self mockOrderPostResult]);
+    [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
 - (void)testSendNotificationWhenUpdateArrives {
   DinnerManager *dinnerManager = [DinnerManager new];
   id mock = [OCMockObject observerMock];
@@ -173,6 +200,15 @@
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
   return @[dinner1, dinner2];
+}
+
+- (OrderDTO *)mockOrderPostResult{
+    OrderDTO *order = [OrderDTO new];
+    order.order = @"testOrder";
+    order.owner = @"testOwner";
+    order.orderId = 42;
+    order.owned = YES;
+    return order;
 }
 
 - (NSMutableArray *)sortedMockDinnerArray {

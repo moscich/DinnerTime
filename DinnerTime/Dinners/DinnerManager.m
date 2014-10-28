@@ -59,8 +59,18 @@
   }];
 }
 
-- (void)postOrder:(NSString *)order {
-
+- (void)postOrder:(NSString *)string withCallback:(void (^)(DinnerServiceResultType type))callback {
+    [self.dinnerTimeService postOrder:string withCallback:^(OrderDTO *order) {
+        int dinnerId = self.orderListManager.dinnerId;
+        for(DinnerDTO *dinner in self.dinners){
+            if(dinner.dinnerId == dinnerId){
+                if(!dinner.orders)
+                    dinner.orders = (NSArray <OrderDTO, Optional> *) @[];
+                dinner.orders = (NSArray <OrderDTO, Optional> *) [dinner.orders arrayByAddingObject:order];
+                callback(DinnerServiceResult_Success);
+            }
+        }
+    }];
 }
 
 - (NSMutableArray *)sortOwnedDinnersFirst:(NSArray *)inputArray {

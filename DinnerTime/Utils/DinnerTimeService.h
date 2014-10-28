@@ -10,6 +10,7 @@
 @class DinnerSessionBuilder;
 @class DinnerSessionManager;
 @class DinnerDTO;
+@class OrderDTO;
 
 @interface DinnerTimeService : NSObject
 
@@ -25,4 +26,6 @@
 - (void)getDinners:(void (^)(NSArray *))callback failure:(void (^)(DinnerServiceResultType))failure;
 
 - (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerDTO *))callback;
+
+- (void)postOrder:(NSString *)order withCallback:(void (^)(OrderDTO *))callback;
 @end

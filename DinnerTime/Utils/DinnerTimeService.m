@@ -10,6 +10,7 @@
 #import "SessionDTO.h"
 #import "DinnerArrayDTO.h"
 #import "DinnerDTO.h"
+#import "OrderDTO.h"
 
 @implementation DinnerTimeService {
 
@@ -60,4 +61,9 @@
       callback(dto);
   } failure:nil];
 }
+
+- (void)postOrder:(NSString *)order withCallback:(void (^)(OrderDTO *))callback {
+
+}
+
 @end

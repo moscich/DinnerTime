@@ -36,7 +36,9 @@
 }
 
 - (void)addNewOrderNamed:(NSString *)title {
-    [self.dinnerManager postOrder:title];
+    [self.dinnerManager postOrder:title withCallback:^(DinnerServiceResultType type) {
+        [self.tableView reloadData];
+    }];
 }
 
 @end

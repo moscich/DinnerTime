@@ -29,4 +29,12 @@
   XCTAssertEqual(orderListViewController.tableView.dataSource,manager.orderListManager);
 }
 
+- (void)testOrderListHasPlusButton{
+    DinnerManager *manager = [DinnerManager new];
+    OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:manager];
+    [orderListViewController view];
+    XCTAssertEqual(orderListViewController.navigationItem.rightBarButtonItem.action,@selector(addButtonTapped));
+    XCTAssertEqual(orderListViewController.navigationItem.rightBarButtonItem.target,orderListViewController);
+}
+
 @end

@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerTimeService.h"
@@ -86,6 +87,10 @@
 
 - (void)webSocketReceivedDinnerUpdate:(NSNumber *)dinnerID {
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"DinnerUpdate" object:nil]];
+}
+
+- (NSArray *)dinnerManagerDinners {
+    return self.dinners;
 }
 
 @end

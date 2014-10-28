@@ -14,12 +14,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.dinners.count;
+    return [self.dataSource dinnerManagerDinners].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DinnerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerCellIdentifier"];
-    DinnerDTO *dinner = self.dataSource.dinners[(NSUInteger) indexPath.row];
+    DinnerDTO *dinner = [self.dataSource dinnerManagerDinners][(NSUInteger) indexPath.row];
     cell.textLabel.text = dinner.title;
     cell.ownerLabel.text = dinner.owner;
     cell.ownerBackground.hidden = !dinner.owned;

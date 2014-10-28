@@ -24,6 +24,12 @@
   [super viewDidLoad];
 
   self.tableView.dataSource = self.dinnerManager.orderListManager;
+
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped)];
+}
+
+- (void)addButtonTapped {
+
 }
 
 @end

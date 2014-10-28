@@ -27,5 +27,5 @@
 
 - (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerDTO *))callback;
 
-- (void)postOrder:(NSString *)order withCallback:(void (^)(OrderDTO *))callback;
+- (void)postOrder:(NSString *)order withDinnerId:(int)dinnerId withCallback:(void (^)(OrderDTO *))callback;
 @end

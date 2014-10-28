@@ -63,7 +63,7 @@
         [invocation getArgument:&passedBlock atIndex:3];
         passedBlock(DinnerServiceResult_Success);
     };
-    [[[mockManager stub] andDo:proxyBlock ] postOrder:@"test" withCallback:OCMOCK_ANY];
+    [[[mockManager stub] andDo:proxyBlock] postOrder:@"test" withCallback:OCMOCK_ANY];
     [orderListViewController addNewOrderNamed:@"test"];
     [mockManager verify];
     [mockTableView verify];

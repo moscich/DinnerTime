@@ -62,8 +62,13 @@
   } failure:nil];
 }
 
-- (void)postOrder:(NSString *)order withCallback:(void (^)(OrderDTO *))callback {
-
+- (void)postOrder:(NSString *)order withDinnerId:(int)dinnerId withCallback:(void (^)(OrderDTO *))callback {
+    NSString *restAddress = [NSString stringWithFormat:@"/dinners/%d/orders",dinnerId];
+    [self.dinnerSessionManager POST:restAddress parameters:@{@"order":order} success:^(NSString *string) {
+        JSONModelError *error;
+        OrderDTO *orderDTO = [[OrderDTO alloc] initWithString:string error:&error];
+        callback(orderDTO);
+    } failure:nil];
 }
 
 @end

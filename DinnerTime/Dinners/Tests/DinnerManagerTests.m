@@ -151,10 +151,10 @@
     void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
         void (^passedBlock)(OrderDTO *);
         OrderDTO *order = [self mockOrderPostResult];
-        [invocation getArgument:&passedBlock atIndex:3];
+        [invocation getArgument:&passedBlock atIndex:4];
         passedBlock(order);
     };
-    [[[mockService stub] andDo:proxyBlock] postOrder:@"test" withCallback:OCMOCK_ANY];
+    [[[mockService stub] andDo:proxyBlock] postOrder:@"test" withDinnerId:2 withCallback:OCMOCK_ANY];
     dinnerManager.dinnerTimeService = mockService;
     XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
     [dinnerManager postOrder:@"test" withCallback:^(DinnerServiceResultType type) {

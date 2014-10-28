@@ -12,6 +12,7 @@
 #import "DinnerWebSocketManager.h"
 #import "DinnerListManager.h"
 #import "OrderListManager.h"
+#import "OrderDTO.h"
 
 @implementation DinnerManager {
 
@@ -60,11 +61,11 @@
 }
 
 - (void)postOrder:(NSString *)string withCallback:(void (^)(DinnerServiceResultType type))callback {
-    [self.dinnerTimeService postOrder:string withCallback:^(OrderDTO *order) {
-        int dinnerId = self.orderListManager.dinnerId;
-        for(DinnerDTO *dinner in self.dinners){
-            if(dinner.dinnerId == dinnerId){
-                if(!dinner.orders)
+    int dinnerId = self.orderListManager.dinnerId;
+    [self.dinnerTimeService postOrder:string withDinnerId:dinnerId withCallback:^(OrderDTO *order) {
+        for (DinnerDTO *dinner in self.dinners) {
+            if (dinner.dinnerId == dinnerId) {
+                if (!dinner.orders)
                     dinner.orders = (NSArray <OrderDTO, Optional> *) @[];
                 dinner.orders = (NSArray <OrderDTO, Optional> *) [dinner.orders arrayByAddingObject:order];
                 callback(DinnerServiceResult_Success);

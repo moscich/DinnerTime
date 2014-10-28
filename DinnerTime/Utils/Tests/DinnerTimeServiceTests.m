@@ -126,6 +126,27 @@
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
+- (void)testPostOrder{
+    DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+    id dinnerSessionManager = [OCMockObject mockForClass:[DinnerSessionManager class]];
+    dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
+    void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
+        void (^passedBlock)( NSString *);
+        [invocation getArgument: &passedBlock atIndex: 4];
+        passedBlock([self mockPOSTOrderResponse]);
+    };
+
+    XCTestExpectation *expectation = [self expectationWithDescription:@"callback expected"];
+
+    [((DinnerSessionManager *)[[dinnerSessionManager stub] andDo:proxyBlock]) POST:@"/dinners/42/orders" parameters:@{@"order":@"testOrder"} success:OCMOCK_ANY failure:OCMOCK_ANY];
+    [dinnerTimeService postOrder:@"testOrder" withDinnerId:42 withCallback:^(OrderDTO *dto) {
+        XCTAssertEqualObjects(dto, [self resultPOSTOrder]);
+        [expectation fulfill];
+    }];
+    [dinnerSessionManager verify];
+    [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
 - (NSArray *)mockResultOutputArray {
   DinnerDTO *dinner1 = [DinnerDTO new];
   dinner1.dinnerId = 1;
@@ -184,6 +205,15 @@
           "}";
 }
 
+- (NSString *)mockPOSTOrderResponse{
+    return @"{"
+            "    \"orderId\": 42,"
+            "    \"order\": \"Test title\","
+            "    \"owned\": true,"
+            "    \"owner\": \"Test user\""
+            "}";
+}
+
 - (NSString *)mockPOSTDinnerResponse{
   return @"{"
           "    \"dinnerId\": 11,"
@@ -191,6 +221,15 @@
           "    \"owned\": true,"
           "    \"owner\": \"Test user\""
           "}";
+}
+
+- (OrderDTO *)resultPOSTOrder{
+    OrderDTO *result = [OrderDTO new];
+    result.orderId = 42;
+    result.order = @"Test title";
+    result.owned = YES;
+    result.owner = @"Test user";
+    return result;
 }
 
 - (DinnerDTO *)resultPOSTDinner{

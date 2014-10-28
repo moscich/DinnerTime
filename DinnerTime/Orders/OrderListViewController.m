@@ -6,6 +6,7 @@
 #import "OrderListViewController.h"
 #import "DinnerManager.h"
 #import "OrderListManager.h"
+#import "AddOrderViewController.h"
 
 @implementation OrderListViewController {
 
@@ -29,7 +30,7 @@
 }
 
 - (void)addButtonTapped {
-
+    [self presentViewController:[AddOrderViewController new] animated:YES completion:nil];
 }
 
 @end

@@ -17,4 +17,5 @@
 - (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager;
 
 
+- (void)addButtonTapped;
 @end

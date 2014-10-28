@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "OrderListViewController.h"
 #import "DinnerManager.h"
 #import "OrderListManager.h"
+#import "AddOrderViewController.h"
 
 @interface OrderListViewControllerTests : XCTestCase
 
@@ -35,6 +37,17 @@
     [orderListViewController view];
     XCTAssertEqual(orderListViewController.navigationItem.rightBarButtonItem.action,@selector(addButtonTapped));
     XCTAssertEqual(orderListViewController.navigationItem.rightBarButtonItem.target,orderListViewController);
+}
+
+- (void)testNewOrderControllerPresented{
+    DinnerManager *manager = [DinnerManager new];
+    OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:manager];
+    id partialOrderListViewController = [OCMockObject partialMockForObject:orderListViewController];
+    [[partialOrderListViewController expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
+        return [obj isKindOfClass:[AddOrderViewController class]];
+    }] animated:YES completion:nil];
+    [orderListViewController addButtonTapped];
+    [partialOrderListViewController verify];
 }
 
 @end

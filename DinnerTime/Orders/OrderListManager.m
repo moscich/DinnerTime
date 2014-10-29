@@ -7,6 +7,8 @@
 #import "DinnerManager.h"
 #import "DinnerDTO.h"
 #import "OrderDTO.h"
+#import "DinnerCell.h"
+#import "DinnerSummaryCell.h"
 
 
 @implementation OrderListManager {
@@ -41,8 +43,9 @@
   for(DinnerDTO *dinner in dinners){
     if(dinner.dinnerId == self.dinnerId){
       if(indexPath.section == 0){
-        UITableViewCell *cell = [UITableViewCell new];
+        DinnerSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerSummaryCellIdentifier"];
         cell.textLabel.text = dinner.title;
+        cell.detailsLabel.text = dinner.details;
         return cell;
       }else{
         UITableViewCell *cell = [UITableViewCell new];

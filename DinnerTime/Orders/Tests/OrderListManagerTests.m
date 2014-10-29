@@ -14,6 +14,7 @@
 #import "OCMStubRecorder.h"
 #import "DinnerDTO.h"
 #import "OrderDTO.h"
+#import "DinnerSummaryCell.h"
 
 @interface OrderListManagerTests : XCTestCase
 
@@ -39,8 +40,11 @@
   id mockDataSource = [OCMockObject mockForProtocol:@protocol(DinnerManagerDataSource)];
   orderListManager.dataSource = mockDataSource;
   [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
-  UITableViewCell *cell = [orderListManager tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  UITableView *tableView = [UITableView new];
+  [tableView registerNib:[UINib nibWithNibName:@"DinnerSummaryCell" bundle:nil] forCellReuseIdentifier:@"DinnerSummaryCellIdentifier"];
+  DinnerSummaryCell *cell = (DinnerSummaryCell *) [orderListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text,@"MockTitle2");
+  XCTAssertEqualObjects(cell.detailsLabel.text,@"MockDetails2");
 }
 
 - (void)testThereAreTwoSections{
@@ -55,6 +59,7 @@
   dinner1.owned = YES;
   dinner1.owner = @"MockOwner";
   dinner1.title = @"MockTitle";
+  dinner1.details = @"MockDetails";
   OrderDTO *order1 = [OrderDTO new];
   order1.orderId = 1;
   order1.order = @"Order name";
@@ -71,6 +76,7 @@
   dinner2.owned = NO;
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
+  dinner2.details = @"MockDetails2";
   dinner2.orders = (NSArray <OrderDTO> *) @[order1, order2];
   return @[dinner1, dinner2];
 }

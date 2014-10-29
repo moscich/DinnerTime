@@ -23,10 +23,16 @@
   [self dismissViewControllerAnimated:YES completion:nil];
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.title = self.titleTextField.text;
+  dinner.details = self.detailTextView.text;
   [self.delegate addDinnerViewControllerCreatedDinner:dinner];
 }
 
 - (void)titleFieldDidChange:(UITextField *)textField {
-    self.sendButton.enabled = textField.text.length > 0;
+    self.sendButton.enabled = textField.text.length > 0 && self.detailTextView.text.length > 0;
 }
+
+- (void)textViewDidChange:(UITextView *)textView {
+  self.sendButton.enabled = textView.text.length > 0 && self.titleTextField.text.length > 0;
+}
+
 @end

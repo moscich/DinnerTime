@@ -15,4 +15,5 @@
 @property(nonatomic, copy) NSString *owner;
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, strong) NSArray <OrderDTO,Optional> *orders;
+@property(nonatomic, copy) NSString *details;
 @end

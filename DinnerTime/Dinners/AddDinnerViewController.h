@@ -12,12 +12,13 @@
 - (void)addDinnerViewControllerCreatedDinner:(DinnerDTO *)dinnerDTO;
 @end
 
-@interface AddDinnerViewController : UIViewController
+@interface AddDinnerViewController : UIViewController <UITextViewDelegate>
 @property (nonatomic, weak) IBOutlet UITextField *titleTextField;
-@property (nonatomic, weak) IBOutlet UITextView *textView;
+@property (nonatomic, weak) IBOutlet UITextView *detailTextView;
 @property (nonatomic, weak) IBOutlet UIButton *sendButton;
 
 @property(nonatomic, strong) id <AddDinnerViewControllerDelegate> delegate;
+
 
 - (IBAction)cancelButtonTapped;
 - (IBAction)sendButtonTapped:(id)sender;

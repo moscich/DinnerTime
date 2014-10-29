@@ -109,6 +109,7 @@
   dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.title = @"mockTitle";
+  dinner.details = @"mockSummary";
   XCTestExpectation *expectation = [self expectationWithDescription:@"dinnerCallback"];
 
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
@@ -117,7 +118,7 @@
     passedBlock([self mockPOSTDinnerResponse]);
   };
 
-  [((DinnerSessionManager *)[[dinnerSessionManager stub] andDo:proxyBlock ]) POST:@"/dinners" parameters:@{@"title" : @"mockTitle"} success:OCMOCK_ANY failure:OCMOCK_ANY];
+  [((DinnerSessionManager *)[[dinnerSessionManager stub] andDo:proxyBlock ]) POST:@"/dinners" parameters:@{@"title" : @"mockTitle", @"details":@"mockSummary"} success:OCMOCK_ANY failure:OCMOCK_ANY];
   [dinnerTimeService postDinner:dinner withCallback:^(DinnerDTO *dinnerDTO){
     XCTAssertEqualObjects(dinnerDTO, [self resultPOSTDinner]);
     [expectation fulfill];
@@ -181,6 +182,7 @@
           "         \"title\":\"MockTitle\","
           "         \"owner\":\"MockOwner\","
           "         \"owned\":true,"
+          "         \"details\":\"mockSummary\","
           "         \"orders\": ["
           "           {"
           "                \"orderId\": 1,"
@@ -199,6 +201,7 @@
           "         \"dinnerId\":2,"
           "         \"title\":\"MockTitle2\","
           "         \"owner\":\"MockOwner2\","
+          "         \"details\":\"mockSummary\","
           "         \"owned\":false,"
           "         \"orders\":[]"
           "      }]"
@@ -218,6 +221,7 @@
   return @"{"
           "    \"dinnerId\": 11,"
           "    \"title\": \"Test title\","
+          "    \"details\":\"mockSummary\","
           "    \"owned\": true,"
           "    \"owner\": \"Test user\""
           "}";
@@ -236,6 +240,7 @@
   DinnerDTO *result = [DinnerDTO new];
   result.dinnerId = 11;
   result.title = @"Test title";
+  result.details = @"mockSummary";
   result.owned = YES;
   result.owner = @"Test user";
   return result;

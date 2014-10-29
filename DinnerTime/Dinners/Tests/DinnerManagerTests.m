@@ -100,6 +100,7 @@
     return obj == dinner;
   }]                                         withCallback:OCMOCK_ANY];
   [dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+    XCTAssertEqual(type, DinnerServiceResult_Success);
     [expectation fulfill];
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];

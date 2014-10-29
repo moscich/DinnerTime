@@ -9,7 +9,7 @@
 
 @interface DinnerSummaryCell : UITableViewCell
 
-@property(nonatomic, strong) IBOutlet UILabel *textLabel;
+@property (nonatomic, strong) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet UILabel *detailsLabel;
-
+@property (nonatomic, weak) IBOutlet UILabel *ownerLabel;
 @end

@@ -46,6 +46,7 @@
         DinnerSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerSummaryCellIdentifier"];
         cell.textLabel.text = dinner.title;
         cell.detailsLabel.text = dinner.details;
+        cell.ownerLabel.text = dinner.owner;
         return cell;
       }else{
         UITableViewCell *cell = [UITableViewCell new];

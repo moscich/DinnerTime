@@ -7,33 +7,47 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DinnerSummaryCell">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="461" height="116"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxm-KH-x4M">
-                    <rect key="frame" x="8" y="8" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dinner Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxm-KH-x4M">
+                    <rect key="frame" x="8" y="8" width="115" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.61960784313725492" green="0.67843137254901964" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8d-lc-w0z">
-                    <rect key="frame" x="8" y="37" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Owner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fw-0B-9zG">
+                    <rect key="frame" x="8" y="40" width="78" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.45882352941176469" green="0.52156862745098043" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8d-lc-w0z">
+                    <rect key="frame" x="8" y="64" width="445" height="32"/>
+                    <string key="text">Delightfull details of the dinner served. Hour of order added and so on Delightfull details of the dinner served. Hour of order added and so on</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.45882352941176469" green="0.52156862745098043" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.34509803921568627" green="0.396078431372549" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vxm-KH-x4M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="H6E-YK-1GT"/>
+                <constraint firstAttribute="trailing" secondItem="r8d-lc-w0z" secondAttribute="trailing" constant="8" id="JkZ-dd-hB0"/>
                 <constraint firstItem="r8d-lc-w0z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="L19-9N-0OS"/>
-                <constraint firstItem="r8d-lc-w0z" firstAttribute="top" secondItem="vxm-KH-x4M" secondAttribute="bottom" constant="8" id="P3M-A7-qvk"/>
                 <constraint firstItem="vxm-KH-x4M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QgV-dT-6nP"/>
+                <constraint firstItem="r8d-lc-w0z" firstAttribute="top" secondItem="4fw-0B-9zG" secondAttribute="bottom" constant="8" id="fZ3-V0-Pg3"/>
+                <constraint firstItem="4fw-0B-9zG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="pBd-PY-dks"/>
+                <constraint firstItem="4fw-0B-9zG" firstAttribute="top" secondItem="vxm-KH-x4M" secondAttribute="bottom" constant="8" id="ztF-Tv-UKD"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="detailsLabel" destination="r8d-lc-w0z" id="yZM-2u-5cr"/>
+                <outlet property="ownerLabel" destination="4fw-0B-9zG" id="FcL-kd-doI"/>
                 <outlet property="textLabel" destination="vxm-KH-x4M" id="uWx-rr-g3O"/>
             </connections>
+            <point key="canvasLocation" x="320.5" y="154"/>
         </view>
     </objects>
 </document>

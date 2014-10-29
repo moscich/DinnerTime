@@ -45,6 +45,7 @@
   DinnerSummaryCell *cell = (DinnerSummaryCell *) [orderListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text,@"MockTitle2");
   XCTAssertEqualObjects(cell.detailsLabel.text,@"MockDetails2");
+  XCTAssertEqualObjects(cell.ownerLabel.text,@"MockOwner2");
 }
 
 - (void)testThereAreTwoSections{

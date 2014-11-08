@@ -46,8 +46,6 @@
   XCTAssertEqualObjects(cell.textLabel.text,@"MockTitle2");
   XCTAssertEqualObjects(cell.detailsLabel.text,@"MockDetails2");
   XCTAssertEqualObjects(cell.ownerLabel.text,@"MockOwner2");
-//  XCTAssertEqual([orderListManager tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]],44);
-//  XCTAssertNotEqual([orderListManager tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]],44);
 }
 
 - (void)testThereAreTwoSections{

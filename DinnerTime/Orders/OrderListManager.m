@@ -24,12 +24,6 @@
   return self;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//  if(indexPath.section == 1)
-//    return 44;
-//
-//}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 2;
 }

@@ -26,7 +26,7 @@
   OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
   id mockDataSource = [OCMockObject mockForProtocol:@protocol(DinnerManagerDataSource)];
   orderListManager.dataSource = mockDataSource;
-  [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
+  [[[mockDataSource stub] andReturn:[self mockDinner42]] dinnerWithId:42];
 
   int numberOfRows = [orderListManager tableView:nil numberOfRowsInSection:1];
   XCTAssertEqual(numberOfRows, 2);
@@ -35,17 +35,19 @@
   XCTAssertEqualObjects(cell.textLabel.text,@"Test order");
 }
 
-- (void)testFirstSectionHaveDinnerInfo{
+- (void)testFirstSectionHaveDinnerInfoAndProperHeight{
   OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
   id mockDataSource = [OCMockObject mockForProtocol:@protocol(DinnerManagerDataSource)];
   orderListManager.dataSource = mockDataSource;
-  [[[mockDataSource stub] andReturn:[self mockResultOutputArray]] dinnerManagerDinners];
+  [[[mockDataSource stub] andReturn:[self mockDinner42]] dinnerWithId:42];
   UITableView *tableView = [UITableView new];
   [tableView registerNib:[UINib nibWithNibName:@"DinnerSummaryCell" bundle:nil] forCellReuseIdentifier:@"DinnerSummaryCellIdentifier"];
   DinnerSummaryCell *cell = (DinnerSummaryCell *) [orderListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text,@"MockTitle2");
   XCTAssertEqualObjects(cell.detailsLabel.text,@"MockDetails2");
   XCTAssertEqualObjects(cell.ownerLabel.text,@"MockOwner2");
+//  XCTAssertEqual([orderListManager tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]],44);
+//  XCTAssertNotEqual([orderListManager tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]],44);
 }
 
 - (void)testThereAreTwoSections{
@@ -54,13 +56,13 @@
   XCTAssertEqual([orderListManager tableView:nil numberOfRowsInSection:0],1);
 }
 
-- (NSArray *)mockResultOutputArray {
-  DinnerDTO *dinner1 = [DinnerDTO new];
-  dinner1.dinnerId = 16;
-  dinner1.owned = YES;
-  dinner1.owner = @"MockOwner";
-  dinner1.title = @"MockTitle";
-  dinner1.details = @"MockDetails";
+- (DinnerDTO *)mockDinner42{
+  DinnerDTO *dinner = [DinnerDTO new];
+  dinner.dinnerId = 42;
+  dinner.owned = NO;
+  dinner.owner = @"MockOwner2";
+  dinner.title = @"MockTitle2";
+  dinner.details = @"MockDetails2";
   OrderDTO *order1 = [OrderDTO new];
   order1.orderId = 1;
   order1.order = @"Order name";
@@ -71,15 +73,8 @@
   order2.order = @"Test order";
   order2.owner = @"Test owner 2";
   order2.owned = NO;
-  dinner1.orders = (NSArray <OrderDTO> *) @[];
-  DinnerDTO *dinner2 = [DinnerDTO new];
-  dinner2.dinnerId = 42;
-  dinner2.owned = NO;
-  dinner2.owner = @"MockOwner2";
-  dinner2.title = @"MockTitle2";
-  dinner2.details = @"MockDetails2";
-  dinner2.orders = (NSArray <OrderDTO> *) @[order1, order2];
-  return @[dinner1, dinner2];
+  dinner.orders = (NSArray <OrderDTO> *) @[order1, order2];
+  return dinner;
 }
 
 @end

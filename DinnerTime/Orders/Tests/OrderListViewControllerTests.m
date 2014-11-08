@@ -22,14 +22,16 @@
 @implementation OrderListViewControllerTests
 
 
-- (void)testOrderListHasATableViewAndSetsItsDataSource {
+- (void)testOrderListHasATableViewAndSetsItsDataSourceAndDelegate {
   DinnerManager *manager = [DinnerManager new];
   manager.orderListManager = [OrderListManager new];
   OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:manager];
   [orderListViewController view];
   XCTAssertNotNil(orderListViewController.tableView);
   XCTAssertNotNil(orderListViewController.tableView.dataSource);
+  XCTAssertNotNil(orderListViewController.tableView.delegate);
   XCTAssertEqual(orderListViewController.tableView.dataSource, manager.orderListManager);
+  XCTAssertEqual(orderListViewController.tableView.delegate, manager.orderListManager);
 }
 
 - (void)testProperlyRegistersNibInTableView{

@@ -21,6 +21,7 @@
 
 @protocol DinnerManagerDataSource
 - (NSArray *)dinnerManagerDinners;
+- (DinnerDTO *)dinnerWithId:(int)dinnerId;
 @end
 
 @interface DinnerManager : NSObject <UITableViewDelegate, DinnerWebSocketManagerDelegate, DinnerManagerDataSource>

@@ -108,4 +108,12 @@
     return self.dinners;
 }
 
+- (DinnerDTO *)dinnerWithId:(int)dinnerId {
+  for(DinnerDTO *dinner in self.dinners){
+    if(dinner.dinnerId == dinnerId)
+      return dinner;
+  }
+  return nil;
+}
+
 @end

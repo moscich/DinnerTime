@@ -8,7 +8,7 @@
 
 @protocol DinnerManagerDataSource;
 
-@interface OrderListManager : NSObject <UITableViewDataSource>
+@interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate>
 @property(nonatomic, assign) int dinnerId;
 
 @property(nonatomic, weak) id <DinnerManagerDataSource> dataSource;

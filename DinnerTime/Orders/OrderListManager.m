@@ -14,6 +14,7 @@
 @implementation OrderListManager {
 
 }
+
 - (instancetype)initWithDinnerId:(int)dinnerId {
   self = [super init];
   if (self) {
@@ -23,40 +24,37 @@
   return self;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//  if(indexPath.section == 1)
+//    return 44;
+//
+//}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if(section == 0)
+  if (section == 0)
     return 1;
-  NSArray *dinners = [self.dataSource dinnerManagerDinners];
-  for(DinnerDTO *dinner in dinners){
-    if(dinner.dinnerId == self.dinnerId)
-      return dinner.orders.count;
-  }
-  return 0;
+  DinnerDTO *dinner = [self.dataSource dinnerWithId:self.dinnerId];
+  return dinner.orders.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSArray *dinners = [self.dataSource dinnerManagerDinners];
-  for(DinnerDTO *dinner in dinners){
-    if(dinner.dinnerId == self.dinnerId){
-      if(indexPath.section == 0){
-        DinnerSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerSummaryCellIdentifier"];
-        cell.textLabel.text = dinner.title;
-        cell.detailsLabel.text = dinner.details;
-        cell.ownerLabel.text = dinner.owner;
-        return cell;
-      }else{
-        UITableViewCell *cell = [UITableViewCell new];
-        cell.textLabel.text = ((OrderDTO *)dinner.orders[(NSUInteger) indexPath.row]).order;
-        return cell;
-      }
-    }
+  DinnerDTO *dinner = [self.dataSource dinnerWithId:self.dinnerId];
+  if (indexPath.section == 0) {
+    DinnerSummaryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DinnerSummaryCellIdentifier"];
+    cell.textLabel.text = dinner.title;
+    cell.detailsLabel.text = dinner.details;
+    cell.ownerLabel.text = dinner.owner;
+    return cell;
+  } else {
+    UITableViewCell *cell = [UITableViewCell new];
+    cell.textLabel.text = ((OrderDTO *) dinner.orders[(NSUInteger) indexPath.row]).order;
+    return cell;
   }
-
-      return nil;
+  return nil;
 }
 
 

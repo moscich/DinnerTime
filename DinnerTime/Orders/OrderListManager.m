@@ -44,7 +44,7 @@
     cell.ownerLabel.text = dinner.owner;
     return cell;
   } else {
-    UITableViewCell *cell = [UITableViewCell new];
+    UITableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] firstObject];
     cell.textLabel.text = ((OrderDTO *) dinner.orders[(NSUInteger) indexPath.row]).order;
     return cell;
   }

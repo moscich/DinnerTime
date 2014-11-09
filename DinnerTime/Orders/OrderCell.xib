@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OrderCell">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoR-er-IB6">
+                    <rect key="frame" x="0.0" y="0.0" width="339" height="60"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="iJ9-ft-TBq">
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Delete">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-DY-jAg">
+                            <color key="backgroundColor" red="0.42745098039215684" green="0.79607843137254897" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Paid">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-GL-q69">
+                            <rect key="frame" x="0.0" y="0.0" width="339" height="60"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-CX-TCt">
+                                    <rect key="frame" x="8" y="19" width="91" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17,10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DS-Fl-O5P">
+                                    <rect key="frame" x="288" y="19" width="43" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="4DS-Fl-O5P" secondAttribute="trailing" constant="8" id="44P-BG-wE9"/>
+                                <constraint firstAttribute="centerY" secondItem="2Hp-CX-TCt" secondAttribute="centerY" id="Jux-PN-EVo"/>
+                                <constraint firstAttribute="centerY" secondItem="4DS-Fl-O5P" secondAttribute="centerY" id="iBJ-ij-B1d"/>
+                                <constraint firstItem="2Hp-CX-TCt" firstAttribute="leading" secondItem="dOb-GL-q69" secondAttribute="leading" constant="8" id="m2X-er-S0y"/>
+                            </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="jIQ-dm-sZw" appends="YES" id="hxK-by-eaM"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="4yf-DY-jAg" secondAttribute="bottom" id="21k-Ih-Uqc"/>
+                        <constraint firstItem="iJ9-ft-TBq" firstAttribute="top" secondItem="qoR-er-IB6" secondAttribute="top" id="3Bk-Gu-E7o"/>
+                        <constraint firstAttribute="trailing" secondItem="iJ9-ft-TBq" secondAttribute="trailing" id="3Pg-Xx-59l"/>
+                        <constraint firstAttribute="bottom" secondItem="dOb-GL-q69" secondAttribute="bottom" id="4h5-sY-2bB"/>
+                        <constraint firstItem="iJ9-ft-TBq" firstAttribute="leading" secondItem="4yf-DY-jAg" secondAttribute="trailing" id="L8x-Hh-zGG"/>
+                        <constraint firstAttribute="bottom" secondItem="iJ9-ft-TBq" secondAttribute="bottom" id="MOC-lE-9jI"/>
+                        <constraint firstItem="dOb-GL-q69" firstAttribute="leading" secondItem="qoR-er-IB6" secondAttribute="leading" id="NCL-y7-wg1"/>
+                        <constraint firstAttribute="trailing" secondItem="4yf-DY-jAg" secondAttribute="trailing" id="XaR-a8-UH3"/>
+                        <constraint firstItem="iJ9-ft-TBq" firstAttribute="width" secondItem="4yf-DY-jAg" secondAttribute="width" id="YA1-Ci-7eD"/>
+                        <constraint firstItem="dOb-GL-q69" firstAttribute="top" secondItem="qoR-er-IB6" secondAttribute="top" id="aJD-LX-oQG"/>
+                        <constraint firstItem="dOb-GL-q69" firstAttribute="width" secondItem="qoR-er-IB6" secondAttribute="width" id="agj-ol-nKb"/>
+                        <constraint firstItem="4yf-DY-jAg" firstAttribute="top" secondItem="qoR-er-IB6" secondAttribute="top" id="oFi-vw-c7T"/>
+                        <constraint firstItem="4yf-DY-jAg" firstAttribute="leading" secondItem="dOb-GL-q69" secondAttribute="trailing" id="quD-N1-Q0d"/>
+                        <constraint firstAttribute="height" constant="60" id="tc7-oq-qrc"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="XaR-a8-UH3"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qoR-er-IB6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1UW-pZ-rbD"/>
+                <constraint firstItem="qoR-er-IB6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="40T-x4-ieZ"/>
+                <constraint firstAttribute="trailing" secondItem="qoR-er-IB6" secondAttribute="trailing" id="LAG-0p-L2a"/>
+                <constraint firstAttribute="bottom" secondItem="qoR-er-IB6" secondAttribute="bottom" id="nGh-2I-xn7"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftMarginConstraint" destination="NCL-y7-wg1" id="CWU-n0-6co"/>
+                <outlet property="paidDeleteSpaceConstraint" destination="L8x-Hh-zGG" id="tiA-wr-slt"/>
+                <outlet property="paidRightMarginSpaceConstraint" destination="XaR-a8-UH3" id="P13-yX-eCU"/>
+            </connections>
+            <point key="canvasLocation" x="321.5" y="-77"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="jIQ-dm-sZw">
+            <connections>
+                <action selector="receivedPanGesture:" destination="iN0-l3-epB" id="fLQ-X5-9IJ"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+</document>

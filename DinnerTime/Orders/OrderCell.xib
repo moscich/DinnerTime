@@ -26,12 +26,15 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="presentNewCellState" destination="iN0-l3-epB" eventType="touchUpInside" id="LMC-Vr-b1a"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-GL-q69">
                             <rect key="frame" x="0.0" y="0.0" width="339" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hp-CX-TCt">
-                                    <rect key="frame" x="8" y="19" width="91" height="21"/>
+                                    <rect key="frame" x="20" y="8" width="91" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
@@ -42,18 +45,24 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paidDot" translatesAutoresizingMaskIntoConstraints="NO" id="JfQ-l1-QI7">
+                                    <rect key="frame" x="5" y="14" width="10" height="10"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="7jP-gj-07d"/>
+                                        <constraint firstAttribute="width" constant="10" id="XPX-29-9sj"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="4DS-Fl-O5P" secondAttribute="trailing" constant="8" id="44P-BG-wE9"/>
-                                <constraint firstAttribute="centerY" secondItem="2Hp-CX-TCt" secondAttribute="centerY" id="Jux-PN-EVo"/>
+                                <constraint firstItem="JfQ-l1-QI7" firstAttribute="centerY" secondItem="2Hp-CX-TCt" secondAttribute="centerY" constant="0.5" id="5Kc-AG-5ZX"/>
+                                <constraint firstItem="2Hp-CX-TCt" firstAttribute="leading" secondItem="JfQ-l1-QI7" secondAttribute="trailing" constant="5" id="GcD-GU-Sol"/>
+                                <constraint firstItem="JfQ-l1-QI7" firstAttribute="leading" secondItem="dOb-GL-q69" secondAttribute="leading" constant="5" id="blj-C4-9CG"/>
                                 <constraint firstAttribute="centerY" secondItem="4DS-Fl-O5P" secondAttribute="centerY" id="iBJ-ij-B1d"/>
-                                <constraint firstItem="2Hp-CX-TCt" firstAttribute="leading" secondItem="dOb-GL-q69" secondAttribute="leading" constant="8" id="m2X-er-S0y"/>
+                                <constraint firstItem="2Hp-CX-TCt" firstAttribute="top" secondItem="dOb-GL-q69" secondAttribute="top" constant="8" id="ze9-hh-b5K"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="jIQ-dm-sZw" appends="YES" id="hxK-by-eaM"/>
-                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,6 +87,9 @@
                             <exclude reference="XaR-a8-UH3"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="jIQ-dm-sZw" appends="YES" id="lAs-wV-7uM"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -92,7 +104,9 @@
             <connections>
                 <outlet property="leftMarginConstraint" destination="NCL-y7-wg1" id="CWU-n0-6co"/>
                 <outlet property="paidDeleteSpaceConstraint" destination="L8x-Hh-zGG" id="tiA-wr-slt"/>
+                <outlet property="paidDot" destination="JfQ-l1-QI7" id="ufc-yc-5kQ"/>
                 <outlet property="paidRightMarginSpaceConstraint" destination="XaR-a8-UH3" id="P13-yX-eCU"/>
+                <outlet property="textLabel" destination="2Hp-CX-TCt" id="Oy6-wr-Kfq"/>
             </connections>
             <point key="canvasLocation" x="321.5" y="-77"/>
         </view>
@@ -102,4 +116,7 @@
             </connections>
         </panGestureRecognizer>
     </objects>
+    <resources>
+        <image name="paidDot" width="16" height="16"/>
+    </resources>
 </document>

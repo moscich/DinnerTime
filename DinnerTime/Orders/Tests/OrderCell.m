@@ -46,11 +46,10 @@
     if (!self.paidedButtonExpanded) {
       CGFloat gestureX = [panGesture locationInView:self].x;
       CGFloat x = self.startConstant + gestureX - self.startX;
-      NSLog(@"[panGesture velocityInView:self].x = %f", [panGesture velocityInView:self].x);
       if (x < -self.frame.size.width * 0.3 || [panGesture velocityInView:self].x < -10) {
         [self animateToButtonsOpened];
       } else if (x > -self.frame.size.width * 0.3 || [panGesture velocityInView:self].x > 0) {
-        [self animateToButtonsClosed];
+        [self closeButtons];
       }
     } else {
       [self presentNewCellState];
@@ -74,7 +73,7 @@
         initialSpringVelocity:0
                       options:UIViewAnimationOptionTransitionNone
                    animations:^{
-    [self.paidDeleteSpaceConstraint setActive:YES];
+    [self.deleteRightSpaceConstraint setActive:YES];
     [self.paidRightMarginSpaceConstraint setActive:NO];
     self.leftMarginConstraint.constant = 0;
     self.textLabel.textColor = [UIColor blackColor];
@@ -90,7 +89,7 @@
         initialSpringVelocity:0
                       options:UIViewAnimationOptionTransitionNone
                    animations:^{
-    [self.paidDeleteSpaceConstraint setActive:YES];
+    [self.deleteRightSpaceConstraint setActive:YES];
     [self.paidRightMarginSpaceConstraint setActive:NO];
     self.leftMarginConstraint.constant = 0;
     self.textLabel.textColor = [UIColor grayColor];
@@ -111,7 +110,7 @@
   } completion:nil];
 }
 
-- (void)animateToButtonsClosed {
+- (void)closeButtons {
   [UIView animateWithDuration:0.5
                         delay:0
        usingSpringWithDamping:0.5
@@ -130,7 +129,7 @@
         initialSpringVelocity:0
                       options:UIViewAnimationOptionTransitionNone
                    animations:^{
-    [self.paidDeleteSpaceConstraint setActive:YES];
+    [self.deleteRightSpaceConstraint setActive:YES];
     [self.paidRightMarginSpaceConstraint setActive:NO];
     [self layoutIfNeeded];
   } completion:nil];
@@ -144,7 +143,7 @@
         initialSpringVelocity:0
                       options:UIViewAnimationOptionTransitionNone
                    animations:^{
-    [self.paidDeleteSpaceConstraint setActive:NO];
+    [self.deleteRightSpaceConstraint setActive:NO];
     [self.paidRightMarginSpaceConstraint setActive:YES];
     [self layoutIfNeeded];
   } completion:nil];

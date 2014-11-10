@@ -30,6 +30,7 @@
   XCTAssertNotNil(orderListViewController.tableView);
   XCTAssertNotNil(orderListViewController.tableView.dataSource);
   XCTAssertNotNil(orderListViewController.tableView.delegate);
+  XCTAssertFalse(orderListViewController.tableView.allowsSelection);
   XCTAssertEqual(orderListViewController.tableView.dataSource, manager.orderListManager);
   XCTAssertEqual(orderListViewController.tableView.delegate, manager.orderListManager);
 }

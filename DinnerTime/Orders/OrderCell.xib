@@ -63,6 +63,9 @@
                                 <constraint firstAttribute="centerY" secondItem="4DS-Fl-O5P" secondAttribute="centerY" id="iBJ-ij-B1d"/>
                                 <constraint firstItem="2Hp-CX-TCt" firstAttribute="top" secondItem="dOb-GL-q69" secondAttribute="top" constant="8" id="ze9-hh-b5K"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="abm-sQ-vub" appends="YES" id="CFH-aW-pEV"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -102,8 +105,8 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="deleteRightSpaceConstraint" destination="3Pg-Xx-59l" id="E2V-57-k7b"/>
                 <outlet property="leftMarginConstraint" destination="NCL-y7-wg1" id="CWU-n0-6co"/>
-                <outlet property="paidDeleteSpaceConstraint" destination="L8x-Hh-zGG" id="tiA-wr-slt"/>
                 <outlet property="paidDot" destination="JfQ-l1-QI7" id="ufc-yc-5kQ"/>
                 <outlet property="paidRightMarginSpaceConstraint" destination="XaR-a8-UH3" id="P13-yX-eCU"/>
                 <outlet property="textLabel" destination="2Hp-CX-TCt" id="Oy6-wr-Kfq"/>
@@ -115,6 +118,11 @@
                 <action selector="receivedPanGesture:" destination="iN0-l3-epB" id="fLQ-X5-9IJ"/>
             </connections>
         </panGestureRecognizer>
+        <tapGestureRecognizer id="abm-sQ-vub">
+            <connections>
+                <action selector="closeButtons" destination="iN0-l3-epB" id="Dbx-Ul-7QU"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="paidDot" width="16" height="16"/>

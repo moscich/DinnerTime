@@ -13,6 +13,7 @@
 
 - (IBAction)receivedPanGesture:(UIPanGestureRecognizer *)panGesture;
 - (IBAction)presentNewCellState;
+- (IBAction)closeButtons;
 
 @property(nonatomic, strong) IBOutlet UILabel *textLabel;
 @property(nonatomic, strong) IBOutlet UIView *paidDot;
@@ -20,7 +21,7 @@
 @property (nonatomic, assign) BOOL paidedButtonExpanded;
 @property (nonatomic, assign) BOOL paided;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *leftMarginConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *paidDeleteSpaceConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *deleteRightSpaceConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *paidRightMarginSpaceConstraint;
 
 @end

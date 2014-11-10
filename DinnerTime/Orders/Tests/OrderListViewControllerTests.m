@@ -38,6 +38,7 @@
 - (void)testProperlyRegistersNibInTableView{
   id mockTableView = [OCMockObject niceMockForClass:[UITableView class]];
   [[mockTableView expect] registerNib:OCMOCK_ANY forCellReuseIdentifier:@"DinnerSummaryCellIdentifier"];
+  [[mockTableView expect] registerNib:OCMOCK_ANY forCellReuseIdentifier:@"OrderCellIdentifier"];
   OrderListViewController *orderListViewController = [OrderListViewController new];
   orderListViewController.tableView = mockTableView;
   [orderListViewController viewDidLoad];

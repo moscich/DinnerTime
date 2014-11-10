@@ -9,6 +9,7 @@
 #import "OrderDTO.h"
 #import "DinnerCell.h"
 #import "DinnerSummaryCell.h"
+#import "OrderCell.h"
 
 
 @implementation OrderListManager {
@@ -44,11 +45,25 @@
     cell.ownerLabel.text = dinner.owner;
     return cell;
   } else {
-    UITableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] firstObject];
+    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OrderCellIdentifier"];
     cell.textLabel.text = ((OrderDTO *) dinner.orders[(NSUInteger) indexPath.row]).order;
+    cell.delegate = self;
+    cell.tag = indexPath.row;
     return cell;
   }
   return nil;
+}
+
+- (void)orderWasPaid:(OrderCell *)orderCell {
+
+}
+
+- (void)orderWasUnpaid:(OrderCell *)orderCell {
+
+}
+
+- (void)orderWasDeleted:(OrderCell *)orderCell {
+
 }
 
 

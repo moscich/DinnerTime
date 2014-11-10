@@ -22,6 +22,17 @@
 
 @synthesize textLabel = _textLabel;
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeButtons)];
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(receivedPanGesture:)];
+    [self addGestureRecognizer:tapGestureRecognizer];
+    [self addGestureRecognizer:panGestureRecognizer];
+  }
+  return self;
+}
+
 - (IBAction)receivedPanGesture:(UIPanGestureRecognizer *)panGesture {
   if (panGesture.state == UIGestureRecognizerStateBegan) {
     self.startX = [panGesture locationOfTouch:0 inView:self].x;
@@ -52,19 +63,22 @@
         [self closeButtons];
       }
     } else {
-      [self presentNewCellState];
+      [self changePaidState];
     }
   }
 }
 
-- (void)presentNewCellState {
-  if (!self.paided)
+- (void)changePaidState {
+  if (!self.paided){
     [self transitionIntoPaidCell];
-  else
+    [self.delegate orderWasPaid:self];
+  }
+  else{
     [self transitionIntoNotPaidCell];
+    [self.delegate orderWasUnpaid:self];
+  }
   self.paided = !self.paided;
 }
-
 
 - (void)transitionIntoNotPaidCell {
   [UIView animateWithDuration:0.5

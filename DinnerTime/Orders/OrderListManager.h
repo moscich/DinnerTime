@@ -5,10 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "OrderCell.h"
 
 @protocol DinnerManagerDataSource;
 
-@interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate, OrderCellDelegate>
 @property(nonatomic, assign) int dinnerId;
 
 @property(nonatomic, weak) id <DinnerManagerDataSource> dataSource;

@@ -13,21 +13,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoR-er-IB6">
                     <rect key="frame" x="0.0" y="0.0" width="339" height="60"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="iJ9-ft-TBq">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="iJ9-ft-TBq">
                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Delete">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-DY-jAg">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-DY-jAg">
                             <color key="backgroundColor" red="0.42745098039215684" green="0.79607843137254897" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Paid">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="presentNewCellState" destination="iN0-l3-epB" eventType="touchUpInside" id="LMC-Vr-b1a"/>
+                                <action selector="changePaidState" destination="iN0-l3-epB" eventType="touchUpInside" id="LMC-Vr-b1a"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOb-GL-q69">
@@ -63,9 +63,6 @@
                                 <constraint firstAttribute="centerY" secondItem="4DS-Fl-O5P" secondAttribute="centerY" id="iBJ-ij-B1d"/>
                                 <constraint firstItem="2Hp-CX-TCt" firstAttribute="top" secondItem="dOb-GL-q69" secondAttribute="top" constant="8" id="ze9-hh-b5K"/>
                             </constraints>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="abm-sQ-vub" appends="YES" id="CFH-aW-pEV"/>
-                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,9 +87,6 @@
                             <exclude reference="XaR-a8-UH3"/>
                         </mask>
                     </variation>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="jIQ-dm-sZw" appends="YES" id="lAs-wV-7uM"/>
-                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -113,16 +107,6 @@
             </connections>
             <point key="canvasLocation" x="321.5" y="-77"/>
         </view>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="jIQ-dm-sZw">
-            <connections>
-                <action selector="receivedPanGesture:" destination="iN0-l3-epB" id="fLQ-X5-9IJ"/>
-            </connections>
-        </panGestureRecognizer>
-        <tapGestureRecognizer id="abm-sQ-vub">
-            <connections>
-                <action selector="closeButtons" destination="iN0-l3-epB" id="Dbx-Ul-7QU"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="paidDot" width="16" height="16"/>

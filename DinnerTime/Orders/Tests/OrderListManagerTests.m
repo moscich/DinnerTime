@@ -15,6 +15,7 @@
 #import "DinnerDTO.h"
 #import "OrderDTO.h"
 #import "DinnerSummaryCell.h"
+#import "OrderCell.h"
 
 @interface OrderListManagerTests : XCTestCase
 
@@ -31,7 +32,12 @@
   int numberOfRows = [orderListManager tableView:nil numberOfRowsInSection:1];
   XCTAssertEqual(numberOfRows, 2);
 
-  UITableViewCell *cell = [orderListManager tableView:nil cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
+  UITableView *tableView = [UITableView new];
+  [tableView registerNib:[UINib nibWithNibName:@"OrderCell" bundle:nil] forCellReuseIdentifier:@"OrderCellIdentifier"];
+  OrderCell *cell = (OrderCell *) [orderListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:1]];
+  XCTAssertEqual(cell.gestureRecognizers.count, 2);
+  XCTAssertEqual(cell.tag, 1);
+  XCTAssertEqual(cell.delegate, orderListManager);
   XCTAssertEqualObjects(cell.textLabel.text,@"Test order");
 }
 

@@ -5,9 +5,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-#import <AFNetworking/AFHTTPRequestOperationManager.h>
 #import "DinnerTimeService.h"
-#import "HttpSessionManagerSpy.h"
 #import "UICKeyChainStore.h"
 #import "DinnerDTO.h"
 #import "DinnerSessionBuilder.h"
@@ -149,7 +147,12 @@
 }
 
 - (void)testPutOrder {
-  XCTFail(@"implement me ");
+  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
+  id dinnerSessionManager = [OCMockObject mockForClass:[DinnerSessionManager class]];
+  dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
+  [((DinnerSessionManager *)[dinnerSessionManager expect]) PUT:@"dinners/orders/24" parameters:@{@"completed":@YES} success:OCMOCK_ANY failure:OCMOCK_ANY];
+  [dinnerTimeService changeOrderWithId:@24 toPaid:@YES];
+  [dinnerSessionManager verify];
 }
 
 - (NSArray *)mockResultOutputArray {

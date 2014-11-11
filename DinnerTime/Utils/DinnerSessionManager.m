@@ -37,6 +37,14 @@
   }];
 }
 
+- (void)PUT:(NSString *)address parameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSError *))failure {
+  [self addSessionToHeader];
+  [self.sessionManager PUT:address parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+
+  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+  }];
+}
 - (void)addSessionToHeader {
   if (self.sessionId)
     [self.sessionManager.requestSerializer setValue:self.sessionId forHTTPHeaderField:@"session_id"];
@@ -46,5 +54,4 @@
   NSString *jsonString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
   success(jsonString);
 }
-
 @end

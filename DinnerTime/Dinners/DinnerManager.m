@@ -118,7 +118,9 @@
 }
 
 - (void)orderWasPaid:(NSNumber *)orderId {
-  [self.dinnerTimeService changeOrderWithId:orderId toPaid:@YES];
+  DinnerDTO *dinner = [self dinnerWithId:self.orderListManager.dinnerId];
+  OrderDTO *order = dinner.orders[(NSUInteger) [orderId intValue]];
+  [self.dinnerTimeService changeOrderWithId:@(order.orderId) toPaid:@YES];
 }
 
 @end

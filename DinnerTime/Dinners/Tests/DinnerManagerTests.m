@@ -158,7 +158,7 @@
   id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
     void (^passedBlock)(OrderDTO *);
-    OrderDTO *order = [self mockOrderPostResult];
+    OrderDTO *order = [self mockOrderPostResultWithID:42];
     [invocation getArgument:&passedBlock atIndex:4];
     passedBlock(order);
   };
@@ -171,7 +171,7 @@
   }];
   [mockService verify];
   DinnerDTO *dinner = dinnerManager.dinners[1];
-  XCTAssertEqualObjects([dinner.orders firstObject], [self mockOrderPostResult]);
+  XCTAssertEqualObjects([dinner.orders firstObject], [self mockOrderPostResultWithID:42]);
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
@@ -199,10 +199,13 @@
 
 - (void)testChangeOrderStateSendToDinnerService {
   DinnerManager *dinnerManager = [DinnerManager new];
+  OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:2];
+  dinnerManager.dinners = [[self mockResultOutputArray] mutableCopy];
+  dinnerManager.orderListManager = orderListManager;
   id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
   dinnerManager.dinnerTimeService = mockService;
-  [[mockService expect] changeOrderWithId:@42 toPaid:@YES];
-  [dinnerManager orderWasPaid:@42];
+  [[mockService expect] changeOrderWithId:@24 toPaid:@YES];
+  [dinnerManager orderWasPaid:@1];
   [mockService verify];
 }
 
@@ -217,15 +220,15 @@
   dinner2.owned = YES;
   dinner2.owner = @"MockOwner2";
   dinner2.title = @"MockTitle2";
-  dinner2.orders = (NSArray <OrderDTO, Optional> *) @[[self mockOrderPostResult], [self mockOrderPostResult]];
+  dinner2.orders = (NSArray <OrderDTO, Optional> *) @[[self mockOrderPostResultWithID:42], [self mockOrderPostResultWithID:24]];
   return @[dinner1, dinner2];
 }
 
-- (OrderDTO *)mockOrderPostResult {
+- (OrderDTO *)mockOrderPostResultWithID:(int)orderID {
   OrderDTO *order = [OrderDTO new];
   order.order = @"testOrder";
   order.owner = @"testOwner";
-  order.orderId = 42;
+  order.orderId = orderID;
   order.owned = YES;
   return order;
 }

@@ -51,6 +51,9 @@
   [[mockRequestSerializer expect] setValue:@"mockSessionId" forHTTPHeaderField:@"session_id"];
   [dinnerSessionManager POST:nil parameters:nil success:nil failure:nil];
   [mockRequestSerializer verify];
+  [[mockRequestSerializer expect] setValue:@"mockSessionId" forHTTPHeaderField:@"session_id"];
+  [dinnerSessionManager PUT:nil parameters:nil success:nil failure:nil];
+  [mockRequestSerializer verify];
 }
 
 - (void)testDinnerSessionManagerPOST{
@@ -66,6 +69,18 @@
   XCTAssertEqualObjects(sessionManagerSpy.calledAddress,@"/login");
   XCTAssertEqualObjects(sessionManagerSpy.parameters,@{@"param1":@"value1"});
   [self waitForExpectationsWithTimeout:0 handler:nil];
+}
+
+- (void)testPUT{
+  id manager = [OCMockObject mockForClass:[AFHTTPSessionManager class]];
+  DinnerSessionManager *dinnerSessionManager = [[DinnerSessionManager alloc] initWithSessionManager:manager];
+  [((AFHTTPSessionManager *)[manager expect]) PUT:@"MockAddress" parameters:@{@"completed":@YES} success:OCMOCK_ANY failure:OCMOCK_ANY];
+  [dinnerSessionManager PUT:@"MockAddress" parameters:@{@"completed":@YES} success:^(NSString *string) {
+
+  } failure:^(NSError *error) {
+
+  }];
+  [manager verify];
 }
 
 - (void)testDontSetSessionIfNull{

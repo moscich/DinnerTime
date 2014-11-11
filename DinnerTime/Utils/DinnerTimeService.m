@@ -72,7 +72,9 @@
 }
 
 - (void)changeOrderWithId:(NSNumber *)orderId toPaid:(NSNumber *)paid {
+  NSString *restAddress = [NSString stringWithFormat:@"dinners/orders/%@", orderId];
 
+  [self.dinnerSessionManager PUT:restAddress parameters:@{@"completed":paid} success:^(NSString *string){} failure:^(NSError *error){}];
 }
 
 @end

@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "DinnerServiceResultType.h"
 #import "DinnerWebSocketManager.h"
+#import "OrderListManager.h"
 
 @protocol UITableViewDataSource;
 @protocol UITableViewDelegate;
@@ -24,7 +25,7 @@
 - (DinnerDTO *)dinnerWithId:(int)dinnerId;
 @end
 
-@interface DinnerManager : NSObject <UITableViewDelegate, DinnerWebSocketManagerDelegate, DinnerManagerDataSource>
+@interface DinnerManager : NSObject <UITableViewDelegate, DinnerWebSocketManagerDelegate, DinnerManagerDataSource, OrderListManagerDelegate>
 @property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
 @property(nonatomic, strong) DinnerWebSocketManager *webSocketManager;
 @property(nonatomic, strong) NSMutableArray *dinners;

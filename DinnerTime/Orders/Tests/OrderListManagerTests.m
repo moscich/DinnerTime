@@ -60,6 +60,18 @@
   XCTAssertEqual([orderListManager tableView:nil numberOfRowsInSection:0],1);
 }
 
+- (void)testCallsDelegate
+{
+  id delegate = [OCMockObject mockForProtocol:@protocol(OrderListManagerDelegate)];
+  OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:42];
+  orderListManager.delegate = delegate;
+  OrderCell *orderCell = [OrderCell new];
+  orderCell.tag = 42;
+  [[delegate expect] orderWasPaid:@42];
+  [orderListManager orderWasPaid:orderCell];
+  [delegate verify];
+}
+
 - (DinnerDTO *)mockDinner42{
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.dinnerId = 42;

@@ -9,9 +9,14 @@
 
 @protocol DinnerManagerDataSource;
 
+@protocol OrderListManagerDelegate
+- (void)orderWasPaid:(NSNumber *)orderId;
+@end
+
 @interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate, OrderCellDelegate>
 @property(nonatomic, assign) int dinnerId;
 
+@property(nonatomic, weak) id <OrderListManagerDelegate> delegate;
 @property(nonatomic, weak) id <DinnerManagerDataSource> dataSource;
 
 - (instancetype)initWithDinnerId:(int)dinnerId;

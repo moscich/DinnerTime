@@ -47,7 +47,7 @@
 }
 
 - (void)assertDinnerManagerHasProperOrders:(id <UITableViewDataSource>)dataSource {
-  XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:1],2);
+  XCTAssertEqual([dataSource tableView:nil numberOfRowsInSection:1], 2);
 }
 
 - (void)assertDinnerManagerProperDataSourceSortsDinnersProperly:(id <UITableViewDataSource>)dataSource {
@@ -194,6 +194,16 @@
   [mockDelegate verify];
   XCTAssertEqual(dinnerManager.orderListManager.dinnerId, 2);
   XCTAssertEqual(dinnerManager.orderListManager.dataSource, dinnerManager);
+  XCTAssertEqual(dinnerManager.orderListManager.delegate, dinnerManager);
+}
+
+- (void)testChangeOrderStateSendToDinnerService {
+  DinnerManager *dinnerManager = [DinnerManager new];
+  id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
+  dinnerManager.dinnerTimeService = mockService;
+  [[mockService expect] changeOrderWithId:@42 toPaid:@YES];
+  [dinnerManager orderWasPaid:@42];
+  [mockService verify];
 }
 
 - (NSArray *)mockResultOutputArray {

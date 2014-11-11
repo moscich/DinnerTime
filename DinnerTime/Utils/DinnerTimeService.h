@@ -28,4 +28,6 @@
 - (void)postDinner:(DinnerDTO *)dto withCallback:(void (^)(DinnerDTO *))callback;
 
 - (void)postOrder:(NSString *)order withDinnerId:(int)dinnerId withCallback:(void (^)(OrderDTO *))callback;
+
+- (void)changeOrderWithId:(NSNumber *)orderId toPaid:(NSNumber *)paid;
 @end

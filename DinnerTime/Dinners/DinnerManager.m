@@ -97,6 +97,7 @@
   DinnerDTO *dinner = self.dinners[(NSUInteger) indexPath.row];
   self.orderListManager = [[OrderListManager alloc] initWithDinnerId:dinner.dinnerId];
   self.orderListManager.dataSource = self;
+  self.orderListManager.delegate = self;
   [self.delegate dinnerManagerDidSelectDinner];
 }
 
@@ -114,6 +115,10 @@
       return dinner;
   }
   return nil;
+}
+
+- (void)orderWasPaid:(NSNumber *)orderId {
+  [self.dinnerTimeService changeOrderWithId:orderId toPaid:@YES];
 }
 
 @end

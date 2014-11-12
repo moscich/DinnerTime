@@ -11,6 +11,7 @@
 
 @protocol OrderListManagerDelegate
 - (void)orderWasPaid:(NSNumber *)orderId;
+- (void)orderWasUnpaid:(NSNumber *)orderId;
 @end
 
 @interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate, OrderCellDelegate>

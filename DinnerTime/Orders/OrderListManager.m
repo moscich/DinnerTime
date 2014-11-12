@@ -59,7 +59,7 @@
 }
 
 - (void)orderWasUnpaid:(OrderCell *)orderCell {
-
+  [self.delegate orderWasUnpaid:@(orderCell.tag)];
 }
 
 - (void)orderWasDeleted:(OrderCell *)orderCell {

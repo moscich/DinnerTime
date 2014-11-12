@@ -70,6 +70,9 @@
   [[delegate expect] orderWasPaid:@42];
   [orderListManager orderWasPaid:orderCell];
   [delegate verify];
+  [[delegate expect] orderWasUnpaid:@42];
+  [orderListManager orderWasUnpaid:orderCell];
+  [delegate verify];
 }
 
 - (DinnerDTO *)mockDinner42{

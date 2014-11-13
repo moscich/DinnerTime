@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class DinnerManager;
+@class TyphoonAssembly;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) TyphoonAssembly *assembly;
 
 
 @end

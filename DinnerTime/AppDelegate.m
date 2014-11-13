@@ -12,6 +12,8 @@
 #import "DinnerListViewController.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerTimeService.h"
+#import "DinnerManager.h"
+#import "TyphoonBlockComponentFactory.h"
 
 @interface AppDelegate ()
 
@@ -21,20 +23,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  // Override point for customization after application launch.
+//  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//  // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
 
-  UINavigationController *navigationController = [UINavigationController new];
-  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
-  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory defaultFactory];
+  NSLog(@"[TyphoonBlockComponentFactory defaultFactory] = %@", factory);
 
-  LoginViewController *loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
-  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:dinnerManager];
-  dinnerListViewController.loginManager = loginViewController.loginManager;
-  navigationController.viewControllers = @[loginViewController, dinnerListViewController];
-  self.window.rootViewController = navigationController;
+//  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[]];
+//  [factory makeDefault];
+
+//  UINavigationController *navigationController = [UINavigationController new];
+//  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
+//  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+//
+//  LoginViewController *loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
+//  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:dinnerManager];
+//  dinnerListViewController.loginManager = loginViewController.loginManager;
+//  navigationController.viewControllers = @[loginViewController, dinnerListViewController];
+//  self.window.rootViewController = navigationController;
 
   return YES;
 }

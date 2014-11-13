@@ -56,5 +56,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>TyphoonInitialAssemblies</key>
+	<array>
+		<string>ModelAssembly</string>
+		<string>ApplicationAssembly</string>
+		<string>DinnerTimeServiceAssembly</string>
+		<string>ControllerAssembly</string>
+	</array>
 </dict>
 </plist>

@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import <Typhoon/Typhoon.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
+#import "ApplicationAssembly.h"
+#import "ControllerAssembly.h"
+#import "ModelAssembly.h"
+#import "DinnerTimeServiceAssembly.h"
 
 @interface AppDelegateTests : XCTestCase
 
@@ -20,7 +25,8 @@
 @implementation AppDelegateTests
 
 - (void)testApplicationStartsWithProperControllersInNavigationStack {
-  AppDelegate *appDelegate = [AppDelegate new];
+  TyphoonComponentFactory * factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ControllerAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly]]];
+  AppDelegate *appDelegate = [factory componentForType:[AppDelegate class]];
   id partialAppDelegateMock = [OCMockObject partialMockForObject:appDelegate];
   id mockWindow = [OCMockObject niceMockForClass:[UIWindow class]];
   [[mockWindow expect] setRootViewController:[OCMArg checkWithBlock:^BOOL(id obj) {

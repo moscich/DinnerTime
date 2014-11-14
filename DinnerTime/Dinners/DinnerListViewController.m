@@ -27,12 +27,14 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveDinnerUpdate) name:@"DinnerUpdate" object:nil];
 }
 
-- (id)initWithDinnerManager:(DinnerManager *)dinnerManager {
-  self = [super init];
-  if(self){
-    self.dinnerManager = dinnerManager;
-  }
-  return self;
+- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager loginManager:(LoginManager *)loginManager {
+    self = [super init];
+    if (self) {
+        self.dinnerManager = dinnerManager;
+        self.loginManager = loginManager;
+    }
+
+    return self;
 }
 
 - (void)didReceiveDinnerUpdate {

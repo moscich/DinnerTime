@@ -15,6 +15,7 @@
 #import "DinnerSessionBuilder.h"
 #import "DinnerTimeService.h"
 #import <XCTest/XCTest.h>
+#import <Typhoon/TyphoonBlockComponentFactory.h>
 
 @interface LoginViewControllerTests : XCTestCase
 @property(nonatomic, strong) LoginViewController *loginViewController;
@@ -29,7 +30,7 @@
   DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
 
-  self.loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
+  self.loginViewController = [[TyphoonBlockComponentFactory defaultFactory] componentForType:[LoginViewController class]];
 }
 
 - (void)testLoginViewControllerRespondToDelegateSelector {

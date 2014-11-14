@@ -15,4 +15,5 @@
 
 - (TyphoonDefinition *)registerDinnerManager;
 
+- (TyphoonDefinition *)registerLoginManager;
 @end

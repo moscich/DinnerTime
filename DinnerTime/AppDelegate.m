@@ -7,6 +7,7 @@
 //
 
 #import <GooglePlus/GooglePlus.h>
+#import <Typhoon/TyphoonAssembly.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
@@ -28,8 +29,8 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
 
-  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory defaultFactory];
-  NSLog(@"[TyphoonBlockComponentFactory defaultFactory] = %@", factory);
+    [[self.assembly asFactory] makeDefault];
+    NSLog(@"[TyphoonBlockComponentFactory defaultFactory] = %@", [TyphoonBlockComponentFactory defaultFactory]);
 
 //  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[]];
 //  [factory makeDefault];

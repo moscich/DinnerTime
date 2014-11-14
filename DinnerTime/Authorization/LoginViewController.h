@@ -17,6 +17,7 @@
 
 - (IBAction)signIn;
 
-- (id)initWithDinnerManager:(DinnerManager *)dinnerManager;
+
+- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager loginManager:(LoginManager *)loginManager;
 
 @end

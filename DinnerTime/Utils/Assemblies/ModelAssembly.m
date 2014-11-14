@@ -6,6 +6,7 @@
 #import "ModelAssembly.h"
 #import "DinnerManager.h"
 #import "ServiceAssembly.h"
+#import "LoginManager.h"
 
 
 @implementation ModelAssembly {
@@ -19,6 +20,16 @@
     }];
     definition.scope = TyphoonScopeLazySingleton;
   }];
+}
+
+- (TyphoonDefinition *)registerLoginManager{
+    return [TyphoonDefinition withClass:[LoginManager class] configuration:^(TyphoonDefinition *definition) {
+        [definition useInitializer:@selector(initWithGoogleSignInManager:withDinnerTimeService:) parameters:^(TyphoonMethod *initializer){
+            [initializer injectParameterWith:[GoogleSignInManager new]];
+            [initializer injectParameterWith:[self.serviceAssembly registerDinnerService]];
+        }];
+        definition.scope = TyphoonScopeLazySingleton;
+    }];
 }
 
 @end

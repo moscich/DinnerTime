@@ -25,23 +25,20 @@
 @implementation AppDelegateTests
 
 - (void)testApplicationStartsWithProperControllersInNavigationStack {
-  TyphoonComponentFactory * factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ControllerAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly]]];
+  TyphoonComponentFactory * factory = [TyphoonBlockComponentFactory defaultFactory];
   AppDelegate *appDelegate = [factory componentForType:[AppDelegate class]];
-  id partialAppDelegateMock = [OCMockObject partialMockForObject:appDelegate];
-  id mockWindow = [OCMockObject niceMockForClass:[UIWindow class]];
-  [[mockWindow expect] setRootViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
-    UINavigationController *nav = obj;
-    LoginViewController *loginViewController = nav.viewControllers[0];
-    DinnerListViewController *dinnerListViewController = nav.viewControllers[1];
-    BOOL isDinnerManagerNotNil = loginViewController.dinnerManager != nil;
-    BOOL isDinnerManagerProperlyInstantiated = loginViewController.dinnerManager == dinnerListViewController.dinnerManager;
-    BOOL hasDinnerListHaveLoginManager = dinnerListViewController.loginManager == loginViewController.loginManager;
-    return isDinnerManagerNotNil && isDinnerManagerProperlyInstantiated && hasDinnerListHaveLoginManager;
-  }]];
-  [[[partialAppDelegateMock stub] andReturn:mockWindow] window];
-  [appDelegate application:nil didFinishLaunchingWithOptions:nil];
-  [mockWindow verify];
+  UINavigationController *navigationController = (UINavigationController *) appDelegate.window.rootViewController;
+  XCTAssertNotNil(navigationController);
+    LoginViewController *loginViewController = navigationController.viewControllers[0];
+    DinnerListViewController *dinnerListViewController = navigationController.viewControllers[1];
+    XCTAssertNotNil(loginViewController);
+    XCTAssertNotNil(dinnerListViewController);
+    XCTAssertNotNil(loginViewController.dinnerManager);
+    XCTAssertNotNil(dinnerListViewController.dinnerManager);
+    XCTAssertEqual(dinnerListViewController.dinnerManager, loginViewController.dinnerManager);
+    XCTAssertNotNil(loginViewController.loginManager);
+    XCTAssertNotNil(dinnerListViewController.loginManager);
+    XCTAssertEqual(dinnerListViewController.loginManager, loginViewController.loginManager);
 }
-
 
 @end

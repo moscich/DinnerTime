@@ -20,15 +20,15 @@
   [self navigateToDinnerList];
 }
 
-- (id)initWithDinnerManager:(DinnerManager *)dinnerManager {
-  self = [super init];
-  if(self){
-    self.dinnerManager = dinnerManager;
-    DinnerTimeService *dinnerTimeService = dinnerManager.dinnerTimeService;
-    self.loginManager = [[LoginManager alloc] initWithGoogleSignInManager:[GoogleSignInManager new] withDinnerTimeService:dinnerTimeService];
-    self.loginManager.delegate = self;
-  }
-  return self;
+- (instancetype)initWithDinnerManager:(DinnerManager *)dinnerManager loginManager:(LoginManager *)loginManager {
+    self = [super init];
+    if (self) {
+        self.loginManager = loginManager;
+        self.loginManager.delegate = self;
+        self.dinnerManager = dinnerManager;
+    }
+
+    return self;
 }
 
 - (void)navigateToDinnerList {

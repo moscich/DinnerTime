@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "DinnerWebSocketManager.h"
+#import "DinnerWebSocketServiceImpl.h"
 #import "DinnerDTO.h"
 #import "OCMockObject.h"
+#import "DinnerWebSocketService.h"
 
 @interface DinnerWebSocketManagerTests : XCTestCase
 
@@ -20,17 +21,17 @@
 
 // REMOVED SSL
 //- (void)testHasSocketRocketWebSocketInstantiated{
-//  DinnerWebSocketManager *socketManager = [DinnerWebSocketManager new];
+//  DinnerWebSocketServiceImpl *socketManager = [DinnerWebSocketServiceImpl new];
 //  XCTAssertEqualObjects(socketManager.webSocket.url.absoluteString,@"wss://192.168.1.126:8001");
 //  XCTAssertEqual(socketManager.webSocket.delegate,socketManager);
 //}
 
 - (void)testTranslatesAndSendUpdateToDelegate{
-  DinnerWebSocketManager *socketManager = [DinnerWebSocketManager new];
-  id delegate = [OCMockObject mockForProtocol:@protocol(DinnerWebSocketManagerDelegate)];
+  DinnerWebSocketServiceImpl *socketManager = [DinnerWebSocketServiceImpl new];
+  id delegate = [OCMockObject mockForProtocol:@protocol(DinnerWebSocketServiceDelegate)];
   [[delegate expect] webSocketReceivedDinnerUpdate:@(42)];
   socketManager.delegate = delegate;
-  [socketManager webSocket:socketManager.webSocket didReceiveMessage:@"{\"dinnerId\":42}"];
+  [socketManager webSocket:nil didReceiveMessage:@"{\"dinnerId\":42}"];
   [delegate verify];
 }
 

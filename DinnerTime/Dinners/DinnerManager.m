@@ -9,7 +9,7 @@
 #import "DinnerTimeService.h"
 #import "DinnerDTO.h"
 #import "DinnerCell.h"
-#import "DinnerWebSocketManager.h"
+#import "DinnerWebSocketServiceImpl.h"
 #import "DinnerListManager.h"
 #import "OrderListManager.h"
 #import "OrderDTO.h"
@@ -21,8 +21,6 @@
 - (instancetype)init {
   self = [super init];
   if (self) {
-    self.webSocketManager = [DinnerWebSocketManager new];
-    self.webSocketManager.delegate = self;
     self.dinnerListManager = [DinnerListManager new];
     self.dinnerListManager.dataSource = self;
   }

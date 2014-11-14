@@ -3,14 +3,22 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
-#import "DinnerWebSocketManager.h"
+#import "DinnerWebSocketServiceImpl.h"
 #import "DinnerArrayDTO.h"
 #import "DinnerUpdateDTO.h"
+#import "DinnerWebSocketService.h"
 
+@interface DinnerWebSocketServiceImpl()
 
-@implementation DinnerWebSocketManager {
+@property(nonatomic, strong) SRWebSocket *webSocket;
+
+@end
+
+@implementation DinnerWebSocketServiceImpl {
 
 }
+
+@synthesize delegate;
 
 - (instancetype)init {
   self = [super init];
@@ -28,6 +36,5 @@
     DinnerUpdateDTO *dinnerUpdate = [[DinnerUpdateDTO alloc] initWithString:message error:nil];
     [self.delegate webSocketReceivedDinnerUpdate:@(dinnerUpdate.dinnerId)];
 }
-
 
 @end

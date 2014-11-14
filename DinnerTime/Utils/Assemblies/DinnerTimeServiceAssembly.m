@@ -6,6 +6,7 @@
 #import "DinnerTimeServiceAssembly.h"
 #import "DinnerTimeService.h"
 #import "DinnerSessionBuilder.h"
+#import "DinnerWebSocketServiceImpl.h"
 
 
 @implementation DinnerTimeServiceAssembly {
@@ -23,6 +24,10 @@
 
 - (TyphoonDefinition *)registerSessionBuilder{
   return [TyphoonDefinition withClass:[DinnerSessionBuilder class]];
+}
+
+- (TyphoonDefinition *)registerWebSocketService {
+    return [TyphoonDefinition withClass:[DinnerWebSocketServiceImpl class]];
 }
 
 @end

@@ -14,4 +14,8 @@
   return nil;
 }
 
+- (TyphoonDefinition *)registerWebSocketService {
+  return nil;
+}
+
 @end

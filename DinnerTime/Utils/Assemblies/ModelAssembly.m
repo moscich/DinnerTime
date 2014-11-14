@@ -18,7 +18,8 @@
     [definition useInitializer:@selector(initWithDinnerTimeService:) parameters:^(TyphoonMethod *initializer){
       [initializer injectParameterWith:[self.serviceAssembly registerDinnerService]];
     }];
-    definition.scope = TyphoonScopeLazySingleton;
+      [definition injectProperty:@selector(webSocketService) with:[self.serviceAssembly registerWebSocketService]];
+      definition.scope = TyphoonScopeLazySingleton;
   }];
 }
 

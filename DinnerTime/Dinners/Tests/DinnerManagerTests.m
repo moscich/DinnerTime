@@ -1,4 +1,4 @@
-#import "DinnerWebSocketManager.h"//
+#import "DinnerWebSocketServiceImpl.h"
 // Created by Marek Moscichowski on 05/10/14.
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
@@ -25,8 +25,8 @@
   DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
   XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
-  XCTAssertNotNil(dinnerManager.webSocketManager);
-  XCTAssertEqual(dinnerManager.webSocketManager.delegate, dinnerManager);
+  XCTAssertNotNil(dinnerManager.webSocketService);
+  XCTAssertEqual(dinnerManager.webSocketService.delegate, dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinners {

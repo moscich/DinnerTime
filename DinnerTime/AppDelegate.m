@@ -24,26 +24,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//  // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
 
-    [[self.assembly asFactory] makeDefault];
-    NSLog(@"[TyphoonBlockComponentFactory defaultFactory] = %@", [TyphoonBlockComponentFactory defaultFactory]);
-
-//  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[]];
-//  [factory makeDefault];
-
-//  UINavigationController *navigationController = [UINavigationController new];
-//  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
-//  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
-//
-//  LoginViewController *loginViewController = [[LoginViewController alloc] initWithDinnerManager:dinnerManager];
-//  DinnerListViewController *dinnerListViewController = [[DinnerListViewController alloc] initWithDinnerManager:dinnerManager];
-//  dinnerListViewController.loginManager = loginViewController.loginManager;
-//  navigationController.viewControllers = @[loginViewController, dinnerListViewController];
-//  self.window.rootViewController = navigationController;
+  [[self.assembly asFactory] makeDefault];
 
   return YES;
 }

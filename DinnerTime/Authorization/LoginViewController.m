@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <Typhoon/TyphoonComponentFactory.h>
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
 #import "DinnerTimeServiceImpl.h"
@@ -32,9 +33,7 @@
 }
 
 - (void)navigateToDinnerList {
-  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
-  dinnerListViewController.dinnerManager = self.dinnerManager;
-  dinnerListViewController.loginManager = self.loginManager;
+  DinnerListViewController *dinnerListViewController = [[TyphoonComponentFactory defaultFactory] componentForType:[DinnerListViewController class]];
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 

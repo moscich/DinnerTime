@@ -6,6 +6,9 @@
 #import <Foundation/Foundation.h>
 #import "ServiceAssembly.h"
 
+@class ModelAssembly;
+
 
 @interface DinnerTimeServiceAssembly : ServiceAssembly
+@property (nonatomic, strong) ModelAssembly *modelAssembly;
 @end

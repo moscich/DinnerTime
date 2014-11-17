@@ -5,6 +5,8 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import <Typhoon/TyphoonComponentFactory.h>
+#import <Typhoon/TyphoonBlockComponentFactory.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
 #import "DinnerDTO.h"
@@ -13,34 +15,42 @@
 #import "DinnerListManager.h"
 #import "OrderListManager.h"
 #import "OrderDTO.h"
+#import "ModelAssembly.h"
+#import "DinnerTimeServiceAssembly.h"
 
 @interface DinnerManagerTests : XCTestCase
+
+@property (nonatomic, strong) DinnerManager *dinnerManager;
+
 @end
 
 @implementation DinnerManagerTests {
 
 }
 
+- (void)setUp {
+  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ModelAssembly assembly], [DinnerTimeServiceAssembly assembly]]];
+  self.dinnerManager = [factory componentForType:[DinnerManager class]];
+}
+
 - (void)testInitsWithDinnerTimeServiceAndWebSockets {
-  DinnerTimeService *dinnerTimeService = [DinnerTimeService new];
-  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
-  XCTAssertEqual(dinnerManager.dinnerTimeService, dinnerTimeService);
-  XCTAssertNotNil(dinnerManager.webSocketService);
-  XCTAssertEqual(dinnerManager.webSocketService.delegate, dinnerManager);
+  XCTAssertNotNil(self.dinnerManager.dinnerTimeService);
+  XCTAssertNotNil(self.dinnerManager.webSocketService);
+  XCTAssertEqual(self.dinnerManager.webSocketService.delegate, self.dinnerManager);
 }
 
 - (void)testDinnerManagerGetsDinners {
   NSArray *resultArray = [self mockResultOutputArray];
   DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:resultArray];
-  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:serviceSpy];
+  self.dinnerManager.dinnerTimeService = serviceSpy;
   XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
-  [dinnerManager getDinners:^(DinnerServiceResultType type) {
+  [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
     [callbackExpectation fulfill];
     XCTAssertEqual(type, DinnerServiceResult_Success);
-    [self assertDinnerManagerProperDataSourceSortsDinnersProperly:dinnerManager.dinnerListManager];
-    dinnerManager.orderListManager = [[OrderListManager alloc] initWithDinnerId:2];
-    dinnerManager.orderListManager.dataSource = dinnerManager;
-    [self assertDinnerManagerHasProperOrders:dinnerManager.orderListManager];
+    [self assertDinnerManagerProperDataSourceSortsDinnersProperly:self.dinnerManager.dinnerListManager];
+    self.dinnerManager.orderListManager = [[OrderListManager alloc] initWithDinnerId:2];
+    self.dinnerManager.orderListManager.dataSource = self.dinnerManager;
+    [self assertDinnerManagerHasProperOrders:self.dinnerManager.orderListManager];
   }];
   XCTAssertTrue(serviceSpy.getDinnersCalled);
   [self waitForExpectationsWithTimeout:0 handler:nil];
@@ -74,11 +84,10 @@
 }
 
 - (void)testDinnerManagerUnauthorizedDinners {
-  DinnerManager *dinnerManager = [DinnerManager new];
   DinnerTimeServiceSpy *serviceSpy = [[DinnerTimeServiceSpy alloc] initWithArray:nil];
-  dinnerManager.dinnerTimeService = serviceSpy;
+  self.dinnerManager.dinnerTimeService = serviceSpy;
   XCTestExpectation *callbackExpectation = [self expectationWithDescription:@"callbackExpectation"];
-  [dinnerManager getDinners:^(DinnerServiceResultType type) {
+  [self.dinnerManager getDinners:^(DinnerServiceResultType type) {
     [callbackExpectation fulfill];
     XCTAssertEqual(type, DinnerServiceResult_Unauthorized);
   }];
@@ -86,13 +95,13 @@
 }
 
 - (void)testDinnerManagerReturnsProperHeight {
-  id <UITableViewDelegate> tableViewDelegate = [DinnerManager new];
+  id <UITableViewDelegate> tableViewDelegate = self.dinnerManager;
   XCTAssertEqual([tableViewDelegate tableView:nil heightForRowAtIndexPath:nil], 60);
 }
 
 - (void)testPostDinner {
   id dinnerTimeService = [OCMockObject mockForClass:[DinnerTimeService class]];
-  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
+  self.dinnerManager.dinnerTimeService = dinnerTimeService;
   XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
   DinnerDTO *dinner = [DinnerDTO new];
   dinner.title = @"mockTitle";
@@ -106,18 +115,18 @@
   [[[dinnerTimeService stub] andDo:proxyBlock] postDinner:[OCMArg checkWithBlock:^BOOL(id obj) {
     return obj == dinner;
   }]                                         withCallback:OCMOCK_ANY];
-  [dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+  [self.dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
     XCTAssertEqual(type, DinnerServiceResult_Success);
     [expectation fulfill];
   }];
   [self waitForExpectationsWithTimeout:0 handler:nil];
   [dinnerTimeService verify];
-  NSInteger numberOfRows = [dinnerManager.dinnerListManager tableView:nil numberOfRowsInSection:0];
+  NSInteger numberOfRows = [self.dinnerManager.dinnerListManager tableView:nil numberOfRowsInSection:0];
   XCTAssertEqual(numberOfRows, 1);
 
   UITableView *tableView = [UITableView new];
   [tableView registerNib:[UINib nibWithNibName:@"DinnerCell" bundle:nil] forCellReuseIdentifier:@"DinnerCellIdentifier"];
-  DinnerCell *cell = (DinnerCell *) [dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell = (DinnerCell *) [self.dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
   XCTAssertEqualObjects(cell.textLabel.text, dinner.title);
 
   dinner = [DinnerDTO new];
@@ -133,28 +142,27 @@
     return obj == dinner;
   }]                                          withCallback:OCMOCK_ANY];
 
-  id partialDinnerManagerMock = [OCMockObject partialMockForObject:dinnerManager];
+  id partialDinnerManagerMock = [OCMockObject partialMockForObject:self.dinnerManager];
   [[[partialDinnerManagerMock stub] andReturn:[self sortedMockDinnerArray]] dinners];
 
-  [dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
+  [self.dinnerManager postDinner:dinner withCallback:^(DinnerServiceResultType type) {
   }];
 
   [partialDinnerManagerMock stopMocking];
 
-  DinnerCell *cell0 = (DinnerCell *) [dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-  DinnerCell *cell1 = (DinnerCell *) [dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
-  DinnerCell *cell2 = (DinnerCell *) [dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+  DinnerCell *cell0 = (DinnerCell *) [self.dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+  DinnerCell *cell1 = (DinnerCell *) [self.dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  DinnerCell *cell2 = (DinnerCell *) [self.dinnerManager.dinnerListManager tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
   XCTAssertEqualObjects(cell0.textLabel.text, @"new dinner title");
   XCTAssertEqualObjects(cell1.textLabel.text, @"MockTitle");
   XCTAssertEqualObjects(cell2.textLabel.text, @"MockTitle2");
 }
 
 - (void)testPostOrder {
-  DinnerManager *dinnerManager = [DinnerManager new];
   OrderListManager *orderListManager = [OrderListManager new];
   orderListManager.dinnerId = 2;
-  dinnerManager.orderListManager = orderListManager;
-  dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
+  self.dinnerManager.orderListManager = orderListManager;
+  self.dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
   id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
     void (^passedBlock)(OrderDTO *);
@@ -163,49 +171,46 @@
     passedBlock(order);
   };
   [[[mockService stub] andDo:proxyBlock] postOrder:@"test" withDinnerId:2 withCallback:OCMOCK_ANY];
-  dinnerManager.dinnerTimeService = mockService;
+  self.dinnerManager.dinnerTimeService = mockService;
   XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
-  [dinnerManager postOrder:@"test" withCallback:^(DinnerServiceResultType type) {
+  [self.dinnerManager postOrder:@"test" withCallback:^(DinnerServiceResultType type) {
     [expectation fulfill];
     XCTAssertEqual(type, DinnerServiceResult_Success);
   }];
   [mockService verify];
-  DinnerDTO *dinner = dinnerManager.dinners[1];
+  DinnerDTO *dinner = self.dinnerManager.dinners[1];
   XCTAssertEqualObjects([dinner.orders firstObject], [self mockOrderPostResultWithID:42]);
   [self waitForExpectationsWithTimeout:0 handler:nil];
 }
 
 - (void)testSendNotificationWhenUpdateArrives {
-  DinnerManager *dinnerManager = [DinnerManager new];
   id mock = [OCMockObject observerMock];
   [[NSNotificationCenter defaultCenter] addMockObserver:mock name:@"DinnerUpdate" object:nil];
   [[mock expect] notificationWithName:@"DinnerUpdate" object:[OCMArg any]];
-  [dinnerManager webSocketReceivedDinnerUpdate:@42];
+  [self.dinnerManager webSocketReceivedDinnerUpdate:@42];
   [mock verify];
 }
 
 - (void)testRowTapSetOrderListAndCallDelegate {
-  DinnerManager *dinnerManager = [DinnerManager new];
   id mockDelegate = [OCMockObject mockForProtocol:@protocol(DinnerManagerDelegate)];
   [[mockDelegate expect] dinnerManagerDidSelectDinner];
-  dinnerManager.delegate = mockDelegate;
-  dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
-  [dinnerManager tableView:nil didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+  self.dinnerManager.delegate = mockDelegate;
+  self.dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
+  [self.dinnerManager tableView:nil didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
   [mockDelegate verify];
-  XCTAssertEqual(dinnerManager.orderListManager.dinnerId, 2);
-  XCTAssertEqual(dinnerManager.orderListManager.dataSource, dinnerManager);
-  XCTAssertEqual(dinnerManager.orderListManager.delegate, dinnerManager);
+  XCTAssertEqual(self.dinnerManager.orderListManager.dinnerId, 2);
+  XCTAssertEqual(self.dinnerManager.orderListManager.dataSource, self.dinnerManager);
+  XCTAssertEqual(self.dinnerManager.orderListManager.delegate, self.dinnerManager);
 }
 
 - (void)testChangeOrderStateSendToDinnerService {
-  DinnerManager *dinnerManager = [DinnerManager new];
   OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:2];
-  dinnerManager.dinners = [[self mockResultOutputArray] mutableCopy];
-  dinnerManager.orderListManager = orderListManager;
+  self.dinnerManager.dinners = [[self mockResultOutputArray] mutableCopy];
+  self.dinnerManager.orderListManager = orderListManager;
   id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
-  dinnerManager.dinnerTimeService = mockService;
+  self.dinnerManager.dinnerTimeService = mockService;
   [[mockService expect] changeOrderWithId:@24 toPaid:@YES];
-  [dinnerManager orderWasPaid:@1];
+  [self.dinnerManager orderWasPaid:@1];
   [mockService verify];
 }
 

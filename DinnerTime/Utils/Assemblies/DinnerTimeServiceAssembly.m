@@ -7,6 +7,7 @@
 #import "DinnerTimeService.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerWebSocketServiceImpl.h"
+#import "ModelAssembly.h"
 
 
 @implementation DinnerTimeServiceAssembly {
@@ -27,7 +28,9 @@
 }
 
 - (TyphoonDefinition *)registerWebSocketService {
-    return [TyphoonDefinition withClass:[DinnerWebSocketServiceImpl class]];
+    return [TyphoonDefinition withClass:[DinnerWebSocketServiceImpl class] configuration:^(TyphoonDefinition *definition) {
+      [definition injectProperty:@selector(delegate) with:[self.modelAssembly registerDinnerManager]];
+    }];
 }
 
 @end

@@ -5,14 +5,14 @@
 
 #import "LoginManager.h"
 #import "UICKeyChainStore.h"
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "DinnerListViewController.h"
 
 
 @implementation LoginManager {
 
 }
-- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
+- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeServiceImpl *)dinnerTimeService {
   self = [super init];
   if(self){
     self.googleManger = googleSignInManager;

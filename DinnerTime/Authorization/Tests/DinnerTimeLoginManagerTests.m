@@ -4,7 +4,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "DinnerTimeServiceSpy.h"
 
 @interface DinnerTimeLoginManagerTests : XCTestCase

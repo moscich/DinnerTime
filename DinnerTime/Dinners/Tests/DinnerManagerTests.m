@@ -1,8 +1,8 @@
-#import "DinnerWebSocketServiceImpl.h"
 // Created by Marek Moscichowski on 05/10/14.
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import "DinnerWebSocketServiceImpl.h"
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import <Typhoon/TyphoonComponentFactory.h>
@@ -17,6 +17,7 @@
 #import "OrderDTO.h"
 #import "ModelAssembly.h"
 #import "DinnerTimeServiceAssembly.h"
+#import "ApplicationAssembly.h"
 
 @interface DinnerManagerTests : XCTestCase
 
@@ -29,7 +30,7 @@
 }
 
 - (void)setUp {
-  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ModelAssembly assembly], [DinnerTimeServiceAssembly assembly]]];
+  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly]]];
   self.dinnerManager = [factory componentForType:[DinnerManager class]];
 }
 
@@ -100,7 +101,7 @@
 }
 
 - (void)testPostDinner {
-  id dinnerTimeService = [OCMockObject mockForClass:[DinnerTimeService class]];
+  id dinnerTimeService = [OCMockObject mockForClass:[DinnerTimeServiceImpl class]];
   self.dinnerManager.dinnerTimeService = dinnerTimeService;
   XCTestExpectation *expectation = [self expectationWithDescription:@"callbackExpectation"];
   DinnerDTO *dinner = [DinnerDTO new];
@@ -163,7 +164,7 @@
   orderListManager.dinnerId = 2;
   self.dinnerManager.orderListManager = orderListManager;
   self.dinnerManager.dinners = (NSMutableArray *) [[self mockResultOutputArray] mutableCopy];
-  id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
+  id mockService = [OCMockObject mockForClass:[DinnerTimeServiceImpl class]];
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
     void (^passedBlock)(OrderDTO *);
     OrderDTO *order = [self mockOrderPostResultWithID:42];
@@ -207,7 +208,7 @@
   OrderListManager *orderListManager = [[OrderListManager alloc] initWithDinnerId:2];
   self.dinnerManager.dinners = [[self mockResultOutputArray] mutableCopy];
   self.dinnerManager.orderListManager = orderListManager;
-  id mockService = [OCMockObject mockForClass:[DinnerTimeService class]];
+  id mockService = [OCMockObject mockForClass:[DinnerTimeServiceImpl class]];
   self.dinnerManager.dinnerTimeService = mockService;
   [[mockService expect] changeOrderWithId:@24 toPaid:@YES];
   [self.dinnerManager orderWasPaid:@1];

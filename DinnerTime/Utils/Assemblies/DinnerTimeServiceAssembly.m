@@ -3,8 +3,9 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <Typhoon/TyphoonConfigPostProcessor.h>
 #import "DinnerTimeServiceAssembly.h"
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerWebSocketServiceImpl.h"
 #import "ModelAssembly.h"
@@ -15,7 +16,7 @@
 }
 
 - (TyphoonDefinition *)registerDinnerService{
-  return [TyphoonDefinition withClass:[DinnerTimeService class] configuration:^(TyphoonDefinition *definition) {
+  return [TyphoonDefinition withClass:[DinnerTimeServiceImpl class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithDinnerSessionBuilder:) parameters:^(TyphoonMethod *initializer){
       [initializer injectParameterWith:[self registerSessionBuilder]];
 
@@ -24,7 +25,9 @@
 }
 
 - (TyphoonDefinition *)registerSessionBuilder{
-  return [TyphoonDefinition withClass:[DinnerSessionBuilder class]];
+  return [TyphoonDefinition withClass:[DinnerSessionBuilder class] configuration:^(TyphoonDefinition *definition) {
+    [definition injectProperty:@selector(urlString) with:TyphoonConfig(@"urlService")];
+  }];
 }
 
 - (TyphoonDefinition *)registerWebSocketService {

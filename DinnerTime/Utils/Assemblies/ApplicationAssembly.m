@@ -3,6 +3,7 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <Typhoon/Typhoon.h>
 #import "ApplicationAssembly.h"
 #import "AppDelegate.h"
 #import "ModelAssembly.h"
@@ -19,6 +20,11 @@
             [definition injectProperty:@selector(window) with:[self mainWindow]];
             [definition injectProperty:@selector(assembly) with:self];
           }];
+}
+
+- (id)config
+{
+  return [TyphoonDefinition configDefinitionWithName:@"Configuration.plist"];
 }
 
 - (UIWindow *)mainWindow {

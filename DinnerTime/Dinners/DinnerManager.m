@@ -6,7 +6,7 @@
 #import <UIKit/UIKit.h>
 #import "DinnerManager.h"
 #import "DinnerTimeServiceSpy.h"
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "DinnerDTO.h"
 #import "DinnerCell.h"
 #import "DinnerWebSocketServiceImpl.h"
@@ -28,7 +28,7 @@
   return self;
 }
 
-- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService {
+- (instancetype)initWithDinnerTimeService:(DinnerTimeServiceImpl *)dinnerTimeService {
   self = [self init];
   if (self) {
     self.dinnerTimeService = dinnerTimeService;

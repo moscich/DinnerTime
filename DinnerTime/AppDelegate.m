@@ -7,14 +7,8 @@
 //
 
 #import <GooglePlus/GooglePlus.h>
-#import <Typhoon/TyphoonAssembly.h>
+#import <Typhoon/Typhoon.h>
 #import "AppDelegate.h"
-#import "LoginViewController.h"
-#import "DinnerListViewController.h"
-#import "DinnerSessionBuilder.h"
-#import "DinnerTimeService.h"
-#import "DinnerManager.h"
-#import "TyphoonBlockComponentFactory.h"
 
 @interface AppDelegate ()
 

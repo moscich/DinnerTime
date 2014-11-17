@@ -5,7 +5,7 @@
 
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "DinnerManager.h"
 #import "DinnerServiceResultType.h"
 #import "LoginView.h"

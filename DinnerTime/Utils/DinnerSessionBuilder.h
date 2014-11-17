@@ -9,5 +9,8 @@
 
 
 @interface DinnerSessionBuilder : NSObject
+
+@property (nonatomic, strong) NSString *urlString;
+
 - (DinnerSessionManager *)constructSessionManager;
 @end

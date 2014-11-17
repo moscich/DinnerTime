@@ -10,7 +10,7 @@
 
 @protocol UITableViewDataSource;
 @protocol UITableViewDelegate;
-@class DinnerTimeService;
+@class DinnerTimeServiceImpl;
 @class DinnerDTO;
 @class DinnerWebSocketServiceImpl;
 @class DinnerListManager;
@@ -26,14 +26,14 @@
 @end
 
 @interface DinnerManager : NSObject <UITableViewDelegate, DinnerWebSocketServiceDelegate, DinnerManagerDataSource, OrderListManagerDelegate>
-@property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
+@property(nonatomic, strong) DinnerTimeServiceImpl *dinnerTimeService;
 @property(nonatomic, strong) id <DinnerWebSocketService> webSocketService;
 @property(nonatomic, strong) NSMutableArray *dinners;
 @property(nonatomic, strong) DinnerListManager *dinnerListManager;
 @property(nonatomic, strong) OrderListManager *orderListManager;
 @property(nonatomic, weak) id <DinnerManagerDelegate> delegate;
 
-- (instancetype)initWithDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
+- (instancetype)initWithDinnerTimeService:(DinnerTimeServiceImpl *)dinnerTimeService;
 
 - (void)getDinners:(void (^)(DinnerServiceResultType type))callback;
 - (void)postDinner:(DinnerDTO *)dinner withCallback:(void (^)(DinnerServiceResultType type))callback;

@@ -8,7 +8,7 @@
 
 @class GoogleSignInManager;
 @class LoginManagerDelegateSpy;
-@class DinnerTimeService;
+@class DinnerTimeServiceImpl;
 @class DinnerListViewController;
 
 @protocol LoginManagerDelegate
@@ -25,13 +25,13 @@
 
 @property(nonatomic, strong) GoogleSignInManager *googleManger;
 
-@property(nonatomic, strong) DinnerTimeService *dinnerTimeService;
+@property(nonatomic, strong) DinnerTimeServiceImpl *dinnerTimeService;
 
 @property(nonatomic, strong) id <LoginManagerLogoutDelegate> logoutDelegate;
 
 - (IBAction)signIn;
 
-- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeService *)dinnerTimeService;
+- (id)initWithGoogleSignInManager:(GoogleSignInManager *)googleSignInManager withDinnerTimeService:(DinnerTimeServiceImpl *)dinnerTimeService;
 
 - (void)logout;
 @end

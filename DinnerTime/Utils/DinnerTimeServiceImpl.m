@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import "UICKeyChainStore.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerSessionManager.h"
@@ -12,7 +12,7 @@
 #import "DinnerDTO.h"
 #import "OrderDTO.h"
 
-@implementation DinnerTimeService {
+@implementation DinnerTimeServiceImpl {
 
 }
 

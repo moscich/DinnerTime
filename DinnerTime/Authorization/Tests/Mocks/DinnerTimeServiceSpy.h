@@ -4,10 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 
 
-@interface DinnerTimeServiceSpy : DinnerTimeService
+@interface DinnerTimeServiceSpy : DinnerTimeServiceImpl
 @property (nonatomic, strong) NSString *token;
 @property(nonatomic, assign) BOOL getDinnersCalled;
 @property(nonatomic, assign) BOOL logoutCalled;

@@ -13,7 +13,7 @@
 #import "OCMArg.h"
 #import "DinnerListViewController.h"
 #import "DinnerSessionBuilder.h"
-#import "DinnerTimeService.h"
+#import "DinnerTimeServiceImpl.h"
 #import <XCTest/XCTest.h>
 #import <Typhoon/TyphoonBlockComponentFactory.h>
 
@@ -27,7 +27,7 @@
 
 - (void)setUp {
   [super setUp];
-  DinnerTimeService *dinnerTimeService = [[DinnerTimeService alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
+  DinnerTimeServiceImpl *dinnerTimeService = [[DinnerTimeServiceImpl alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
   DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
 
   self.loginViewController = [[TyphoonBlockComponentFactory defaultFactory] componentForType:[LoginViewController class]];

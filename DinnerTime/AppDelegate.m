@@ -21,7 +21,7 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [self.window makeKeyAndVisible];
 
-  [[self.assembly asFactory] makeDefault];
+//  [[self.assembly asFactory] makeDefault];
 
   return YES;
 }

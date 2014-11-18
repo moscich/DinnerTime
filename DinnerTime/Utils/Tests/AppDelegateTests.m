@@ -25,7 +25,7 @@
 @implementation AppDelegateTests
 
 - (void)testApplicationStartsWithProperControllersInNavigationStack {
-  TyphoonComponentFactory * factory = [TyphoonBlockComponentFactory defaultFactory];
+  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly], [ControllerAssembly assembly]]];
   AppDelegate *appDelegate = [factory componentForType:[AppDelegate class]];
   UINavigationController *navigationController = (UINavigationController *) appDelegate.window.rootViewController;
   XCTAssertNotNil(navigationController);

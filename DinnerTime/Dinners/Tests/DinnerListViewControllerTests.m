@@ -168,12 +168,11 @@
   };
 
   [[[mockDinnerManager stub] andDo:proxyBlock] getDinners:OCMOCK_ANY];
-  DinnerListViewController *dinnerListViewController = [[TyphoonBlockComponentFactory defaultFactory] componentForType:[DinnerListViewController class]];
-  dinnerListViewController.dinnerManager = mockDinnerManager;
-  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  self.dinnerListViewController.dinnerManager = mockDinnerManager;
+  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:self.dinnerListViewController];
   [[[partialDinnerListViewControllerMock stub] andReturn:mockNavController] navigationController];
 
-  [dinnerListViewController viewDidLoad];
+  [self.dinnerListViewController viewDidLoad];
   [mockDinnerManager verify];
   [mockNavController verify];
 }

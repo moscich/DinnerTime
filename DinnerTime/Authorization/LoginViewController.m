@@ -4,6 +4,7 @@
 //
 
 #import <Typhoon/TyphoonComponentFactory.h>
+#import <Typhoon/TyphoonAssembly.h>
 #import "LoginViewController.h"
 #import "DinnerListViewController.h"
 #import "DinnerTimeServiceImpl.h"
@@ -33,7 +34,7 @@
 }
 
 - (void)navigateToDinnerList {
-  DinnerListViewController *dinnerListViewController = [[TyphoonComponentFactory defaultFactory] componentForType:[DinnerListViewController class]];
+  DinnerListViewController *dinnerListViewController = [[self.assembly asFactory] componentForType:[DinnerListViewController class]];
   [self.navigationController pushViewController:dinnerListViewController animated:YES];
 }
 

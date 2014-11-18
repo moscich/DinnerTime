@@ -14,6 +14,11 @@
 #import "DinnerListViewController.h"
 #import "DinnerSessionBuilder.h"
 #import "DinnerTimeServiceImpl.h"
+#import "ControllerAssembly.h"
+#import "DinnerTimeServiceAssembly.h"
+#import "ModelAssembly.h"
+#import "ApplicationAssembly.h"
+#import "TyphoonPatcher.h"
 #import <XCTest/XCTest.h>
 #import <Typhoon/TyphoonBlockComponentFactory.h>
 
@@ -27,10 +32,9 @@
 
 - (void)setUp {
   [super setUp];
-  DinnerTimeServiceImpl *dinnerTimeService = [[DinnerTimeServiceImpl alloc] initWithDinnerSessionBuilder:[DinnerSessionBuilder new]];
-  DinnerManager *dinnerManager = [[DinnerManager alloc] initWithDinnerTimeService:dinnerTimeService];
 
-  self.loginViewController = [[TyphoonBlockComponentFactory defaultFactory] componentForType:[LoginViewController class]];
+  TyphoonBlockComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly], [ControllerAssembly assembly]]];
+  self.loginViewController = [factory componentForType:[LoginViewController class]];
 }
 
 - (void)testLoginViewControllerRespondToDelegateSelector {
@@ -66,6 +70,24 @@
 
 - (void)testLoginViewControllerInitsWithDinnerService {
   XCTAssertNotNil(self.loginViewController.loginManager.dinnerTimeService);
+}
+
+- (void)testPushDinnerListViewControllerWhenSuccessfulLogin {
+  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
+  TyphoonPatcher *patcher = [[TyphoonPatcher alloc] init];
+  [patcher patchDefinitionWithSelector:@selector(registerDinnerListViewController) withObject:^id{
+    return dinnerListViewController;
+  }];
+  [[self.loginViewController.assembly asFactory] attachPostProcessor:patcher];
+  id partialLoginViewControllerMock = [OCMockObject partialMockForObject:self.loginViewController];
+  id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
+  [[mockNavController expect] pushViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
+    return obj == dinnerListViewController;
+  }]                                    animated:YES];
+  [[[partialLoginViewControllerMock stub] andReturn:mockNavController] navigationController];
+  [self.loginViewController loginManagerLoginSuccessful];
+  [mockNavController verify];
+
 }
 
 @end

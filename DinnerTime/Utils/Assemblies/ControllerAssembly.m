@@ -8,26 +8,37 @@
 #import "TyphoonDefinition+Infrastructure.h"
 #import "ModelAssembly.h"
 #import "DinnerListViewController.h"
+#import "OrderListViewController.h"
 
 
 @implementation ControllerAssembly {
 
 }
 
-- (TyphoonDefinition *)registerLoginViewController{
+- (TyphoonDefinition *)registerLoginViewController {
   return [TyphoonDefinition withClass:[LoginViewController class] configuration:^(TyphoonDefinition *definition) {
-      [definition useInitializer:@selector(initWithDinnerManager:loginManager:) parameters:^(TyphoonMethod *initializer) {
-          [initializer injectParameterWith:[self.modelAssembly registerDinnerManager]];
-          [initializer injectParameterWith:[self.modelAssembly registerLoginManager]];
-      }];
+    [definition useInitializer:@selector(initWithDinnerManager:loginManager:) parameters:^(TyphoonMethod *initializer) {
+      [initializer injectParameterWith:[self.modelAssembly registerDinnerManager]];
+      [initializer injectParameterWith:[self.modelAssembly registerLoginManager]];
+    }];
+    [definition injectProperty:@selector(assembly) with:self];
   }];
 }
 
-- (TyphoonDefinition *)registerDinnerListViewController{
+- (TyphoonDefinition *)registerDinnerListViewController {
   return [TyphoonDefinition withClass:[DinnerListViewController class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithDinnerManager:loginManager:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:[self.modelAssembly registerDinnerManager]];
       [initializer injectParameterWith:[self.modelAssembly registerLoginManager]];
+    }];
+    [definition injectProperty:@selector(assembly) with:self];
+  }];
+}
+
+- (TyphoonDefinition *)registerOrderListViewController {
+  return [TyphoonDefinition withClass:[OrderListViewController class] configuration:^(TyphoonDefinition *definition) {
+    [definition useInitializer:@selector(initWithDinnerManager:) parameters:^(TyphoonMethod *initializer) {
+      [initializer injectParameterWith:[self.modelAssembly registerDinnerManager]];
     }];
   }];
 }

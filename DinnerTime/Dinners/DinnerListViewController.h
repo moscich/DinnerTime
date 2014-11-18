@@ -9,11 +9,12 @@
 #import "LoginManager.h"
 #import "AddDinnerViewController.h"
 
+@class TyphoonAssembly;
+
 @interface DinnerListViewController : UIViewController <LoginManagerLogoutDelegate, AddDinnerViewControllerDelegate, DinnerManagerDelegate>
+@property(nonatomic, strong) TyphoonAssembly *assembly;
 @property(nonatomic, strong) DinnerManager *dinnerManager;
-
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
-
 @property(nonatomic, strong) LoginManager *loginManager;
 
 - (void)addButtonTapped;

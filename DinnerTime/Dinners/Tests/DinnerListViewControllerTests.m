@@ -14,12 +14,22 @@
 #import "DinnerManagerSpy.h"
 #import "DinnerDTO.h"
 #import "OrderListViewController.h"
+#import "ApplicationAssembly.h"
+#import "ModelAssembly.h"
+#import "DinnerTimeServiceAssembly.h"
+#import "ControllerAssembly.h"
 
 @interface DinnerListViewControllerTests : XCTestCase
 
+@property(nonatomic, strong) DinnerListViewController *dinnerListViewController;
 @end
 
 @implementation DinnerListViewControllerTests
+
+- (void)setUp {
+  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly], [ControllerAssembly assembly]]];
+  self.dinnerListViewController = [factory componentForType:[DinnerListViewController class]];
+}
 
 - (void)testDinnerManagerHasTableViewProperlyInstantiated {
   DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
@@ -169,19 +179,18 @@
 }
 
 - (void)testNavigateToOrders{
-  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
   id mockNavController = [OCMockObject mockForClass:[UINavigationController class]];
-  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  id partialDinnerListViewControllerMock = [OCMockObject partialMockForObject:self.dinnerListViewController];
   [[[partialDinnerListViewControllerMock stub] andReturn:mockNavController] navigationController];
   [[mockNavController expect] pushViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
     if([obj isKindOfClass:[OrderListViewController class]]){
       OrderListViewController *orderListViewController = obj;
-      return orderListViewController.dinnerManager == dinnerListViewController.dinnerManager;
+      return orderListViewController.dinnerManager == self.dinnerListViewController.dinnerManager;
     }
     return NO;
   }] animated:YES];
 
-  id <DinnerManagerDelegate> dinerManagerDelegate = dinnerListViewController;
+  id <DinnerManagerDelegate> dinerManagerDelegate = self.dinnerListViewController;
   [dinerManagerDelegate dinnerManagerDidSelectDinner];
 
   [mockNavController verify];

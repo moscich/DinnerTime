@@ -8,11 +8,12 @@
 #import "LoginManager.h"
 
 @class DinnerManager;
+@class TyphoonAssembly;
 
 
 @interface LoginViewController : UIViewController <LoginManagerDelegate>
-@property(nonatomic, strong)  LoginManager *loginManager;
-
+@property(nonatomic, strong) TyphoonAssembly *assembly;
+@property(nonatomic, strong) LoginManager *loginManager;
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 
 - (IBAction)signIn;

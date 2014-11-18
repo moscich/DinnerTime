@@ -3,6 +3,8 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <Typhoon/TyphoonComponentFactory.h>
+#import <Typhoon/TyphoonAssembly.h>
 #import "DinnerListViewController.h"
 #import "DinnerDTO.h"
 #import "DinnerListManager.h"
@@ -73,7 +75,8 @@
 }
 
 - (void)dinnerManagerDidSelectDinner {
-  [self.navigationController pushViewController:[[OrderListViewController alloc] initWithDinnerManager:self.dinnerManager] animated:YES];
+  OrderListViewController *orderListController = [[self.assembly asFactory] componentForType:[OrderListViewController class]];
+  [self.navigationController pushViewController:orderListController animated:YES];
 }
 
 @end

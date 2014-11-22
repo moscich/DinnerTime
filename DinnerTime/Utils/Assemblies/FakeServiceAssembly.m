@@ -6,6 +6,7 @@
 #import "FakeServiceAssembly.h"
 #import "FakeWebSocketService.h"
 #import "FakeDinnerTimeService.h"
+#import "FakeGoogleManager.h"
 
 
 @implementation FakeServiceAssembly {
@@ -18,6 +19,10 @@
 
 - (TyphoonDefinition *)registerWebSocketService {
     return [TyphoonDefinition withClass:[NSObject class]];
+}
+
+- (TyphoonDefinition *)registerLoginService {
+  return [TyphoonDefinition withClass:[FakeGoogleManager class]];
 }
 
 @end

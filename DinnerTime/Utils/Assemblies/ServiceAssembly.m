@@ -14,6 +14,10 @@
   return nil;
 }
 
+- (TyphoonDefinition *)registerLoginService{
+  return nil;
+}
+
 - (TyphoonDefinition *)registerWebSocketService {
   return nil;
 }

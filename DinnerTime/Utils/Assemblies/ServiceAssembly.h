@@ -11,5 +11,8 @@
 
 
 - (TyphoonDefinition *)registerDinnerService;
+
+- (TyphoonDefinition *)registerLoginService;
+
 - (TyphoonDefinition *)registerWebSocketService;
 @end

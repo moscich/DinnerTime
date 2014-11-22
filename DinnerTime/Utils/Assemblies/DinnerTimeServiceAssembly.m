@@ -9,6 +9,7 @@
 #import "DinnerSessionBuilder.h"
 #import "DinnerWebSocketServiceImpl.h"
 #import "ModelAssembly.h"
+#import "GoogleSignInManager.h"
 
 
 @implementation DinnerTimeServiceAssembly {
@@ -34,6 +35,10 @@
     return [TyphoonDefinition withClass:[DinnerWebSocketServiceImpl class] configuration:^(TyphoonDefinition *definition) {
       [definition injectProperty:@selector(delegate) with:[self.modelAssembly registerDinnerManager]];
     }];
+}
+
+- (TyphoonDefinition *)registerLoginService {
+  return [TyphoonDefinition withClass:[GoogleSignInManager class]];
 }
 
 @end

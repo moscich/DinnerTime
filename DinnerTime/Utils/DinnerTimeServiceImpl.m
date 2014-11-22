@@ -16,6 +16,8 @@
 
 }
 
+@synthesize dinnerSessionManager;
+
 - (id)initWithDinnerSessionBuilder:(DinnerSessionBuilder *)dinnerSessionBuilder {
   self = [super init];
   if (self) {

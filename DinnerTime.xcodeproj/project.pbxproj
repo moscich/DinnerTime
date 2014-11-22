@@ -22,6 +22,7 @@
 		530421C9C04AAD8950B31EA8 /* OrderListManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304229120E2D16819F7CDED /* OrderListManagerTests.m */; };
 		530421DDB27CA517434AD983 /* AddOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B41FFC8F6C30591E363 /* AddOrderViewController.m */; };
 		53042251056C88C3529D25E0 /* DinnerTimeServiceSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428897C88CF284D6EF481 /* DinnerTimeServiceSpy.m */; };
+		5304227A036B5849772786FF /* FakeDinnerTimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422B29C3D0FCEB9C550B2 /* FakeDinnerTimeService.m */; };
 		530422A0E8F6FDCD1B99A586 /* OrderListViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042C228BD7482F62EA6E6D /* OrderListViewControllerTests.m */; };
 		5304231015C20742F01EF0EC /* DinnerArrayDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530427E22BF298D0FFF7FA02 /* DinnerArrayDTO.m */; };
 		530423459198B5F6AD03F43F /* DinnerSessionBuilderStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CEA4E0490042AEC3D6E /* DinnerSessionBuilderStub.m */; };
@@ -40,6 +41,7 @@
 		5304264AC9EA388DDF910A75 /* DinnerUpdateDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530424A9248996344D044C11 /* DinnerUpdateDTO.m */; };
 		530426559ED609C902A8162B /* DinnerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CE0D18EF7952759154D /* DinnerManager.m */; };
 		53042692DA0B42516264D3C9 /* DinnerTimeServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042175BCF128D69757E67B /* DinnerTimeServiceImpl.m */; };
+		5304269E5E46372395E8BC87 /* FakeApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304289E0BC92D59A2750D65 /* FakeApplicationAssembly.m */; };
 		530426A3455407B42B55BE02 /* GoogleSignInManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304256BA21AA13EC32B4223 /* GoogleSignInManagerSpy.m */; };
 		5304272848D392372E6B7EBD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422829B2FB3DA9CEAF1FA /* LoginView.m */; };
 		530427712041E3A2B2C264E4 /* DinnerListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428BE0851F2A5351839E3 /* DinnerListManager.m */; };
@@ -69,12 +71,13 @@
 		53042D72D1E1787E37955582 /* DinnerManagerStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042746CAB02DB4C5F5566B /* DinnerManagerStub.m */; };
 		53042DF4C3DDA894413A2EFB /* AddDinnerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042AF076F1BFC11F3FF41F /* AddDinnerViewControllerTests.m */; };
 		53042E20C8E6759534619C00 /* DinnerSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530428138CC3D1A620747AC8 /* DinnerSummaryCell.xib */; };
+		53042E39F0707F850D5A5195 /* FakeRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042DA3A93F64FAB4202198 /* FakeRootViewController.m */; };
 		53042E5E8F9B3C12E95620B2 /* DinnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042A9E0197E2C4FC41465A /* DinnerCell.m */; };
 		53042E74AD0FF2803A716834 /* AppDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422742F2685537EEC1294 /* AppDelegateTests.m */; };
 		53042ED0404D4AA3AD3A85BA /* DinnerSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 530421611B2A805A71068306 /* DinnerSessionBuilder.m */; };
 		53042EEFB8697516AC756719 /* LoginManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530420264317ACE772D8A7A8 /* LoginManagerTests.m */; };
-		53042F3D941221F2D3F641DF /* FakeServiceAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CCBBD62B32746F28D4E /* FakeServiceAssembly.m */; };
 		53042FA80A00332FFA532BE6 /* LoginViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */; };
+		53042FA984CE9AED5654F4C2 /* FakeControllerListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530423902FF15DB8E8776C10 /* FakeControllerListController.m */; };
 		53042FC0A461534EB86735DE /* GoogleSignInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */; };
 		53042FE132A3DEE7B39C59A8 /* FakeWebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 530423F5D131911327B57E52 /* FakeWebSocketService.m */; };
 		7908971B19D4969600145E7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908971A19D4969600145E7E /* main.m */; };
@@ -95,6 +98,71 @@
 		7908975119D4974700145E7E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974619D4974700145E7E /* Security.framework */; };
 		7908975219D4974700145E7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974719D4974700145E7E /* SystemConfiguration.framework */; };
 		7908975319D4974700145E7E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974819D4974700145E7E /* UIKit.framework */; };
+		79299E351A1BE05B005F6B63 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908972019D4969600145E7E /* ViewController.m */; };
+		79299E361A1BE05B005F6B63 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908971D19D4969600145E7E /* AppDelegate.m */; };
+		79299E371A1BE05B005F6B63 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7908971A19D4969600145E7E /* main.m */; };
+		79299E381A1BE05B005F6B63 /* GoogleSignInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */; };
+		79299E391A1BE05B005F6B63 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042145DF746A72871D0D45 /* LoginManager.m */; };
+		79299E3A1A1BE05B005F6B63 /* DinnerTimeServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042175BCF128D69757E67B /* DinnerTimeServiceImpl.m */; };
+		79299E3B1A1BE05B005F6B63 /* GoogleSignInManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304256BA21AA13EC32B4223 /* GoogleSignInManagerSpy.m */; };
+		79299E3C1A1BE05B005F6B63 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042C61C2CABF52D296A9DB /* LoginViewController.m */; };
+		79299E3D1A1BE05B005F6B63 /* DinnerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042D641CE4649B8BFE550D /* DinnerListViewController.m */; };
+		79299E3E1A1BE05B005F6B63 /* DinnerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CE0D18EF7952759154D /* DinnerManager.m */; };
+		79299E3F1A1BE05B005F6B63 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422829B2FB3DA9CEAF1FA /* LoginView.m */; };
+		79299E401A1BE05B005F6B63 /* DinnerDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530429865D210BC5C0B09215 /* DinnerDTO.m */; };
+		79299E411A1BE05B005F6B63 /* DinnerSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530421975E3FDA333BEDEB0E /* DinnerSessionManager.m */; };
+		79299E421A1BE05B005F6B63 /* DinnerSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 530421611B2A805A71068306 /* DinnerSessionBuilder.m */; };
+		79299E431A1BE05B005F6B63 /* DinnerSessionManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 530429B3DA5F569BB2970F96 /* DinnerSessionManagerSpy.m */; };
+		79299E441A1BE05B005F6B63 /* SessionDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428E25B31A897D75B91BE /* SessionDTO.m */; };
+		79299E451A1BE05B005F6B63 /* DinnerArrayDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530427E22BF298D0FFF7FA02 /* DinnerArrayDTO.m */; };
+		79299E461A1BE05B005F6B63 /* DinnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042A9E0197E2C4FC41465A /* DinnerCell.m */; };
+		79299E471A1BE05B005F6B63 /* AddDinnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530422554439CEE2177B5E91 /* AddDinnerViewController.m */; };
+		79299E481A1BE05B005F6B63 /* DinnerWebSocketServiceImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042555B98822CB354EE982 /* DinnerWebSocketServiceImpl.m */; };
+		79299E491A1BE05B005F6B63 /* DinnerUpdateDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 530424A9248996344D044C11 /* DinnerUpdateDTO.m */; };
+		79299E4A1A1BE05B005F6B63 /* OrderDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304218F17F2DF6D939C16BA /* OrderDTO.m */; };
+		79299E4B1A1BE05B005F6B63 /* DinnerListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428BE0851F2A5351839E3 /* DinnerListManager.m */; };
+		79299E4C1A1BE05B005F6B63 /* OrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 530426A17D495A1C708411F0 /* OrderListViewController.m */; };
+		79299E4D1A1BE05B005F6B63 /* OrderListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304246724B92ACB57BFAB84 /* OrderListManager.m */; };
+		79299E4E1A1BE05B005F6B63 /* AddOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B41FFC8F6C30591E363 /* AddOrderViewController.m */; };
+		79299E4F1A1BE05B005F6B63 /* DinnerSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042B107D3CFF8908F14F7B /* DinnerSummaryCell.m */; };
+		79299E501A1BE05B005F6B63 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530428F8C4B2CCB80208A996 /* OrderCell.m */; };
+		79299E511A1BE05B005F6B63 /* ModelAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304298350B72CC70180F855 /* ModelAssembly.m */; };
+		79299E521A1BE05B005F6B63 /* ServiceAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042255117F78C622E13C89 /* ServiceAssembly.m */; };
+		79299E531A1BE05B005F6B63 /* DinnerTimeServiceAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CA192354112F2B1B07D /* DinnerTimeServiceAssembly.m */; };
+		79299E541A1BE05B005F6B63 /* FakeServiceAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042CCBBD62B32746F28D4E /* FakeServiceAssembly.m */; };
+		79299E551A1BE05B005F6B63 /* ApplicationAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 530426AEC1D867E410A17B8B /* ApplicationAssembly.m */; };
+		79299E561A1BE05B005F6B63 /* ControllerAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304256A2B0CF9AC8601164A /* ControllerAssembly.m */; };
+		79299E571A1BE05B005F6B63 /* FakeWebSocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 530423F5D131911327B57E52 /* FakeWebSocketService.m */; };
+		79299E591A1BE05B005F6B63 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908973E19D4974700145E7E /* AddressBook.framework */; };
+		79299E5A1A1BE05B005F6B63 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908973F19D4974700145E7E /* AssetsLibrary.framework */; };
+		79299E5B1A1BE05B005F6B63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974019D4974700145E7E /* CoreGraphics.framework */; };
+		79299E5C1A1BE05B005F6B63 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974119D4974700145E7E /* CoreLocation.framework */; };
+		79299E5D1A1BE05B005F6B63 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974219D4974700145E7E /* CoreMotion.framework */; };
+		79299E5E1A1BE05B005F6B63 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974319D4974700145E7E /* CoreText.framework */; };
+		79299E5F1A1BE05B005F6B63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974419D4974700145E7E /* Foundation.framework */; };
+		79299E601A1BE05B005F6B63 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974519D4974700145E7E /* MediaPlayer.framework */; };
+		79299E611A1BE05B005F6B63 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974619D4974700145E7E /* Security.framework */; };
+		79299E621A1BE05B005F6B63 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974719D4974700145E7E /* SystemConfiguration.framework */; };
+		79299E631A1BE05B005F6B63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908974819D4974700145E7E /* UIKit.framework */; };
+		79299E641A1BE05B005F6B63 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */; };
+		79299E651A1BE05B005F6B63 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9C19E1793F00525456 /* GooglePlus.framework */; };
+		79299E661A1BE05B005F6B63 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35828E243B494F8FBBDFBBBF /* libPods.a */; };
+		79299E681A1BE05B005F6B63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7908972219D4969600145E7E /* Main.storyboard */; };
+		79299E691A1BE05B005F6B63 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7908972719D4969600145E7E /* LaunchScreen.xib */; };
+		79299E6A1A1BE05B005F6B63 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7908972519D4969600145E7E /* Images.xcassets */; };
+		79299E6B1A1BE05B005F6B63 /* MyCACertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530420FA436566A00072D5F3 /* MyCACertificate.cer */; };
+		79299E6C1A1BE05B005F6B63 /* Marek Moscichowski's CA 1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */; };
+		79299E6D1A1BE05B005F6B63 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79AD34A31A0E68DE000164AC /* OrderCell.xib */; };
+		79299E6E1A1BE05B005F6B63 /* DinnerTimeServer.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */; };
+		79299E6F1A1BE05B005F6B63 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042FF090942248984C063A /* LoginView.xib */; };
+		79299E701A1BE05B005F6B63 /* DinnerListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042B0DF3ABBE761BCBC08E /* DinnerListView.xib */; };
+		79299E711A1BE05B005F6B63 /* DinnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042262A2460E01ED7AED16 /* DinnerCell.xib */; };
+		79299E721A1BE05B005F6B63 /* turn_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */; };
+		79299E731A1BE05B005F6B63 /* AddDinnerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5304259653FC61C7780242EA /* AddDinnerView.xib */; };
+		79299E741A1BE05B005F6B63 /* OrderListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53042ACAF525D814A6455FE6 /* OrderListView.xib */; };
+		79299E751A1BE05B005F6B63 /* AddOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530423CA5364BBA87F586D36 /* AddOrderView.xib */; };
+		79299E761A1BE05B005F6B63 /* DinnerSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 530428138CC3D1A620747AC8 /* DinnerSummaryCell.xib */; };
+		79299E771A1BE05B005F6B63 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5304215F4ECEBF1843501F2C /* Configuration.plist */; };
 		797B519119FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */; };
 		797B519219FA749500C96E60 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D86A9C19E1793F00525456 /* GooglePlus.framework */; };
 		797B519319FA749500C96E60 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7908975419D4976300145E7E /* GoogleOpenSource.framework */; };
@@ -153,12 +221,15 @@
 		530422742F2685537EEC1294 /* AppDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTests.m; sourceTree = "<group>"; };
 		530422829B2FB3DA9CEAF1FA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		5304229120E2D16819F7CDED /* OrderListManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListManagerTests.m; sourceTree = "<group>"; };
+		530422B29C3D0FCEB9C550B2 /* FakeDinnerTimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeDinnerTimeService.m; sourceTree = "<group>"; };
 		530422BB21E63FE84E0D1754 /* DinnerTimeServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceTests.m; sourceTree = "<group>"; };
+		530422C0CD2C60EAF22FBBA0 /* FakeControllerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeControllerListController.h; sourceTree = "<group>"; };
 		530422E551632CB91CBD45E2 /* LoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerDelegateSpy.m; sourceTree = "<group>"; };
 		5304231E150208C055D6C597 /* FakeServiceAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeServiceAssembly.h; sourceTree = "<group>"; };
 		5304233041B8685993194866 /* DinnerSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionManager.h; sourceTree = "<group>"; };
 		5304237BE071EB074068B1A5 /* DinnerManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerManagerSpy.m; sourceTree = "<group>"; };
 		5304237E8FDB2606610EA65C /* ModelAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelAssembly.h; sourceTree = "<group>"; };
+		530423902FF15DB8E8776C10 /* FakeControllerListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeControllerListController.m; sourceTree = "<group>"; };
 		5304239E73B6BFEB55ECD17F /* OrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListViewController.h; sourceTree = "<group>"; };
 		530423B3BB01879CB9D69608 /* DinnerWebSocketServiceImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerWebSocketServiceImpl.h; sourceTree = "<group>"; };
 		530423CA5364BBA87F586D36 /* AddOrderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOrderView.xib; sourceTree = "<group>"; };
@@ -192,6 +263,7 @@
 		5304285AA3249E79B2D5E555 /* OrderCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCellTests.m; sourceTree = "<group>"; };
 		5304287D70F7136A539532D2 /* DinnerSessionManagerSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerSessionManagerSpy.h; sourceTree = "<group>"; };
 		530428897C88CF284D6EF481 /* DinnerTimeServiceSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeServiceSpy.m; sourceTree = "<group>"; };
+		5304289E0BC92D59A2750D65 /* FakeApplicationAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeApplicationAssembly.m; sourceTree = "<group>"; };
 		530428BE0851F2A5351839E3 /* DinnerListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListManager.m; sourceTree = "<group>"; };
 		530428D6654BA410BAFA462B /* GoogleSignInManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManagerStub.h; sourceTree = "<group>"; };
 		530428E1D34C533C3D913CCC /* FakeWebSocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeWebSocketService.h; sourceTree = "<group>"; };
@@ -203,6 +275,7 @@
 		53042985AA7A931CA8FFA221 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		530429865D210BC5C0B09215 /* DinnerDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerDTO.m; sourceTree = "<group>"; };
 		53042990AA35C199D07FBA47 /* GoogleSignInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManager.h; sourceTree = "<group>"; };
+		530429A3A47D75B4A3889ABE /* FakeApplicationAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeApplicationAssembly.h; sourceTree = "<group>"; };
 		530429B3DA5F569BB2970F96 /* DinnerSessionManagerSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionManagerSpy.m; sourceTree = "<group>"; };
 		53042A0BD4F9B102D5539BBC /* OrderListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListManager.h; sourceTree = "<group>"; };
 		53042A17C61A3188B826993A /* DinnerServiceResultType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerServiceResultType.h; sourceTree = "<group>"; };
@@ -216,6 +289,7 @@
 		53042B112B7A783984BF38A5 /* DinnerDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerDTO.h; sourceTree = "<group>"; };
 		53042B41FFC8F6C30591E363 /* AddOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOrderViewController.m; sourceTree = "<group>"; };
 		53042B7EFB33C62A733D7189 /* DinnerTimeLoginManagerDelegateSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerTimeLoginManagerDelegateSpy.m; sourceTree = "<group>"; };
+		53042B90293147837B7B0B4E /* FakeRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRootViewController.h; sourceTree = "<group>"; };
 		53042B984E3B27AD9D829850 /* SessionDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDTO.h; sourceTree = "<group>"; };
 		53042C228BD7482F62EA6E6D /* OrderListViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListViewControllerTests.m; sourceTree = "<group>"; };
 		53042C61C2CABF52D296A9DB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -228,10 +302,12 @@
 		53042CEA4E0490042AEC3D6E /* DinnerSessionBuilderStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerSessionBuilderStub.m; sourceTree = "<group>"; };
 		53042CF2DB3C123D3AAA49C3 /* turn_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "turn_off@2x.png"; sourceTree = "<group>"; };
 		53042CFC7635AA908ED57F4A /* GoogleSignInManagerDelegateSPY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerDelegateSPY.m; sourceTree = "<group>"; };
+		53042CFE55791941442A94BC /* FakeDinnerTimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeDinnerTimeService.h; sourceTree = "<group>"; };
 		53042D23F63C04821250036A /* OrderDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDTO.h; sourceTree = "<group>"; };
 		53042D2736EC5A89304FFB69 /* DinnerUpdateDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerUpdateDTO.h; sourceTree = "<group>"; };
 		53042D641CE4649B8BFE550D /* DinnerListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DinnerListViewController.m; sourceTree = "<group>"; };
 		53042D7D2960FAA7D3DC0EDF /* DinnerListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerListViewController.h; sourceTree = "<group>"; };
+		53042DA3A93F64FAB4202198 /* FakeRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRootViewController.m; sourceTree = "<group>"; };
 		53042DD9611C62CE29CE9CE8 /* GoogleSignInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManager.m; sourceTree = "<group>"; };
 		53042E44D20CBD5775905169 /* DinnerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DinnerManager.h; sourceTree = "<group>"; };
 		53042E5328ECC51FBF261CCB /* AddOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOrderViewController.h; sourceTree = "<group>"; };
@@ -267,6 +343,8 @@
 		7908974819D4974700145E7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7908975419D4976300145E7E /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
 		7908975519D4976300145E7E /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
+		79299E7C1A1BE05B005F6B63 /* FakeDinnerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeDinnerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79299E7D1A1BE05B005F6B63 /* DinnerTime copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DinnerTime copy-Info.plist"; path = "/Users/marekmoscichowski/Documents/Documents/Development/test/DinnerTime/DinnerTime copy-Info.plist"; sourceTree = "<absolute>"; };
 		79AD34A31A0E68DE000164AC /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		79D86A9B19E1793F00525456 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		79D86A9C19E1793F00525456 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
@@ -317,6 +395,27 @@
 				797B519D19FA749500C96E60 /* Security.framework in Frameworks */,
 				797B519E19FA749500C96E60 /* SystemConfiguration.framework in Frameworks */,
 				797B519F19FA749500C96E60 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79299E581A1BE05B005F6B63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79299E591A1BE05B005F6B63 /* AddressBook.framework in Frameworks */,
+				79299E5A1A1BE05B005F6B63 /* AssetsLibrary.framework in Frameworks */,
+				79299E5B1A1BE05B005F6B63 /* CoreGraphics.framework in Frameworks */,
+				79299E5C1A1BE05B005F6B63 /* CoreLocation.framework in Frameworks */,
+				79299E5D1A1BE05B005F6B63 /* CoreMotion.framework in Frameworks */,
+				79299E5E1A1BE05B005F6B63 /* CoreText.framework in Frameworks */,
+				79299E5F1A1BE05B005F6B63 /* Foundation.framework in Frameworks */,
+				79299E601A1BE05B005F6B63 /* MediaPlayer.framework in Frameworks */,
+				79299E611A1BE05B005F6B63 /* Security.framework in Frameworks */,
+				79299E621A1BE05B005F6B63 /* SystemConfiguration.framework in Frameworks */,
+				79299E631A1BE05B005F6B63 /* UIKit.framework in Frameworks */,
+				79299E641A1BE05B005F6B63 /* GoogleOpenSource.framework in Frameworks */,
+				79299E651A1BE05B005F6B63 /* GooglePlus.framework in Frameworks */,
+				79299E661A1BE05B005F6B63 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +485,8 @@
 				5304256A2B0CF9AC8601164A /* ControllerAssembly.m */,
 				530420BD494D0E03A6B90B1D /* ControllerAssembly.h */,
 				5304215F4ECEBF1843501F2C /* Configuration.plist */,
+				5304289E0BC92D59A2750D65 /* FakeApplicationAssembly.m */,
+				530429A3A47D75B4A3889ABE /* FakeApplicationAssembly.h */,
 			);
 			path = Assemblies;
 			sourceTree = "<group>";
@@ -523,6 +624,12 @@
 			children = (
 				530423F5D131911327B57E52 /* FakeWebSocketService.m */,
 				530428E1D34C533C3D913CCC /* FakeWebSocketService.h */,
+				530422B29C3D0FCEB9C550B2 /* FakeDinnerTimeService.m */,
+				53042CFE55791941442A94BC /* FakeDinnerTimeService.h */,
+				53042DA3A93F64FAB4202198 /* FakeRootViewController.m */,
+				53042B90293147837B7B0B4E /* FakeRootViewController.h */,
+				530423902FF15DB8E8776C10 /* FakeControllerListController.m */,
+				530422C0CD2C60EAF22FBBA0 /* FakeControllerListController.h */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -556,6 +663,7 @@
 				7908971619D4969600145E7E /* Products */,
 				53042AE5A9F85B4874CDF9A0 /* Frameworks */,
 				86B896A40A409C943CE73D81 /* Pods */,
+				79299E7D1A1BE05B005F6B63 /* DinnerTime copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -564,6 +672,7 @@
 			children = (
 				7908971519D4969600145E7E /* DinnerTime.app */,
 				7908972E19D4969600145E7E /* DinnerTimeTests.xctest */,
+				79299E7C1A1BE05B005F6B63 /* FakeDinnerTime.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,6 +779,25 @@
 			productReference = 7908972E19D4969600145E7E /* DinnerTimeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		79299E321A1BE05B005F6B63 /* FakeDinnerTime */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79299E791A1BE05B005F6B63 /* Build configuration list for PBXNativeTarget "FakeDinnerTime" */;
+			buildPhases = (
+				79299E331A1BE05B005F6B63 /* Check Pods Manifest.lock */,
+				79299E341A1BE05B005F6B63 /* Sources */,
+				79299E581A1BE05B005F6B63 /* Frameworks */,
+				79299E671A1BE05B005F6B63 /* Resources */,
+				79299E781A1BE05B005F6B63 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FakeDinnerTime;
+			productName = DinnerTime;
+			productReference = 79299E7C1A1BE05B005F6B63 /* FakeDinnerTime.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -703,6 +831,7 @@
 			targets = (
 				7908971419D4969600145E7E /* DinnerTime */,
 				7908972D19D4969600145E7E /* DinnerTimeTests */,
+				79299E321A1BE05B005F6B63 /* FakeDinnerTime */,
 			);
 		};
 /* End PBXProject section */
@@ -735,6 +864,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79299E671A1BE05B005F6B63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79299E681A1BE05B005F6B63 /* Main.storyboard in Resources */,
+				79299E691A1BE05B005F6B63 /* LaunchScreen.xib in Resources */,
+				79299E6A1A1BE05B005F6B63 /* Images.xcassets in Resources */,
+				79299E6B1A1BE05B005F6B63 /* MyCACertificate.cer in Resources */,
+				79299E6C1A1BE05B005F6B63 /* Marek Moscichowski's CA 1.cer in Resources */,
+				79299E6D1A1BE05B005F6B63 /* OrderCell.xib in Resources */,
+				79299E6E1A1BE05B005F6B63 /* DinnerTimeServer.cer in Resources */,
+				79299E6F1A1BE05B005F6B63 /* LoginView.xib in Resources */,
+				79299E701A1BE05B005F6B63 /* DinnerListView.xib in Resources */,
+				79299E711A1BE05B005F6B63 /* DinnerCell.xib in Resources */,
+				79299E721A1BE05B005F6B63 /* turn_off@2x.png in Resources */,
+				79299E731A1BE05B005F6B63 /* AddDinnerView.xib in Resources */,
+				79299E741A1BE05B005F6B63 /* OrderListView.xib in Resources */,
+				79299E751A1BE05B005F6B63 /* AddOrderView.xib in Resources */,
+				79299E761A1BE05B005F6B63 /* DinnerSummaryCell.xib in Resources */,
+				79299E771A1BE05B005F6B63 /* Configuration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +953,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		79299E331A1BE05B005F6B63 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		79299E781A1BE05B005F6B63 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -839,7 +1021,6 @@
 				53042C39214AB2E2B7A43EAE /* ModelAssembly.m in Sources */,
 				53042C1AAB7F6C9315D47C33 /* ServiceAssembly.m in Sources */,
 				53042BF5C63E35200F989BB8 /* DinnerTimeServiceAssembly.m in Sources */,
-				53042F3D941221F2D3F641DF /* FakeServiceAssembly.m in Sources */,
 				530428E52BA445DB4130641F /* ApplicationAssembly.m in Sources */,
 				53042014032F7BF2162A7984 /* ControllerAssembly.m in Sources */,
 				53042FE132A3DEE7B39C59A8 /* FakeWebSocketService.m in Sources */,
@@ -875,6 +1056,52 @@
 				530421C9C04AAD8950B31EA8 /* OrderListManagerTests.m in Sources */,
 				53042960D18A2A21CB897533 /* AddOrderViewControllerTests.m in Sources */,
 				53042A19F5BA4F1B8978CDC7 /* OrderCellTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79299E341A1BE05B005F6B63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79299E351A1BE05B005F6B63 /* ViewController.m in Sources */,
+				79299E361A1BE05B005F6B63 /* AppDelegate.m in Sources */,
+				79299E371A1BE05B005F6B63 /* main.m in Sources */,
+				79299E381A1BE05B005F6B63 /* GoogleSignInManager.m in Sources */,
+				79299E391A1BE05B005F6B63 /* LoginManager.m in Sources */,
+				79299E3A1A1BE05B005F6B63 /* DinnerTimeServiceImpl.m in Sources */,
+				79299E3B1A1BE05B005F6B63 /* GoogleSignInManagerSpy.m in Sources */,
+				79299E3C1A1BE05B005F6B63 /* LoginViewController.m in Sources */,
+				79299E3D1A1BE05B005F6B63 /* DinnerListViewController.m in Sources */,
+				79299E3E1A1BE05B005F6B63 /* DinnerManager.m in Sources */,
+				79299E3F1A1BE05B005F6B63 /* LoginView.m in Sources */,
+				79299E401A1BE05B005F6B63 /* DinnerDTO.m in Sources */,
+				79299E411A1BE05B005F6B63 /* DinnerSessionManager.m in Sources */,
+				79299E421A1BE05B005F6B63 /* DinnerSessionBuilder.m in Sources */,
+				79299E431A1BE05B005F6B63 /* DinnerSessionManagerSpy.m in Sources */,
+				79299E441A1BE05B005F6B63 /* SessionDTO.m in Sources */,
+				79299E451A1BE05B005F6B63 /* DinnerArrayDTO.m in Sources */,
+				79299E461A1BE05B005F6B63 /* DinnerCell.m in Sources */,
+				79299E471A1BE05B005F6B63 /* AddDinnerViewController.m in Sources */,
+				79299E481A1BE05B005F6B63 /* DinnerWebSocketServiceImpl.m in Sources */,
+				79299E491A1BE05B005F6B63 /* DinnerUpdateDTO.m in Sources */,
+				79299E4A1A1BE05B005F6B63 /* OrderDTO.m in Sources */,
+				79299E4B1A1BE05B005F6B63 /* DinnerListManager.m in Sources */,
+				79299E4C1A1BE05B005F6B63 /* OrderListViewController.m in Sources */,
+				79299E4D1A1BE05B005F6B63 /* OrderListManager.m in Sources */,
+				79299E4E1A1BE05B005F6B63 /* AddOrderViewController.m in Sources */,
+				79299E4F1A1BE05B005F6B63 /* DinnerSummaryCell.m in Sources */,
+				79299E501A1BE05B005F6B63 /* OrderCell.m in Sources */,
+				79299E511A1BE05B005F6B63 /* ModelAssembly.m in Sources */,
+				79299E521A1BE05B005F6B63 /* ServiceAssembly.m in Sources */,
+				79299E531A1BE05B005F6B63 /* DinnerTimeServiceAssembly.m in Sources */,
+				79299E541A1BE05B005F6B63 /* FakeServiceAssembly.m in Sources */,
+				79299E551A1BE05B005F6B63 /* ApplicationAssembly.m in Sources */,
+				79299E561A1BE05B005F6B63 /* ControllerAssembly.m in Sources */,
+				79299E571A1BE05B005F6B63 /* FakeWebSocketService.m in Sources */,
+				5304227A036B5849772786FF /* FakeDinnerTimeService.m in Sources */,
+				5304269E5E46372395E8BC87 /* FakeApplicationAssembly.m in Sources */,
+				53042E39F0707F850D5A5195 /* FakeRootViewController.m in Sources */,
+				53042FA984CE9AED5654F4C2 /* FakeControllerListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1060,6 +1287,38 @@
 			};
 			name = Release;
 		};
+		79299E7A1A1BE05B005F6B63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6010DA00EABCDF94F1D6A86 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = "DinnerTime copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = FakeDinnerTime;
+			};
+			name = Debug;
+		};
+		79299E7B1A1BE05B005F6B63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DEA1A90A58166DBB207A2B7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = "DinnerTime copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = FakeDinnerTime;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1086,6 +1345,15 @@
 			buildConfigurations = (
 				7908973C19D4969600145E7E /* Debug */,
 				7908973D19D4969600145E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79299E791A1BE05B005F6B63 /* Build configuration list for PBXNativeTarget "FakeDinnerTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79299E7A1A1BE05B005F6B63 /* Debug */,
+				79299E7B1A1BE05B005F6B63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

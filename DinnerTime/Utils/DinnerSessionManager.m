@@ -4,6 +4,8 @@
 //
 
 #import "DinnerSessionManager.h"
+#import "OrderDTO.h"
+#import "DinnerSessionBuilder.h"
 
 @implementation DinnerSessionManager {
 

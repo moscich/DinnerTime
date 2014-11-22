@@ -59,17 +59,23 @@
 }
 
 - (void)postOrder:(NSString *)string withCallback:(void (^)(DinnerServiceResultType type))callback {
-    int dinnerId = self.orderListManager.dinnerId;
-    [self.dinnerTimeService postOrder:string withDinnerId:dinnerId withCallback:^(OrderDTO *order) {
-        for (DinnerDTO *dinner in self.dinners) {
-            if (dinner.dinnerId == dinnerId) {
-                if (!dinner.orders)
-                    dinner.orders = (NSArray <OrderDTO, Optional> *) @[];
-                dinner.orders = (NSArray <OrderDTO, Optional> *) [dinner.orders arrayByAddingObject:order];
-                callback(DinnerServiceResult_Success);
-            }
-        }
+    [self.dinnerTimeService postOrder:string withDinnerId:self.orderListManager.dinnerId withCallback:^(OrderDTO *order) {
+      [self addOrderToProperDinner:order];
+      callback(DinnerServiceResult_Success);
     }];
+}
+
+- (BOOL)addOrderToProperDinner:(OrderDTO *)order {
+  int dinnerId = self.orderListManager.dinnerId;
+  for (DinnerDTO *dinner in self.dinners) {
+    if (dinner.dinnerId == dinnerId) {
+      if (!dinner.orders)
+        dinner.orders = (NSArray <OrderDTO, Optional> *) @[];
+      dinner.orders = (NSArray <OrderDTO, Optional> *) [dinner.orders arrayByAddingObject:order];
+      return YES;
+    }
+  }
+  return NO;
 }
 
 - (NSMutableArray *)sortOwnedDinnersFirst:(NSArray *)inputArray {

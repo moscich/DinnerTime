@@ -21,7 +21,7 @@
 
 @interface DinnerTimeServiceTests : XCTestCase
 
-@property(nonatomic, strong) DinnerTimeServiceImpl *dinnerTimeService;
+@property(nonatomic, strong) id <DinnerTimeService> dinnerTimeService;
 
 @end
 
@@ -131,9 +131,8 @@
 }
 
 - (void)testPostOrder {
-  DinnerTimeServiceImpl *dinnerTimeService = [DinnerTimeServiceImpl new];
   id dinnerSessionManager = [OCMockObject mockForClass:[DinnerSessionManager class]];
-  dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
+  self.dinnerTimeService.dinnerSessionManager = dinnerSessionManager;
   void (^proxyBlock)(NSInvocation *) = ^(NSInvocation *invocation) {
     void (^passedBlock)(NSString *);
     [invocation getArgument:&passedBlock atIndex:4];
@@ -143,7 +142,7 @@
   XCTestExpectation *expectation = [self expectationWithDescription:@"callback expected"];
 
   [((DinnerSessionManager *) [[dinnerSessionManager stub] andDo:proxyBlock]) POST:@"/dinners/42/orders" parameters:@{@"order" : @"testOrder"} success:OCMOCK_ANY failure:OCMOCK_ANY];
-  [dinnerTimeService postOrder:@"testOrder" withDinnerId:42 withCallback:^(OrderDTO *dto) {
+  [self.dinnerTimeService postOrder:@"testOrder" withDinnerId:42 withCallback:^(OrderDTO *dto) {
     XCTAssertEqualObjects(dto, [self resultPOSTOrder]);
     [expectation fulfill];
   }];

@@ -3,6 +3,8 @@
 // Copyright (c) 2014 Marek Mościchowski. All rights reserved.
 //
 
+#import <Typhoon/TyphoonAssembly.h>
+#import <Typhoon/TyphoonComponentFactory.h>
 #import "OrderListViewController.h"
 #import "DinnerManager.h"
 #import "OrderListManager.h"
@@ -33,7 +35,7 @@
 }
 
 - (void)addButtonTapped {
-    AddOrderViewController *addOrderViewController = [AddOrderViewController new];
+    AddOrderViewController *addOrderViewController = [[self.assembly asFactory] componentForType:[AddOrderViewController class]];
     addOrderViewController.delegate = self;
     [self presentViewController:addOrderViewController animated:YES completion:nil];
 }

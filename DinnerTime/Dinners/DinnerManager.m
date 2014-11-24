@@ -121,10 +121,10 @@
   return nil;
 }
 
-- (void)orderWasPaid:(NSNumber *)orderId {
+- (void)orderWithId:(NSNumber *)orderId wasPaid:(NSNumber *)paid {
   DinnerDTO *dinner = [self dinnerWithId:self.orderListManager.dinnerId];
   OrderDTO *order = dinner.orders[(NSUInteger) [orderId intValue]];
-  [self.dinnerTimeService changeOrderWithId:@(order.orderId) toPaid:@YES];
+  [self.dinnerTimeService changeOrderWithId:@(order.orderId) toPaid:paid];
 }
 
 @end

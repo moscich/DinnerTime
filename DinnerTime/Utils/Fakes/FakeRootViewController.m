@@ -16,8 +16,9 @@
 
   [self.view addSubview:self.navigationController.view];
   UIView *navigationView = self.navigationController.view;
-  [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[navigationView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(navigationView)];
-  [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navigationView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(navigationView)];
+  [navigationView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(60)-[navigationView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(navigationView)]];
+  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[navigationView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(navigationView)]];
 }
 
 @end

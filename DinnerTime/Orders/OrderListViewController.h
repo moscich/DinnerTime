@@ -8,10 +8,11 @@
 #import "AddOrderViewController.h"
 
 @class DinnerManager;
+@class TyphoonAssembly;
 
 
 @interface OrderListViewController : UIViewController <AddOrderViewControllerDelegate>
-
+@property(nonatomic, strong) TyphoonAssembly *assembly;
 @property(nonatomic, strong) DinnerManager *dinnerManager;
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 

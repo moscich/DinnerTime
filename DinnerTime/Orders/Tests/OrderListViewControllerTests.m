@@ -9,18 +9,29 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import <Typhoon/TyphoonAssembly.h>
+#import <Typhoon/TyphoonBlockComponentFactory.h>
 #import "OrderListViewController.h"
 #import "DinnerManager.h"
 #import "OrderListManager.h"
 #import "AddOrderViewController.h"
 #import "OrderDTO.h"
+#import "ControllerAssembly.h"
+#import "DinnerTimeServiceAssembly.h"
+#import "ModelAssembly.h"
+#import "ApplicationAssembly.h"
 
 @interface OrderListViewControllerTests : XCTestCase
 
+@property(nonatomic, strong) OrderListViewController *orderListViewController;
 @end
 
 @implementation OrderListViewControllerTests
 
+- (void)setUp {
+  TyphoonComponentFactory *factory = [TyphoonBlockComponentFactory factoryWithAssemblies:@[[ApplicationAssembly assembly], [ModelAssembly assembly], [DinnerTimeServiceAssembly assembly], [ControllerAssembly assembly]]];
+  self.orderListViewController = [factory componentForType:[OrderListViewController class]];
+}
 
 - (void)testOrderListHasATableViewAndSetsItsDataSourceAndDelegate {
   DinnerManager *manager = [DinnerManager new];
@@ -54,14 +65,12 @@
 }
 
 - (void)testNewOrderControllerPresented {
-  DinnerManager *manager = [DinnerManager new];
-  OrderListViewController *orderListViewController = [[OrderListViewController alloc] initWithDinnerManager:manager];
-  id partialOrderListViewController = [OCMockObject partialMockForObject:orderListViewController];
+  id partialOrderListViewController = [OCMockObject partialMockForObject:self.orderListViewController];
   [[partialOrderListViewController expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
     AddOrderViewController *addOrderViewController = obj;
-    return addOrderViewController.delegate == orderListViewController;
+    return addOrderViewController.delegate == self.orderListViewController;
   }]                                                    animated:YES completion:nil];
-  [orderListViewController addButtonTapped];
+  [self.orderListViewController addButtonTapped];
   [partialOrderListViewController verify];
 }
 

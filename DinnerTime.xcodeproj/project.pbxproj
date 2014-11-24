@@ -61,6 +61,7 @@
 		53042A0782C5573422A0513B /* DinnerTimeServer.cer in Resources */ = {isa = PBXBuildFile; fileRef = 530426230BAFFDDC778CFD04 /* DinnerTimeServer.cer */; };
 		53042A19F5BA4F1B8978CDC7 /* OrderCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304285AA3249E79B2D5E555 /* OrderCellTests.m */; };
 		53042AB962E215BA6B2465F9 /* DinnerSessionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530423E8938FE824DC1006A7 /* DinnerSessionManagerTests.m */; };
+		53042B0C7C522F1A53E5F61B /* FakeRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5304204D5A8869C37B4ED607 /* FakeRootViewController.xib */; };
 		53042B59CA8BBA2C8BADF6D8 /* DinnerSessionManagerSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = 530429B3DA5F569BB2970F96 /* DinnerSessionManagerSpy.m */; };
 		53042BEA4B61455AA171A025 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042145DF746A72871D0D45 /* LoginManager.m */; };
 		53042BEDD5F2F45598B69F88 /* DinnerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53042D641CE4649B8BFE550D /* DinnerListViewController.m */; };
@@ -199,6 +200,7 @@
 		2F457252379E1A2FD0AE3B7F /* Pods-DinnerTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DinnerTimeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DinnerTimeTests/Pods-DinnerTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		35828E243B494F8FBBDFBBBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		530420264317ACE772D8A7A8 /* LoginManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManagerTests.m; sourceTree = "<group>"; };
+		5304204D5A8869C37B4ED607 /* FakeRootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FakeRootViewController.xib; sourceTree = "<group>"; };
 		5304205342C294996D94C2CA /* GoogleSignInManagerStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManagerStub.m; sourceTree = "<group>"; };
 		5304206245109D15AAFF91B5 /* LoginViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewControllerTests.m; sourceTree = "<group>"; };
 		53042081E9D96C4240CB5D86 /* Marek Moscichowski's CA 1.cer */ = {isa = PBXFileReference; lastKnownFileType = file.cer; path = "Marek Moscichowski's CA 1.cer"; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 				53042B90293147837B7B0B4E /* FakeRootViewController.h */,
 				530423902FF15DB8E8776C10 /* FakeControllerListController.m */,
 				530422C0CD2C60EAF22FBBA0 /* FakeControllerListController.h */,
+				5304204D5A8869C37B4ED607 /* FakeRootViewController.xib */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -892,6 +895,7 @@
 				79299E751A1BE05B005F6B63 /* AddOrderView.xib in Resources */,
 				79299E761A1BE05B005F6B63 /* DinnerSummaryCell.xib in Resources */,
 				79299E771A1BE05B005F6B63 /* Configuration.plist in Resources */,
+				53042B0C7C522F1A53E5F61B /* FakeRootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,7 +1274,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Debug;
 		};
@@ -1289,7 +1293,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DinnerTime.app/DinnerTime";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 			};
 			name = Release;
 		};

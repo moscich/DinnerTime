@@ -59,7 +59,7 @@
 }
 
 - (void)addButtonTapped {
-  AddDinnerViewController *addDinnerViewController = [AddDinnerViewController new];
+  AddDinnerViewController *addDinnerViewController = [[self.assembly asFactory] componentForType:[AddDinnerViewController class]];
   addDinnerViewController.delegate = self;
   [self presentViewController:addDinnerViewController animated:YES completion:nil];
 }

@@ -211,7 +211,10 @@
   id mockService = [OCMockObject mockForClass:[DinnerTimeServiceImpl class]];
   self.dinnerManager.dinnerTimeService = mockService;
   [[mockService expect] changeOrderWithId:@24 toPaid:@YES];
-  [self.dinnerManager orderWasPaid:@1];
+  [self.dinnerManager orderWithId:@1 wasPaid:@YES];
+  [mockService verify];
+  [[mockService expect] changeOrderWithId:@24 toPaid:@NO];
+  [self.dinnerManager orderWithId:@1 wasPaid:@NO];
   [mockService verify];
 }
 

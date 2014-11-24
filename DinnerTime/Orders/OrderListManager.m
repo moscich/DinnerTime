@@ -55,11 +55,11 @@
 }
 
 - (void)orderWasPaid:(OrderCell *)orderCell {
-  [self.delegate orderWasPaid:@(orderCell.tag)];
+  [self.delegate orderWithId:@(orderCell.tag) wasPaid:@YES];
 }
 
 - (void)orderWasUnpaid:(OrderCell *)orderCell {
-  [self.delegate orderWasUnpaid:@(orderCell.tag)];
+  [self.delegate orderWithId:@(orderCell.tag) wasPaid:@NO];
 }
 
 - (void)orderWasDeleted:(OrderCell *)orderCell {

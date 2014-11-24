@@ -67,10 +67,10 @@
   orderListManager.delegate = delegate;
   OrderCell *orderCell = [OrderCell new];
   orderCell.tag = 42;
-  [[delegate expect] orderWasPaid:@42];
+  [[delegate expect] orderWithId:@42 wasPaid:@YES];
   [orderListManager orderWasPaid:orderCell];
   [delegate verify];
-  [[delegate expect] orderWasUnpaid:@42];
+  [[delegate expect] orderWithId:@42 wasPaid:@NO];
   [orderListManager orderWasUnpaid:orderCell];
   [delegate verify];
 }

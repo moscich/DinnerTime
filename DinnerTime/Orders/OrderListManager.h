@@ -10,8 +10,7 @@
 @protocol DinnerManagerDataSource;
 
 @protocol OrderListManagerDelegate
-- (void)orderWasPaid:(NSNumber *)orderId;
-- (void)orderWasUnpaid:(NSNumber *)orderId;
+- (void)orderWithId:(NSNumber *)orderId wasPaid:(NSNumber *)paid;
 @end
 
 @interface OrderListManager : NSObject <UITableViewDataSource, UITableViewDelegate, OrderCellDelegate>

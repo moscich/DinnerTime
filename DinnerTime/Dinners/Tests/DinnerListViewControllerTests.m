@@ -32,14 +32,13 @@
 }
 
 - (void)testDinnerManagerHasTableViewProperlyInstantiated {
-  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
-  dinnerListViewController.dinnerManager = [DinnerManager new];
-  dinnerListViewController.view;
-  XCTAssertNotNil(dinnerListViewController.tableView.dataSource);
-  XCTAssertNotNil(dinnerListViewController.tableView.delegate);
-  XCTAssertEqual(dinnerListViewController.tableView.dataSource, dinnerListViewController.dinnerManager.dinnerListManager);
-  XCTAssertEqual(dinnerListViewController.tableView.delegate, dinnerListViewController.dinnerManager);
-  XCTAssertEqual(dinnerListViewController.dinnerManager.delegate, dinnerListViewController);
+  self.dinnerListViewController.dinnerManager = [DinnerManager new];
+  self.dinnerListViewController.view;
+  XCTAssertNotNil(self.dinnerListViewController.tableView.dataSource);
+  XCTAssertNotNil(self.dinnerListViewController.tableView.delegate);
+  XCTAssertEqual(self.dinnerListViewController.tableView.dataSource, self.dinnerListViewController.dinnerManager.dinnerListManager);
+  XCTAssertEqual(self.dinnerListViewController.tableView.delegate, self.dinnerListViewController.dinnerManager);
+  XCTAssertEqual(self.dinnerListViewController.dinnerManager.delegate, self.dinnerListViewController);
 }
 
 - (void)testHidesBackButton {
@@ -59,17 +58,15 @@
 }
 
 - (void)testDinnerPresentsAddDinnerModal {
-  DinnerListViewController *dinnerListViewController = [DinnerListViewController new];
-
-  id partialMock = [OCMockObject partialMockForObject:dinnerListViewController];
+  id partialMock = [OCMockObject partialMockForObject:  self.dinnerListViewController];
   [[partialMock expect] presentViewController:[OCMArg checkWithBlock:^BOOL(id obj) {
     if ([obj isKindOfClass:[AddDinnerViewController class]]) {
       AddDinnerViewController *addDinnerViewController = obj;
-      return addDinnerViewController.delegate == dinnerListViewController;
+      return addDinnerViewController.delegate == self.dinnerListViewController;
     }
     return NO;
   }]                                 animated:YES completion:nil];
-  [dinnerListViewController addButtonTapped];
+  [self.dinnerListViewController addButtonTapped];
   [partialMock verify];
 }
 

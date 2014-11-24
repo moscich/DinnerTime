@@ -16,4 +16,5 @@
 - (TyphoonDefinition *)registerLoginViewController;
 
 - (TyphoonDefinition *)registerDinnerListViewController;
+
 @end

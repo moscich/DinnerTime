@@ -35,11 +35,20 @@
   }];
 }
 
+- (TyphoonDefinition *)addDinnerViewController {
+  return [TyphoonDefinition withClass:[AddDinnerViewController class]];
+}
+
+- (TyphoonDefinition *)addOrderViewController {
+  return [TyphoonDefinition withClass:[AddOrderViewController class]];
+}
+
 - (TyphoonDefinition *)registerOrderListViewController {
   return [TyphoonDefinition withClass:[OrderListViewController class] configuration:^(TyphoonDefinition *definition) {
     [definition useInitializer:@selector(initWithDinnerManager:) parameters:^(TyphoonMethod *initializer) {
       [initializer injectParameterWith:[self.modelAssembly registerDinnerManager]];
     }];
+    [definition injectProperty:@selector(assembly) with:self];
   }];
 }
 
